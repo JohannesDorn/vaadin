@@ -408,6 +408,10 @@ public class WidgetUtil {
     private static int detectedScrollbarSize = -1;
     private static int detectedSubPixelRoundingFactor = -1;
 
+    public static void setNativeScrollbarSize(int size) {
+       detectedScrollbarSize = size;
+    }
+
     public static int getNativeScrollbarSize() {
         if (detectedScrollbarSize < 0) {
             Element scroller = DOM.createDiv();

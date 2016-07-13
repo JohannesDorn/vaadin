@@ -6124,21 +6124,21 @@ public class Grid<T> extends ResizeComposite implements
     /**
      * Refreshes all header rows
      */
-    void refreshHeader() {
+    public void refreshHeader() {
         refreshRowContainer(escalator.getHeader(), header);
     }
 
     /**
      * Refreshes all body rows
      */
-    private void refreshBody() {
+    public void refreshBody() {
         escalator.getBody().refreshRows(0, escalator.getBody().getRowCount());
     }
 
     /**
      * Refreshes all footer rows
      */
-    void refreshFooter() {
+    public void refreshFooter() {
         refreshRowContainer(escalator.getFooter(), footer);
     }
 
