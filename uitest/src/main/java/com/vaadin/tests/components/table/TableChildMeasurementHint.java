@@ -6,14 +6,14 @@ import com.vaadin.ui.AbstractOrderedLayout;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
-import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.DateField;
 import com.vaadin.ui.GridLayout;
 import com.vaadin.ui.HasChildMeasurementHint.ChildMeasurementHint;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
-import com.vaadin.ui.Table;
-import com.vaadin.ui.TextField;
+import com.vaadin.v7.ui.ComboBox;
+import com.vaadin.v7.ui.Table;
+import com.vaadin.v7.ui.TextField;
 
 public class TableChildMeasurementHint extends AbstractTestUI {
 
@@ -47,16 +47,16 @@ public class TableChildMeasurementHint extends AbstractTestUI {
         table3.setSizeFull();
         table3.setChildMeasurementHint(ChildMeasurementHint.MEASURE_NEVER);
 
-        buttonLayout.addComponent(new Button("Show table1",
-                new ClickListener() {
+        buttonLayout
+                .addComponent(new Button("Show table1", new ClickListener() {
                     @Override
                     public void buttonClick(ClickEvent event) {
                         layout.addComponent(table1);
                         table1.focus();
                     }
                 }));
-        buttonLayout.addComponent(new Button("Show table2",
-                new ClickListener() {
+        buttonLayout
+                .addComponent(new Button("Show table2", new ClickListener() {
                     @Override
                     public void buttonClick(ClickEvent event) {
                         layout.removeComponent(table1);
@@ -64,8 +64,8 @@ public class TableChildMeasurementHint extends AbstractTestUI {
                         table2.focus();
                     }
                 }));
-        buttonLayout.addComponent(new Button("Show table3",
-                new ClickListener() {
+        buttonLayout
+                .addComponent(new Button("Show table3", new ClickListener() {
                     @Override
                     public void buttonClick(ClickEvent event) {
                         layout.removeComponent(table2);
@@ -92,7 +92,8 @@ public class TableChildMeasurementHint extends AbstractTestUI {
         for (int i = 0; i < 2; i++) {
             table.addItem(
                     makeRow(new Object[] { "Nicolaus" + i, "Copernicus", 1473 },
-                            5), j++);
+                            5),
+                    j++);
             table.addItem(
                     makeRow(new Object[] { "Tycho" + i, "Brahe", 1546 }, 5),
                     j++);
@@ -123,8 +124,8 @@ public class TableChildMeasurementHint extends AbstractTestUI {
             @Override
             public Object generateCell(Table components, Object o, Object o2) {
                 GridLayout b = new GridLayout();
-                b.addComponents(new Label("l1"), new Button("b"), new Label(
-                        "l2"));
+                b.addComponents(new Label("l1"), new Button("b"),
+                        new Label("l2"));
                 b.setWidthUndefined();
                 return b;
             }

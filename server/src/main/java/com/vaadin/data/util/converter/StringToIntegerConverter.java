@@ -1,12 +1,12 @@
 /*
- * Copyright 2000-2014 Vaadin Ltd.
- * 
+ * Copyright 2000-2016 Vaadin Ltd.
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -19,6 +19,8 @@ package com.vaadin.data.util.converter;
 import java.text.NumberFormat;
 import java.util.Locale;
 
+import com.vaadin.data.Result;
+
 /**
  * A converter that converts from {@link String} to {@link Integer} and back.
  * Uses the given locale and a {@link NumberFormat} instance for formatting and
@@ -26,18 +28,30 @@ import java.util.Locale;
  * <p>
  * Override and overwrite {@link #getFormat(Locale)} to use a different format.
  * </p>
- * 
+ *
  * @author Vaadin Ltd
- * @since 7.0
+ * @since 8.0
  */
-public class StringToIntegerConverter extends
-        AbstractStringToNumberConverter<Integer> {
+public class StringToIntegerConverter
+        extends AbstractStringToNumberConverter<Integer> {
+
+    private final String errorMessage;
+
+    /**
+     * Creates a new converter instance with the given error message.
+     *
+     * @param errorMessage
+     *            the error message to use if conversion fails
+     */
+    public StringToIntegerConverter(String errorMessage) {
+        this.errorMessage = errorMessage;
+    }
 
     /**
      * Returns the format used by
-     * {@link #convertToPresentation(Integer, Class, Locale)} and
-     * {@link #convertToModel(String, Class, Locale)}
-     * 
+     * {@link #convertToPresentation(Integer, Locale)} and
+     * {@link #convertToModel(String, Locale)}.
+     *
      * @param locale
      *            The locale to use
      * @return A NumberFormat instance
@@ -50,18 +64,9 @@ public class StringToIntegerConverter extends
         return NumberFormat.getIntegerInstance(locale);
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * com.vaadin.data.util.converter.Converter#convertToModel(java.lang.Object,
-     * java.lang.Class, java.util.Locale)
-     */
     @Override
-    public Integer convertToModel(String value,
-            Class<? extends Integer> targetType, Locale locale)
-            throws ConversionException {
-        Number n = convertToNumber(value, targetType, locale);
+    public Result<Integer> convertToModel(String value, Locale locale) {
+        Number n = convertToNumber(value, locale);
 
         if (n == null) {
             return null;
@@ -73,22 +78,10 @@ public class StringToIntegerConverter extends
             // of longValue() is either Long.MIN_VALUE or Long.MAX_VALUE. The
             // above comparison promotes int to long and thus does not need to
             // consider wrap-around.
-            return intValue;
+            return Result.ok(intValue);
+        } else {
+            return Result.error(errorMessage);
         }
-
-        throw new ConversionException("Could not convert '" + value + "' to "
-                + Integer.class.getName() + ": value out of range");
-
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see com.vaadin.data.util.converter.Converter#getModelType()
-     */
-    @Override
-    public Class<Integer> getModelType() {
-        return Integer.class;
     }
 
 }

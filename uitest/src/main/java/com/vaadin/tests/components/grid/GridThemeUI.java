@@ -1,12 +1,12 @@
 /*
- * Copyright 2000-2014 Vaadin Ltd.
- * 
+ * Copyright 2000-2016 Vaadin Ltd.
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -21,21 +21,21 @@ import java.util.List;
 import java.util.Locale;
 
 import com.vaadin.annotations.Theme;
-import com.vaadin.data.Property.ValueChangeEvent;
-import com.vaadin.data.Property.ValueChangeListener;
-import com.vaadin.data.util.BeanItemContainer;
-import com.vaadin.data.validator.IntegerRangeValidator;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.tests.components.AbstractTestUIWithLog;
 import com.vaadin.tests.fieldgroup.ComplexPerson;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
-import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.Component;
-import com.vaadin.ui.Grid;
-import com.vaadin.ui.NativeSelect;
-import com.vaadin.ui.renderers.DateRenderer;
+import com.vaadin.v7.data.Property.ValueChangeEvent;
+import com.vaadin.v7.data.Property.ValueChangeListener;
+import com.vaadin.v7.data.util.BeanItemContainer;
+import com.vaadin.v7.data.validator.IntegerRangeValidator;
+import com.vaadin.v7.ui.ComboBox;
+import com.vaadin.v7.ui.Grid;
+import com.vaadin.v7.ui.NativeSelect;
+import com.vaadin.v7.ui.renderers.DateRenderer;
 
 @Theme("valo")
 public class GridThemeUI extends AbstractTestUIWithLog {
@@ -96,11 +96,10 @@ public class GridThemeUI extends AbstractTestUIWithLog {
             getColumn("lastName").setEditable(false);
             setSizeFull();
             getColumn("age").getEditorField().addValidator(
-                    new IntegerRangeValidator("Must be between 0 and 100", 0,
-                            100));
-            getColumn("birthDate").setRenderer(
-                    new DateRenderer(DateFormat.getDateInstance(
-                            DateFormat.MEDIUM, Locale.US)));
+                    new IntegerRangeValidator("Must be between 0 and 100",
+                            0, 100));
+            getColumn("birthDate").setRenderer(new DateRenderer(
+                    DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.US)));
         }
     }
 
@@ -137,11 +136,10 @@ public class GridThemeUI extends AbstractTestUIWithLog {
             setEditorEnabled(true);
             setSizeFull();
             getColumn("age").getEditorField().addValidator(
-                    new IntegerRangeValidator("Must be between 0 and 100", 0,
-                            100));
-            getColumn("birthDate").setRenderer(
-                    new DateRenderer(DateFormat.getDateInstance(
-                            DateFormat.MEDIUM, Locale.US)));
+                    new IntegerRangeValidator("Must be between 0 and 100",
+                            0, 100));
+            getColumn("birthDate").setRenderer(new DateRenderer(
+                    DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.US)));
 
             addFooterRowAt(0);
         }

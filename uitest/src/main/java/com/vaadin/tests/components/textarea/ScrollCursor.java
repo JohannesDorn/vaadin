@@ -4,11 +4,11 @@ import com.vaadin.tests.components.TestBase;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
-import com.vaadin.ui.TextArea;
+import com.vaadin.v7.ui.TextArea;
 
 /**
  * @author denis
- * 
+ *
  */
 public class ScrollCursor extends TestBase {
 
@@ -18,11 +18,11 @@ public class ScrollCursor extends TestBase {
     @Override
     protected void setup() {
         textArea = new TextArea();
-        textArea.setValue("saddddddddddd     fdgdfgfdgfd\n"
-                + "aasddddddddddd\n" + "dsaffffffdsf\n" + "sdf\n"
-                + "dsfsdfsdfsdfsd\n\n" + "ffffffffffffffffffff\n"
-                + "sdfdsfdsfsdfsdfsd  xxxxxxxxxxxxxxxx\n" + "sdgfsd\n"
-                + "dsf\n" + "ds\n" + "fds\n" + "fds\nfs");
+        textArea.setValue("saddddddddddd     fdgdfgfdgfd\n" + "aasddddddddddd\n"
+                + "dsaffffffdsf\n" + "sdf\n" + "dsfsdfsdfsdfsd\n\n"
+                + "ffffffffffffffffffff\n"
+                + "sdfdsfdsfsdfsdfsd  xxxxxxxxxxxxxxxx\n" + "sdgfsd\n" + "dsf\n"
+                + "ds\n" + "fds\n" + "fds\nfs");
         addComponent(textArea);
         Button button = new Button("Scroll");
         button.addListener(new ClickListener() {

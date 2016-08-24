@@ -1,5 +1,5 @@
 /*
- * Copyright 2000-2014 Vaadin Ltd.
+ * Copyright 2000-2016 Vaadin Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -16,10 +16,10 @@
 package com.vaadin.tests.components.combobox;
 
 import org.junit.Test;
-import org.openqa.selenium.WebElement;
 
-import com.vaadin.testbench.By;
+import com.vaadin.testbench.elements.LabelElement;
 import com.vaadin.tests.tb3.MultiBrowserTest;
+import com.vaadin.v7.testbench.customelements.ComboBoxElement;
 
 /**
  * When pressed down key, while positioned on the last item - should show next
@@ -34,11 +34,20 @@ public class ComboBoxScrollingToPageDisabledTest extends MultiBrowserTest {
     }
 
     @Test
-    public void checkValueIsVidinlr() throws InterruptedException {
-        WebElement input = driver.findElement(By
-                .className("v-filterselect-input"));
-        String value = input.getAttribute("value");
-        org.junit.Assert.assertEquals("Item 50", value);
+    public void checkValueIsVisible() throws InterruptedException {
+        ComboBoxElement combo = $(ComboBoxElement.class).first();
+        org.junit.Assert.assertEquals("Item 50", combo.getText());
     }
 
+    @Test
+    public void checkLastValueIsVisible() throws InterruptedException {
+        ComboBoxElement combo = $(ComboBoxElement.class).first();
+        combo.selectByText("Item 99");
+        // this shouldn't clear the selection
+        combo.openPopup();
+        // close popup
+        $(LabelElement.class).first().click();
+
+        org.junit.Assert.assertEquals("Item 99", combo.getText());
+    }
 }

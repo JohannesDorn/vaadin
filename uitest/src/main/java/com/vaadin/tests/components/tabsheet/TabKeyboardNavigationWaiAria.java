@@ -11,8 +11,8 @@ import com.vaadin.ui.Component;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.TabSheet;
 import com.vaadin.ui.TabSheet.Tab;
-import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
+import com.vaadin.v7.ui.TextField;
 
 public class TabKeyboardNavigationWaiAria extends AbstractTestUI {
 

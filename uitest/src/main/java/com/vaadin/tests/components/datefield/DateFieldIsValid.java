@@ -3,12 +3,8 @@ package com.vaadin.tests.components.datefield;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import com.vaadin.data.Property.ValueChangeEvent;
-import com.vaadin.data.Property.ValueChangeListener;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.tests.components.AbstractTestUIWithLog;
-import com.vaadin.ui.Button.ClickEvent;
-import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.DateField;
 
 public class DateFieldIsValid extends AbstractTestUIWithLog {
@@ -33,22 +29,14 @@ public class DateFieldIsValid extends AbstractTestUIWithLog {
         dateField.setImmediate(true);
         dateField.setDateFormat(pattern);
 
-        dateField.addValueChangeListener(new ValueChangeListener() {
-            @Override
-            public void valueChange(ValueChangeEvent event) {
-                log("valueChange: value: " + format(dateField.getValue())
-                        + ", is valid: " + dateField.isValid());
-            }
-        });
+        dateField.addValueChangeListener(event -> log("valueChange: value: "
+                + format(dateField.getValue()) + ", is valid: "
+                + (dateField.getErrorMessage() == null)));
         addComponent(dateField);
-        addButton("check dateField", new ClickListener() {
-
-            @Override
-            public void buttonClick(ClickEvent event) {
-                log("buttonClick: value: " + format(dateField.getValue())
-                        + ", is valid: " + dateField.isValid());
-            }
-        });
+        addButton("check dateField",
+                event -> log("buttonClick: value: "
+                        + format(dateField.getValue()) + ", is valid: "
+                        + (dateField.getErrorMessage() == null)));
     }
 
     /**

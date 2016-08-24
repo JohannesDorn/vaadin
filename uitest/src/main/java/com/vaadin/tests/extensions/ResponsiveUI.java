@@ -1,5 +1,5 @@
 /*
- * Copyright 2000-2014 Vaadin Ltd.
+ * Copyright 2000-2016 Vaadin Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -51,7 +51,8 @@ public class ResponsiveUI extends AbstractTestUI {
                         + "span the entire width of the container.</p><p>This label will "
                         + "adapt its font size and line height for different widths.</p>"
                         + "<p><a href=\"http://vaadin.com/download\">Download "
-                        + "Vaadin</a></p>", ContentMode.HTML);
+                        + "Vaadin</a></p>",
+                ContentMode.HTML);
         description.addStyleName("description");
         split.addComponent(description);
 

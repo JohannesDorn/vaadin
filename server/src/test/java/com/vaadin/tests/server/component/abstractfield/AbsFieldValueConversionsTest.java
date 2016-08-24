@@ -1,7 +1,6 @@
 package com.vaadin.tests.server.component.abstractfield;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Locale;
@@ -9,25 +8,24 @@ import java.util.Locale;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.vaadin.data.util.MethodProperty;
-import com.vaadin.data.util.ObjectProperty;
-import com.vaadin.data.util.converter.Converter;
-import com.vaadin.data.util.converter.Converter.ConversionException;
-import com.vaadin.data.util.converter.StringToIntegerConverter;
 import com.vaadin.server.VaadinSession;
 import com.vaadin.tests.data.bean.Address;
 import com.vaadin.tests.data.bean.Country;
 import com.vaadin.tests.data.bean.Person;
 import com.vaadin.tests.data.bean.Sex;
 import com.vaadin.tests.util.AlwaysLockedVaadinSession;
-import com.vaadin.ui.CheckBox;
-import com.vaadin.ui.TextField;
+import com.vaadin.v7.data.util.MethodProperty;
+import com.vaadin.v7.data.util.ObjectProperty;
+import com.vaadin.v7.data.util.converter.Converter;
+import com.vaadin.v7.data.util.converter.Converter.ConversionException;
+import com.vaadin.v7.data.util.converter.StringToIntegerConverter;
+import com.vaadin.v7.ui.TextField;
 
 public class AbsFieldValueConversionsTest {
 
     Person paulaBean = new Person("Paula", "Brilliant", "paula@brilliant.com",
-            34, Sex.FEMALE, new Address("Paula street 1", 12345, "P-town",
-                    Country.FINLAND));
+            34, Sex.FEMALE,
+            new Address("Paula street 1", 12345, "P-town", Country.FINLAND));
 
     /**
      * Java uses a non-breaking space (ascii 160) instead of space when
@@ -38,8 +36,8 @@ public class AbsFieldValueConversionsTest {
     @Test
     public void testWithoutConversion() {
         TextField tf = new TextField();
-        tf.setPropertyDataSource(new MethodProperty<String>(paulaBean,
-                "firstName"));
+        tf.setPropertyDataSource(
+                new MethodProperty<String>(paulaBean, "firstName"));
         assertEquals("Paula", tf.getValue());
         assertEquals("Paula", tf.getPropertyDataSource().getValue());
         tf.setValue("abc");
@@ -112,8 +110,8 @@ public class AbsFieldValueConversionsTest {
                 return String.class;
             }
         });
-        tf.setPropertyDataSource(new MethodProperty<String>(paulaBean,
-                "firstName"));
+        tf.setPropertyDataSource(
+                new MethodProperty<String>(paulaBean, "firstName"));
         assertEquals("Paula", tf.getValue());
         assertEquals("Paula", tf.getPropertyDataSource().getValue());
         tf.setValue("abc");
@@ -153,65 +151,6 @@ public class AbsFieldValueConversionsTest {
         assertEquals((Integer) 123456789, ds.getValue());
         assertEquals("123" + FORMATTED_SPACE + "456" + FORMATTED_SPACE + "789",
                 tf.getValue());
-    }
-
-    @Test
-    public void testBooleanNullConversion() {
-        CheckBox cb = new CheckBox();
-        cb.setConverter(new Converter<Boolean, Boolean>() {
-
-            @Override
-            public Boolean convertToModel(Boolean value,
-                    Class<? extends Boolean> targetType, Locale locale) {
-                // value from a CheckBox should never be null as long as it is
-                // not set to null (handled by conversion below).
-                assertNotNull(value);
-                return value;
-            }
-
-            @Override
-            public Boolean convertToPresentation(Boolean value,
-                    Class<? extends Boolean> targetType, Locale locale) {
-                // Datamodel -> field
-                if (value == null) {
-                    return false;
-                }
-
-                return value;
-            }
-
-            @Override
-            public Class<Boolean> getModelType() {
-                return Boolean.class;
-            }
-
-            @Override
-            public Class<Boolean> getPresentationType() {
-                return Boolean.class;
-            }
-
-        });
-        MethodProperty<Boolean> property = new MethodProperty<Boolean>(
-                paulaBean, "deceased");
-        cb.setPropertyDataSource(property);
-        assertEquals(Boolean.FALSE, property.getValue());
-        assertEquals(Boolean.FALSE, cb.getValue());
-        Boolean newDmValue = cb.getConverter().convertToPresentation(
-                cb.getValue(), Boolean.class, new Locale("fi", "FI"));
-        assertEquals(Boolean.FALSE, newDmValue);
-
-        // FIXME: Should be able to set to false here to cause datamodel to be
-        // set to false but the change will not be propagated to the Property
-        // (field value is already false)
-
-        cb.setValue(true);
-        assertEquals(Boolean.TRUE, cb.getValue());
-        assertEquals(Boolean.TRUE, property.getValue());
-
-        cb.setValue(false);
-        assertEquals(Boolean.FALSE, cb.getValue());
-        assertEquals(Boolean.FALSE, property.getValue());
-
     }
 
     // Now specific to Integer because StringToNumberConverter has been removed
@@ -266,7 +205,8 @@ public class AbsFieldValueConversionsTest {
         try {
             Object v = tf.getConvertedValue();
             System.out.println(v);
-            Assert.fail("Trying to convert String -> Integer should fail when there is no converter");
+            Assert.fail(
+                    "Trying to convert String -> Integer should fail when there is no converter");
         } catch (ConversionException e) {
             // ok, should happen when there is no converter but conversion is
             // needed

@@ -3,8 +3,8 @@ package com.vaadin.tests.data.converter;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.vaadin.data.util.converter.Converter.ConversionException;
-import com.vaadin.data.util.converter.StringToIntegerConverter;
+import com.vaadin.v7.data.util.converter.Converter.ConversionException;
+import com.vaadin.v7.data.util.converter.StringToIntegerConverter;
 
 public class StringToIntegerConverterTest {
 

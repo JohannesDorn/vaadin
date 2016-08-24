@@ -5,7 +5,7 @@ import com.vaadin.shared.ui.label.ContentMode;
 import com.vaadin.tests.components.AbstractTestUI;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Label;
-import com.vaadin.ui.Table;
+import com.vaadin.v7.ui.Table;
 
 public class TableRowScrolledBottom extends AbstractTestUI {
 
@@ -28,10 +28,12 @@ public class TableRowScrolledBottom extends AbstractTestUI {
             public void buttonClick(Button.ClickEvent event) {
                 for (int j = 0; j < 100; j++) {
                     ++i;
-                    table.addItem(new Object[] { new Label(part1 + "<b>" + i
-                            + "</b>" + part2, ContentMode.HTML) }, i);
-                    table.setCurrentPageFirstItemIndex(table
-                            .getContainerDataSource().size() - 1);
+                    table.addItem(new Object[] {
+                            new Label(part1 + "<b>" + i + "</b>" + part2,
+                                    ContentMode.HTML) },
+                            i);
+                    table.setCurrentPageFirstItemIndex(
+                            table.getContainerDataSource().size() - 1);
                 }
             }
         });

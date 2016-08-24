@@ -7,9 +7,9 @@ import com.vaadin.ui.Button;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.HorizontalSplitPanel;
 import com.vaadin.ui.Label;
-import com.vaadin.ui.LegacyWindow;
-import com.vaadin.ui.Table;
 import com.vaadin.ui.VerticalLayout;
+import com.vaadin.v7.ui.LegacyWindow;
+import com.vaadin.v7.ui.Table;
 
 public class TableToggleVisibility extends AbstractTestCase {
 
@@ -148,9 +148,9 @@ public class TableToggleVisibility extends AbstractTestCase {
                     ToggleButton.this.table.setVisible(!wasVisible);
                     setCaption((wasVisible ? "+ " : "- ")
                             + ToggleButton.this.table.getCaption());
-                    setDescription((wasVisible ? "Show " : "Hide ")
-                            + "the list with "
-                            + ToggleButton.this.table.getCaption());
+                    setDescription(
+                            (wasVisible ? "Show " : "Hide ") + "the list with "
+                                    + ToggleButton.this.table.getCaption());
 
                 }
             });

@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>com.vaadin</groupId>
 		<artifactId>vaadin-root</artifactId>
-		<version>7.7.0-SNAPSHOT</version>
+		<version>8.0-SNAPSHOT</version>
 	</parent>
 	<artifactId>vaadin-push</artifactId>
 	<name>vaadin-push</name>
@@ -22,12 +22,10 @@
 		<dependency>
 			<groupId>com.vaadin.external.atmosphere</groupId>
 			<artifactId>atmosphere-runtime</artifactId>
-			<version>${atmosphere.runtime.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.vaadin.external.atmosphere.client</groupId>
 			<artifactId>javascript</artifactId>
-			<version>${atmosphere.js.version}</version>
 			<type>war</type>
 			<scope>provided</scope>
 		</dependency>
@@ -135,8 +133,8 @@
 				<extensions>true</extensions>
 				<configuration>
 					<instructions>
-						<Bundle-Version>${parsedVersion.majorVersion}.${parsedVersion.minorVersion}.${parsedVersion.incrementalVersion}</Bundle-Version>
-						<Bundle-RequiredExecutionEnvironment>JavaSE-1.6</Bundle-RequiredExecutionEnvironment>
+						<Bundle-Version>${osgi.bundle.version}</Bundle-Version>
+						<Bundle-RequiredExecutionEnvironment>${osgi.execution.environment}</Bundle-RequiredExecutionEnvironment>
 						<Export-Package>VAADIN</Export-Package>
 						<Require-Bundle>com.vaadin.external.atmosphere.runtime;bundle-version="${atmosphere.runtime.version}";visibility:=reexport</Require-Bundle>
 					</instructions>

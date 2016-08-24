@@ -3,12 +3,12 @@ package com.vaadin.tests.components.table;
 import java.util.Arrays;
 import java.util.Collection;
 
-import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.tests.components.TestBase;
 import com.vaadin.tests.util.Log;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
-import com.vaadin.ui.Table;
+import com.vaadin.v7.data.util.BeanItemContainer;
+import com.vaadin.v7.ui.Table;
 
 @SuppressWarnings("serial")
 public class MultiSelectWithRemovedRow extends TestBase {
@@ -35,10 +35,11 @@ public class MultiSelectWithRemovedRow extends TestBase {
         addComponent(log);
 
         final BeanItemContainer<Person> container = new BeanItemContainer<Person>(
-                Person.class, Arrays.asList(new Person("Joe"), new Person(
-                        "William"), new Person("Jack"), new Person("Averell"),
-                        new Person("Bob"), new Person("Grat"), new Person(
-                                "Bill"), new Person("Emmett")));
+                Person.class,
+                Arrays.asList(new Person("Joe"), new Person("William"),
+                        new Person("Jack"), new Person("Averell"),
+                        new Person("Bob"), new Person("Grat"),
+                        new Person("Bill"), new Person("Emmett")));
         final Table table = new Table("Table", container);
         table.setSelectable(true);
         table.setMultiSelect(true);

@@ -8,19 +8,19 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.vaadin.data.Property.ValueChangeEvent;
-import com.vaadin.data.util.ObjectProperty;
-import com.vaadin.ui.AbstractField;
-import com.vaadin.ui.TextField;
+import com.vaadin.v7.data.Property.ValueChangeEvent;
+import com.vaadin.v7.data.util.ObjectProperty;
+import com.vaadin.v7.ui.AbstractField;
+import com.vaadin.v7.ui.TextField;
 
 /**
  * Check that the value change listener for a text field is triggered exactly
  * once when setting the value, at the correct time.
- * 
+ *
  * See <a href="http://dev.vaadin.com/ticket/4394">Ticket 4394</a>.
  */
-public class TextFieldValueChangeTest extends
-        AbstractFieldValueChangeTestBase<String> {
+public class TextFieldValueChangeTest
+        extends AbstractFieldValueChangeTestBase<String> {
 
     @Before
     public void setUp() {
@@ -48,8 +48,8 @@ public class TextFieldValueChangeTest extends
     /**
      * Test that field propagates value change events originating from property,
      * but don't fire value change events twice if value has only changed once.
-     * 
-     * 
+     *
+     *
      * TODO make test field type agnostic (eg. combobox)
      */
     @Test
@@ -83,7 +83,7 @@ public class TextFieldValueChangeTest extends
     /**
      * Value change events from property should not propagate if read through is
      * false. Execpt when the property is being set.
-     * 
+     *
      * TODO make test field type agnostic (eg. combobox)
      */
     @Test

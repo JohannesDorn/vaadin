@@ -1,5 +1,5 @@
 /*
- * Copyright 2000-2014 Vaadin Ltd.
+ * Copyright 2000-2016 Vaadin Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -26,9 +26,9 @@ import com.vaadin.ui.Embedded;
 import com.vaadin.ui.GridLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
-import com.vaadin.ui.PasswordField;
-import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
+import com.vaadin.v7.ui.PasswordField;
+import com.vaadin.v7.ui.TextField;
 
 public class AbsoluteLayoutHideComponent extends AbstractTestUI {
 
@@ -89,8 +89,8 @@ public class AbsoluteLayoutHideComponent extends AbstractTestUI {
         // =====> THIS CODE generates error
         // WITHOUT THIS CODE works fine
 
-        Embedded e = new Embedded("", new ThemeResource(
-                "../runo/icons/64/ok.png"));
+        Embedded e = new Embedded("",
+                new ThemeResource("../runo/icons/64/ok.png"));
         // e.setMimeType("image/jpg");
         e.setWidth("100%");
         e.setHeight("100%");

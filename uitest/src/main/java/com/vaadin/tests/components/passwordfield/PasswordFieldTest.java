@@ -1,10 +1,11 @@
 package com.vaadin.tests.components.passwordfield;
 
 import com.vaadin.event.FieldEvents.TextChangeListener;
-import com.vaadin.tests.components.abstractfield.AbstractTextFieldTest;
-import com.vaadin.ui.PasswordField;
+import com.vaadin.tests.components.abstractfield.LegacyAbstractTextFieldTest;
+import com.vaadin.v7.ui.PasswordField;
 
-public class PasswordFieldTest extends AbstractTextFieldTest<PasswordField>
+public class PasswordFieldTest
+        extends LegacyAbstractTextFieldTest<PasswordField>
         implements TextChangeListener {
 
     @Override

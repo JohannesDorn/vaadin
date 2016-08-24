@@ -1,12 +1,12 @@
 /*
- * Copyright 2000-2014 Vaadin Ltd.
- * 
+ * Copyright 2000-2016 Vaadin Ltd.
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -24,7 +24,7 @@ import com.vaadin.event.SortEvent.SortListener;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.shared.data.sort.SortDirection;
 import com.vaadin.tests.components.AbstractTestUI;
-import com.vaadin.ui.Grid;
+import com.vaadin.v7.ui.Grid;
 
 /*
  * Test UI for checking that sort indicators of a Grid are updated when the sort order is changed by a
@@ -49,16 +49,17 @@ public class GridSortIndicator extends AbstractTestUI {
                     // is not null.
                     List<SortOrder> newSortOrder = new ArrayList<SortOrder>();
                     SortDirection newSortDirection = oldSortDirection;
-                    if (currentSortOrder.get(0).getPropertyId().equals("Name")) {
-                        newSortDirection = SortDirection.ASCENDING
-                                .equals(oldSortDirection) ? SortDirection.DESCENDING
-                                : SortDirection.ASCENDING;
+                    if (currentSortOrder.get(0).getPropertyId()
+                            .equals("Name")) {
+                        newSortDirection = SortDirection.ASCENDING.equals(
+                                oldSortDirection) ? SortDirection.DESCENDING
+                                        : SortDirection.ASCENDING;
                     }
                     if (newSortDirection != null) {
                         newSortOrder
                                 .add(new SortOrder("Name", newSortDirection));
-                        newSortOrder.add(new SortOrder("Value",
-                                newSortDirection));
+                        newSortOrder
+                                .add(new SortOrder("Value", newSortDirection));
                         g.setSortOrder(newSortOrder);
                     }
                     oldSortDirection = newSortDirection;

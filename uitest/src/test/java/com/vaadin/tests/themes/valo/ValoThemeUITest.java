@@ -1,5 +1,5 @@
 /*
- * Copyright 2000-2014 Vaadin Ltd.
+ * Copyright 2000-2016 Vaadin Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -23,7 +23,7 @@ import com.vaadin.testbench.elements.ButtonElement;
 import com.vaadin.testbench.elements.CheckBoxElement;
 import com.vaadin.testbench.elements.CssLayoutElement;
 import com.vaadin.testbench.elements.LabelElement;
-import com.vaadin.testbench.elements.TreeElement;
+import com.vaadin.v7.testbench.customelements.TreeElement;
 import com.vaadin.tests.tb3.MultiBrowserTest;
 
 public class ValoThemeUITest extends MultiBrowserTest {
@@ -285,9 +285,8 @@ public class ValoThemeUITest extends MultiBrowserTest {
         LabelElement captionElem = content.$(LabelElement.class).first();
         if (!captionElem.getText().equals(caption)) {
             // IE ... why you fail clicks
-            System.err.println("Extra click needed on '" + link
-                    + "' on remote " + getDesiredCapabilities() + " "
-                    + getRemoteControlName());
+            System.err.println("Extra click needed on '" + link + "' on remote "
+                    + getDesiredCapabilities() + " " + getRemoteControlName());
 
             open(link, caption, tries - 1);
         } else {

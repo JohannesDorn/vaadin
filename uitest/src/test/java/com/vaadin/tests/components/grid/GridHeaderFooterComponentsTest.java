@@ -1,12 +1,12 @@
 /*
- * Copyright 2000-2014 Vaadin Ltd.
- * 
+ * Copyright 2000-2016 Vaadin Ltd.
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -14,8 +14,6 @@
  * the License.
  */
 package com.vaadin.tests.components.grid;
-
-import static org.junit.Assert.assertFalse;
 
 import java.util.List;
 
@@ -25,10 +23,10 @@ import org.junit.Test;
 
 import com.vaadin.testbench.By;
 import com.vaadin.testbench.elements.ButtonElement;
-import com.vaadin.testbench.elements.GridElement;
 import com.vaadin.testbench.elements.GridElement.GridCellElement;
 import com.vaadin.testbench.elements.TextFieldElement;
 import com.vaadin.tests.tb3.SingleBrowserTest;
+import com.vaadin.v7.testbench.customelements.GridElement;
 
 public class GridHeaderFooterComponentsTest extends SingleBrowserTest {
 
@@ -62,7 +60,8 @@ public class GridHeaderFooterComponentsTest extends SingleBrowserTest {
         assertNoErrorNotifications();
     }
 
-    private TextFieldElement getHeaderElement(GridElement grid, int row, int col) {
+    private TextFieldElement getHeaderElement(GridElement grid, int row,
+            int col) {
         GridCellElement cell = grid.getHeaderCell(row, col);
         List<TextFieldElement> all = cell.$(TextFieldElement.class).all();
         if (all.size() == 0) {
@@ -71,8 +70,8 @@ public class GridHeaderFooterComponentsTest extends SingleBrowserTest {
             return all.get(0);
         } else {
             throw new RuntimeException(
-                    "Multiple elements found in the header cell at " + row
-                            + "," + col);
+                    "Multiple elements found in the header cell at " + row + ","
+                            + col);
         }
     }
 
@@ -99,7 +98,8 @@ public class GridHeaderFooterComponentsTest extends SingleBrowserTest {
         assertNoErrorNotifications();
     }
 
-    private TextFieldElement getFooterElement(GridElement grid, int row, int col) {
+    private TextFieldElement getFooterElement(GridElement grid, int row,
+            int col) {
         GridCellElement cell = grid.getFooterCell(row, col);
         List<TextFieldElement> all = cell.$(TextFieldElement.class).all();
         if (all.size() == 0) {
@@ -108,8 +108,8 @@ public class GridHeaderFooterComponentsTest extends SingleBrowserTest {
             return all.get(0);
         } else {
             throw new RuntimeException(
-                    "Multiple elements found in the footer cell at " + row
-                            + "," + col);
+                    "Multiple elements found in the footer cell at " + row + ","
+                            + col);
         }
     }
 
@@ -121,18 +121,16 @@ public class GridHeaderFooterComponentsTest extends SingleBrowserTest {
             // Remove Header
             $(GridElement.class).first().getHeaderCell(i, 0)
                     .$(ButtonElement.class).first().click();
-            assertFalse(
-                    "Header " + i + " should not be present.",
-                    $(GridElement.class).first().isElementPresent(
-                            By.vaadin("#header[" + i + "]")));
+            Assert.assertFalse("Header " + i + " should not be present.",
+                    $(GridElement.class).first()
+                            .isElementPresent(By.vaadin("#header[" + i + "]")));
 
             // Remove Footer
             $(GridElement.class).first().getFooterCell(i, 0)
                     .$(ButtonElement.class).first().click();
-            assertFalse(
-                    "Footer " + i + " should not be present.",
-                    $(GridElement.class).first().isElementPresent(
-                            By.vaadin("#footer[" + i + "]")));
+            Assert.assertFalse("Footer " + i + " should not be present.",
+                    $(GridElement.class).first()
+                            .isElementPresent(By.vaadin("#footer[" + i + "]")));
         }
 
         assertNoErrorNotifications();

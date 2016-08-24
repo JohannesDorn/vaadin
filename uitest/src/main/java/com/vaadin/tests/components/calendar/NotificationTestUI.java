@@ -1,12 +1,12 @@
 /*
- * Copyright 2000-2014 Vaadin Ltd.
- * 
+ * Copyright 2000-2016 Vaadin Ltd.
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -22,15 +22,15 @@ import java.util.Locale;
 
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
-import com.vaadin.ui.Calendar;
 import com.vaadin.ui.GridLayout;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.UI;
-import com.vaadin.ui.components.calendar.CalendarComponentEvents.DateClickEvent;
-import com.vaadin.ui.components.calendar.CalendarComponentEvents.DateClickHandler;
-import com.vaadin.ui.components.calendar.event.BasicEvent;
-import com.vaadin.ui.components.calendar.event.CalendarEvent;
-import com.vaadin.ui.components.calendar.event.CalendarEventProvider;
+import com.vaadin.v7.ui.Calendar;
+import com.vaadin.v7.ui.components.calendar.CalendarComponentEvents.DateClickEvent;
+import com.vaadin.v7.ui.components.calendar.CalendarComponentEvents.DateClickHandler;
+import com.vaadin.v7.ui.components.calendar.event.BasicEvent;
+import com.vaadin.v7.ui.components.calendar.event.CalendarEvent;
+import com.vaadin.v7.ui.components.calendar.event.CalendarEventProvider;
 
 public class NotificationTestUI extends UI {
 
@@ -67,8 +67,8 @@ public class NotificationTestUI extends UI {
                 new Button.ClickListener() {
                     @Override
                     public void buttonClick(ClickEvent event) {
-                        Notification
-                                .show("This will disappear when you move your mouse!");
+                        Notification.show(
+                                "This will disappear when you move your mouse!");
                     }
                 });
         content.addComponent(btn);
@@ -81,8 +81,8 @@ public class NotificationTestUI extends UI {
             @Override
             public void dateClick(DateClickEvent event) {
                 provider.addEvent(event.getDate());
-                Notification
-                        .show("This should disappear, but if wont unless clicked.");
+                Notification.show(
+                        "This should disappear, but if wont unless clicked.");
 
                 // this requestRepaint call interferes with the notification
                 cal.markAsDirty();

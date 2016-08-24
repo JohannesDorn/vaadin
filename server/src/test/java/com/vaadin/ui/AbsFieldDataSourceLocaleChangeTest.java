@@ -7,10 +7,11 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.vaadin.data.util.converter.StringToIntegerConverter;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinSession;
 import com.vaadin.tests.util.AlwaysLockedVaadinSession;
+import com.vaadin.v7.data.util.converter.StringToIntegerConverter;
+import com.vaadin.v7.ui.TextField;
 
 public class AbsFieldDataSourceLocaleChangeTest {
 

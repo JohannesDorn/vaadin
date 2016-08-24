@@ -1,12 +1,12 @@
 /*
- * Copyright 2000-2014 Vaadin Ltd.
- * 
+ * Copyright 2000-2016 Vaadin Ltd.
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -23,11 +23,11 @@ import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.CssLayout;
-import com.vaadin.ui.Grid;
-import com.vaadin.ui.Grid.Column;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.themes.Reindeer;
+import com.vaadin.v7.ui.Grid;
+import com.vaadin.v7.ui.Grid.Column;
 
 @Theme(Reindeer.THEME_NAME)
 public class GridColumnExpand extends AbstractTestUI {
@@ -97,7 +97,8 @@ public class GridColumnExpand extends AbstractTestUI {
         return layout;
     }
 
-    private Component createWidthButton(final Column column, final double width) {
+    private Component createWidthButton(final Column column,
+            final double width) {
         return new Button("" + width, new Button.ClickListener() {
             @Override
             public void buttonClick(ClickEvent event) {

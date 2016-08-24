@@ -1,8 +1,6 @@
 package com.vaadin.tests.appengine;
 
 import com.google.apphosting.api.DeadlineExceededException;
-import com.vaadin.data.Property;
-import com.vaadin.data.Property.ValueChangeEvent;
 import com.vaadin.server.ClassResource;
 import com.vaadin.server.DownloadStream;
 import com.vaadin.server.LegacyApplication;
@@ -11,14 +9,16 @@ import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Embedded;
 import com.vaadin.ui.GridLayout;
 import com.vaadin.ui.Label;
-import com.vaadin.ui.LegacyWindow;
 import com.vaadin.ui.Notification;
-import com.vaadin.ui.TextField;
+import com.vaadin.v7.data.Property;
+import com.vaadin.v7.data.Property.ValueChangeEvent;
+import com.vaadin.v7.ui.LegacyWindow;
+import com.vaadin.v7.ui.TextField;
 
 public class GAESyncTest extends LegacyApplication {
 
     /**
-     * 
+     *
      */
     private static final long serialVersionUID = -3724319151122707926l;
 
@@ -34,8 +34,8 @@ public class GAESyncTest extends LegacyApplication {
         // Was this caused by a GAE timeout?
         while (t != null) {
             if (t instanceof DeadlineExceededException) {
-                getMainWindow().showNotification("Bugger!",
-                        "Deadline Exceeded", Notification.TYPE_ERROR_MESSAGE);
+                getMainWindow().showNotification("Bugger!", "Deadline Exceeded",
+                        Notification.TYPE_ERROR_MESSAGE);
                 return;
             }
             t = t.getCause();
@@ -61,8 +61,8 @@ public class GAESyncTest extends LegacyApplication {
             tf.addListener(new Property.ValueChangeListener() {
                 @Override
                 public void valueChange(ValueChangeEvent event) {
-                    IntrWindow.this.showNotification((String) event
-                            .getProperty().getValue());
+                    IntrWindow.this.showNotification(
+                            (String) event.getProperty().getValue());
 
                 }
 
@@ -94,8 +94,8 @@ public class GAESyncTest extends LegacyApplication {
                     @Override
                     public void buttonClick(ClickEvent event) {
                         if (getUI() == getMainWindow()) {
-                            getUI().getPage().showNotification(
-                                    new Notification("main"));
+                            getUI().getPage()
+                                    .showNotification(new Notification("main"));
                             try {
                                 Thread.sleep((5000));
                             } catch (InterruptedException e) {

@@ -3,17 +3,18 @@ package com.vaadin.tests.components.textarea;
 import com.vaadin.event.FieldEvents.TextChangeEvent;
 import com.vaadin.event.FieldEvents.TextChangeListener;
 import com.vaadin.tests.components.TestBase;
-import com.vaadin.ui.AbstractField;
-import com.vaadin.ui.AbstractTextField;
-import com.vaadin.ui.AbstractTextField.TextChangeEventMode;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Label;
-import com.vaadin.ui.TextArea;
-import com.vaadin.ui.TextField;
+import com.vaadin.v7.ui.AbstractField;
+import com.vaadin.v7.ui.AbstractTextField;
+import com.vaadin.v7.ui.AbstractTextField.TextChangeEventMode;
+import com.vaadin.v7.ui.TextArea;
+import com.vaadin.v7.ui.TextField;
 
 public class TextAreaCursorPosition extends TestBase {
 
-    private TextField cursorPosition = new TextField("Cursor position");
+    private TextField cursorPosition = new TextField(
+            "Cursor position");
 
     @Override
     public void setup() {
@@ -32,13 +33,13 @@ public class TextAreaCursorPosition extends TestBase {
         AbstractTextField newTextField = (AbstractTextField) newField;
         newTextField.setTextChangeEventMode(TextChangeEventMode.EAGER);
 
-        newTextField.addListener(new TextChangeListener() {
+        newTextField.addTextChangeListener(new TextChangeListener() {
             @Override
             public void textChange(TextChangeEvent event) {
                 AbstractTextField component = (AbstractTextField) event
                         .getComponent();
-                cursorPosition.setValue(String.valueOf(component
-                        .getCursorPosition()));
+                cursorPosition.setValue(
+                        String.valueOf(component.getCursorPosition()));
             }
         });
     }

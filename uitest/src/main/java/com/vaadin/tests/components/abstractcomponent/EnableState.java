@@ -1,13 +1,11 @@
 package com.vaadin.tests.components.abstractcomponent;
 
-import com.vaadin.data.Property;
-import com.vaadin.data.Property.ValueChangeEvent;
 import com.vaadin.tests.components.AbstractTestCase;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.CheckBox;
-import com.vaadin.ui.LegacyWindow;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
+import com.vaadin.v7.ui.LegacyWindow;
 
 public class EnableState extends AbstractTestCase {
     @Override
@@ -21,48 +19,26 @@ public class EnableState extends AbstractTestCase {
         panelLayout.addComponent(button);
 
         CheckBox enable = new CheckBox("Toggle button enabled", true);
-        enable.addListener(new Property.ValueChangeListener() {
-
-            @Override
-            public void valueChange(ValueChangeEvent event) {
-                boolean enabled = (Boolean) event.getProperty().getValue();
-                button.setEnabled(enabled);
-                // button.requestRepaint();
-            }
+        enable.addValueChangeListener(event -> {
+            boolean enabled = event.getValue();
+            button.setEnabled(enabled);
+            // button.requestRepaint();
         });
         enable.setImmediate(true);
 
         CheckBox caption = new CheckBox("Toggle button caption", true);
-        caption.addListener(new Property.ValueChangeListener() {
-
-            @Override
-            public void valueChange(ValueChangeEvent event) {
-                button.setCaption(button.getCaption() + "+");
-            }
-        });
+        caption.addValueChangeListener(
+                event -> button.setCaption(button.getCaption() + "+"));
         caption.setImmediate(true);
 
         CheckBox visible = new CheckBox("Toggle panel visibility", true);
-        visible.addListener(new Property.ValueChangeListener() {
-
-            @Override
-            public void valueChange(ValueChangeEvent event) {
-                boolean visible = (Boolean) event.getProperty().getValue();
-
-                panel.setVisible(visible);
-            }
-        });
+        visible.addValueChangeListener(
+                event -> panel.setVisible(event.getValue()));
         visible.setImmediate(true);
 
         CheckBox panelEnable = new CheckBox("Toggle panel enabled", true);
-        panelEnable.addListener(new Property.ValueChangeListener() {
-
-            @Override
-            public void valueChange(ValueChangeEvent event) {
-                boolean enabled = (Boolean) event.getProperty().getValue();
-                panel.setEnabled(enabled);
-            }
-        });
+        panelEnable.addValueChangeListener(
+                event -> panel.setEnabled(event.getValue()));
         panelEnable.setImmediate(true);
 
         mainWindow.addComponent(enable);

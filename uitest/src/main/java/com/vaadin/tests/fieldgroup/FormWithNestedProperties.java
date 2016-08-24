@@ -1,15 +1,15 @@
 package com.vaadin.tests.fieldgroup;
 
-import com.vaadin.data.fieldgroup.BeanFieldGroup;
-import com.vaadin.data.fieldgroup.PropertyId;
 import com.vaadin.tests.data.bean.Address;
 import com.vaadin.tests.data.bean.Country;
 import com.vaadin.tests.data.bean.Person;
 import com.vaadin.tests.data.bean.Sex;
 import com.vaadin.tests.util.Log;
 import com.vaadin.ui.CheckBox;
-import com.vaadin.ui.NativeSelect;
-import com.vaadin.ui.TextField;
+import com.vaadin.v7.data.fieldgroup.BeanFieldGroup;
+import com.vaadin.v7.data.fieldgroup.PropertyId;
+import com.vaadin.v7.ui.NativeSelect;
+import com.vaadin.v7.ui.TextField;
 
 public class FormWithNestedProperties extends AbstractBeanFieldGroupTest {
 
@@ -21,7 +21,8 @@ public class FormWithNestedProperties extends AbstractBeanFieldGroupTest {
     private TextField age = new TextField("Age");
 
     @PropertyId("address.streetAddress")
-    private TextField streetAddress = new TextField("Street address");
+    private TextField streetAddress = new TextField(
+            "Street address");
     private NativeSelect country;
 
     private CheckBox deceased = new CheckBox("Deceased");
@@ -45,10 +46,9 @@ public class FormWithNestedProperties extends AbstractBeanFieldGroupTest {
         addComponent(getDiscardButton());
         addComponent(getShowBeanButton());
 
-        getFieldBinder().setItemDataSource(
-                new Person("First", "Last", "Email", 52, Sex.FEMALE,
-                        new Address("street address", 01234, "City",
-                                Country.FINLAND)));
+        getFieldBinder().setItemDataSource(new Person("First", "Last", "Email",
+                52, Sex.FEMALE,
+                new Address("street address", 01234, "City", Country.FINLAND)));
 
     }
 

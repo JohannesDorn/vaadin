@@ -6,8 +6,8 @@ import com.vaadin.server.VaadinRequest;
 import com.vaadin.tests.components.AbstractTestUI;
 import com.vaadin.ui.CheckBox;
 import com.vaadin.ui.NativeButton;
-import com.vaadin.ui.OptionGroup;
-import com.vaadin.ui.TextField;
+import com.vaadin.v7.ui.OptionGroup;
+import com.vaadin.v7.ui.TextField;
 
 public class FieldFocusOnClick extends AbstractTestUI {
 
@@ -15,8 +15,8 @@ public class FieldFocusOnClick extends AbstractTestUI {
     protected void setup(VaadinRequest request) {
         addComponent(new TextField(null, "TextField"));
         addComponent(new CheckBox("CheckBox"));
-        addComponent(new OptionGroup(null,
-                Arrays.asList("Option 1", "Option 2")));
+        addComponent(
+                new OptionGroup(null, Arrays.asList("Option 1", "Option 2")));
         addComponent(new NativeButton("NativeButton"));
     }
 

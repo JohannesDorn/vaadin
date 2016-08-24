@@ -7,15 +7,16 @@ import java.util.HashSet;
 import java.util.Locale;
 import java.util.Set;
 
-import com.vaadin.data.Item;
-import com.vaadin.data.Property;
-import com.vaadin.data.Property.ValueChangeEvent;
+import com.vaadin.shared.ui.datefield.Resolution;
 import com.vaadin.tests.components.TestBase;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.DateField;
 import com.vaadin.ui.GridLayout;
 import com.vaadin.ui.Label;
-import com.vaadin.ui.NativeSelect;
+import com.vaadin.v7.data.Item;
+import com.vaadin.v7.data.Property;
+import com.vaadin.v7.data.Property.ValueChangeEvent;
+import com.vaadin.v7.ui.NativeSelect;
 
 public class CustomDateFormats extends TestBase {
 
@@ -141,7 +142,7 @@ public class CustomDateFormats extends TestBase {
         Label serversideValueLabel = new Label();
 
         DateField df = new DateField();
-        df.setResolution(DateField.RESOLUTION_DAY);
+        df.setResolution(Resolution.DAY);
         df.setLocale(locale);
         df.setWidth("300px");
         df.setDateFormat(pattern);
@@ -157,13 +158,8 @@ public class CustomDateFormats extends TestBase {
 
         df.setData(new Data(serversideValueLabel, pattern));
         df.setValue(cal.getTime());
-        df.addListener(new Property.ValueChangeListener() {
-
-            @Override
-            public void valueChange(ValueChangeEvent event) {
-                updateServerSideLabel((DateField) event.getProperty());
-            }
-        });
+        df.addValueChangeListener(event -> updateServerSideLabel(
+                (DateField) event.getConnector()));
 
         Label patternLabel = new Label(pattern);
         patternLabel.setWidth(null);
@@ -172,8 +168,8 @@ public class CustomDateFormats extends TestBase {
 
         Label expectedLabel = new Label(expDateFormat.format(cal.getTime()));
         if (!pattern.equals(expectedDateFormat)) {
-            expectedLabel.setValue(expectedLabel.getValue()
-                    + " (differs from JDK)");
+            expectedLabel
+                    .setValue(expectedLabel.getValue() + " (differs from JDK)");
         }
         expectedLabel.setWidth(null);
 

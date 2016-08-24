@@ -3,13 +3,14 @@ package com.vaadin.tests.components.datefield;
 import java.util.Date;
 import java.util.Locale;
 
-import com.vaadin.data.Property.ValueChangeEvent;
-import com.vaadin.data.Property.ValueChangeListener;
+import com.vaadin.data.HasValue.ValueChange;
+import com.vaadin.data.HasValue.ValueChangeListener;
+import com.vaadin.shared.ui.datefield.Resolution;
 import com.vaadin.tests.components.TestBase;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.DateField;
 
-public class LenientMode extends TestBase implements ValueChangeListener {
+public class LenientMode extends TestBase implements ValueChangeListener<Date> {
 
     private static final long serialVersionUID = -9064553409580072387L;
 
@@ -31,14 +32,14 @@ public class LenientMode extends TestBase implements ValueChangeListener {
 
         DateField df = new DateField("Lenient ");
         df.setLocale(new Locale("fi"));
-        df.setResolution(DateField.RESOLUTION_DAY);
+        df.setResolution(Resolution.DAY);
         df.setLenient(true);
         df.setImmediate(true);
         df.setValue(d);
 
         DateField df2 = new DateField("Normal ");
         df2.setLocale(new Locale("fi"));
-        df2.setResolution(DateField.RESOLUTION_DAY);
+        df2.setResolution(Resolution.DAY);
         // df2.setLenient(false);
         df2.setValue(null);
         df2.setImmediate(true);
@@ -47,8 +48,8 @@ public class LenientMode extends TestBase implements ValueChangeListener {
         addComponent(df);
         addComponent(df2);
 
-        df.addListener(this);
-        df2.addListener(this);
+        df.addValueChangeListener(this);
+        df2.addValueChangeListener(this);
 
         df = new DateField("Lenient with time");
         df.setLocale(new Locale("fi"));
@@ -66,17 +67,16 @@ public class LenientMode extends TestBase implements ValueChangeListener {
         addComponent(df);
         addComponent(df2);
 
-        df.addListener(this);
-        df2.addListener(this);
+        df.addValueChangeListener(this);
+        df2.addValueChangeListener(this);
 
         addComponent(new Button("Visit server"));
 
     }
 
     @Override
-    public void valueChange(ValueChangeEvent event) {
-        getMainWindow().showNotification(
-                "New value" + event.getProperty().getValue());
-
+    public void accept(ValueChange<Date> event) {
+        getMainWindow().showNotification("New value" + event.getValue());
     }
+
 }

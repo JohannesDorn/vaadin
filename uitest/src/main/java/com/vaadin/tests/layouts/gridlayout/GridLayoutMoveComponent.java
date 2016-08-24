@@ -2,12 +2,11 @@ package com.vaadin.tests.layouts.gridlayout;
 
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.tests.components.AbstractTestUI;
-import com.vaadin.tests.components.TestBase;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.GridLayout;
 import com.vaadin.ui.Label;
-import com.vaadin.ui.TextField;
+import com.vaadin.v7.ui.TextField;
 
 public class GridLayoutMoveComponent extends AbstractTestUI {
 
@@ -29,8 +28,8 @@ public class GridLayoutMoveComponent extends AbstractTestUI {
         grid.addComponent(b, 0, 1);
         grid.addComponent(tf, 0, 2);
 
-        addComponent(new Button("Shift label right",
-                new Button.ClickListener() {
+        addComponent(
+                new Button("Shift label right", new Button.ClickListener() {
                     @Override
                     public void buttonClick(ClickEvent event) {
                         // Moving component from 0,0 -> 1,0
@@ -39,8 +38,8 @@ public class GridLayoutMoveComponent extends AbstractTestUI {
                     }
                 }));
 
-        addComponent(new Button("Shift button right",
-                new Button.ClickListener() {
+        addComponent(
+                new Button("Shift button right", new Button.ClickListener() {
                     @Override
                     public void buttonClick(ClickEvent event) {
                         grid.removeComponent(b);

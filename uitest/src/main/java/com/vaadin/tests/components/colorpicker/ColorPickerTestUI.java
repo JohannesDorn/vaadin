@@ -1,12 +1,12 @@
 /*
- * Copyright 2000-2014 Vaadin Ltd.
- * 
+ * Copyright 2000-2016 Vaadin Ltd.
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -26,28 +26,27 @@ import java.util.Date;
 
 import javax.imageio.ImageIO;
 
-import com.vaadin.data.Property.ValueChangeEvent;
 import com.vaadin.server.StreamResource;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.shared.ui.colorpicker.Color;
 import com.vaadin.shared.ui.label.ContentMode;
 import com.vaadin.tests.components.AbstractTestUI;
-import com.vaadin.ui.AbstractColorPicker;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.CheckBox;
-import com.vaadin.ui.ColorPicker;
-import com.vaadin.ui.ColorPickerArea;
 import com.vaadin.ui.Embedded;
 import com.vaadin.ui.GridLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
-import com.vaadin.ui.components.colorpicker.ColorChangeEvent;
-import com.vaadin.ui.components.colorpicker.ColorChangeListener;
+import com.vaadin.v7.ui.AbstractColorPicker;
+import com.vaadin.v7.ui.ColorPicker;
+import com.vaadin.v7.ui.ColorPickerArea;
+import com.vaadin.v7.ui.components.colorpicker.ColorChangeEvent;
+import com.vaadin.v7.ui.components.colorpicker.ColorChangeListener;
 
-public class ColorPickerTestUI extends AbstractTestUI implements
-        ColorChangeListener {
+public class ColorPickerTestUI extends AbstractTestUI
+        implements ColorChangeListener {
 
     @Override
     public String getTestDescription() {
@@ -104,7 +103,7 @@ public class ColorPickerTestUI extends AbstractTestUI implements
 
         /**
          * Instantiates a new my image source.
-         * 
+         *
          * @param fg
          *            the foreground
          * @param bg
@@ -130,14 +129,12 @@ public class ColorPickerTestUI extends AbstractTestUI implements
             drawable.setColor(java.awt.Color.blue);
             drawable.drawRect(0, 0, 269, 269);
             drawable.setColor(java.awt.Color.black);
-            drawable.drawString(
-                    "r=" + String.valueOf(fgColor.getRed()) + ",g="
-                            + String.valueOf(fgColor.getGreen()) + ",b="
-                            + String.valueOf(fgColor.getBlue()), 50, 100);
-            drawable.drawString(
-                    "r=" + String.valueOf(bgColor.getRed()) + ",g="
-                            + String.valueOf(bgColor.getGreen()) + ",b="
-                            + String.valueOf(bgColor.getBlue()), 5, 15);
+            drawable.drawString("r=" + String.valueOf(fgColor.getRed()) + ",g="
+                    + String.valueOf(fgColor.getGreen()) + ",b="
+                    + String.valueOf(fgColor.getBlue()), 50, 100);
+            drawable.drawString("r=" + String.valueOf(bgColor.getRed()) + ",g="
+                    + String.valueOf(bgColor.getGreen()) + ",b="
+                    + String.valueOf(bgColor.getBlue()), 5, 15);
 
             try {
                 /* Write the image to a buffer. */
@@ -226,60 +223,45 @@ public class ColorPickerTestUI extends AbstractTestUI implements
         optLayout.setSpacing(true);
 
         rgbBox.setValue(rgbVisible);
-        rgbBox.addValueChangeListener(new CheckBox.ValueChangeListener() {
-            @Override
-            public void valueChange(ValueChangeEvent event) {
-                rgbVisible = (Boolean) event.getProperty().getValue();
-                setPopupVisibilities();
-            }
+        rgbBox.addValueChangeListener(event -> {
+            rgbVisible = event.getValue();
+            setPopupVisibilities();
         });
         rgbBox.setImmediate(true);
         rgbBox.setId("rgbBox");
         optLayout.addComponent(rgbBox);
 
         hsvBox.setValue(hsvVisible);
-        hsvBox.addValueChangeListener(new CheckBox.ValueChangeListener() {
-            @Override
-            public void valueChange(ValueChangeEvent event) {
-                hsvVisible = (Boolean) event.getProperty().getValue();
-                setPopupVisibilities();
-            }
+        hsvBox.addValueChangeListener(event -> {
+            hsvVisible = event.getValue();
+            setPopupVisibilities();
         });
         hsvBox.setImmediate(true);
         hsvBox.setId("hsvBox");
         optLayout.addComponent(hsvBox);
 
         swaBox.setValue(swaVisible);
-        swaBox.addValueChangeListener(new CheckBox.ValueChangeListener() {
-            @Override
-            public void valueChange(ValueChangeEvent event) {
-                swaVisible = (Boolean) event.getProperty().getValue();
-                setPopupVisibilities();
-            }
+        swaBox.addValueChangeListener(event -> {
+            swaVisible = event.getValue();
+            setPopupVisibilities();
         });
         swaBox.setImmediate(true);
         swaBox.setId("swaBox");
         optLayout.addComponent(swaBox);
 
         hisBox.setValue(historyVisible);
-        hisBox.addValueChangeListener(new CheckBox.ValueChangeListener() {
-            @Override
-            public void valueChange(ValueChangeEvent event) {
-                historyVisible = (Boolean) event.getProperty().getValue();
-                setPopupVisibilities();
-            }
+        hisBox.addValueChangeListener(event -> {
+            historyVisible = event.getValue();
+            setPopupVisibilities();
         });
         hisBox.setImmediate(true);
         hisBox.setId("hisBox");
         optLayout.addComponent(hisBox);
 
         txtBox.setValue(txtfieldVisible);
-        txtBox.addValueChangeListener(new CheckBox.ValueChangeListener() {
-            @Override
-            public void valueChange(ValueChangeEvent event) {
-                txtfieldVisible = (Boolean) event.getProperty().getValue();
-                setPopupVisibilities();
-            }
+        txtBox.addValueChangeListener(event -> {
+            txtfieldVisible = event.getValue();
+            setPopupVisibilities();
         });
         txtBox.setImmediate(true);
         txtBox.setId("txtBox");
@@ -349,7 +331,8 @@ public class ColorPickerTestUI extends AbstractTestUI implements
         layout3.addComponent(colorpicker6);
         layout3.setComponentAlignment(colorpicker6, Alignment.MIDDLE_CENTER);
 
-        Panel panel3 = new Panel("Color area colorpicker with caption", layout3);
+        Panel panel3 = new Panel("Color area colorpicker with caption",
+                layout3);
         panel3.setWidth("100%");
         panel3.setHeight(null);
         layoutLeft.addComponent(panel3);
@@ -444,7 +427,7 @@ public class ColorPickerTestUI extends AbstractTestUI implements
     // This is called whenever a colorpicker popup is closed
     /**
      * Update display.
-     * 
+     *
      * @param fg
      *            the fg
      * @param bg

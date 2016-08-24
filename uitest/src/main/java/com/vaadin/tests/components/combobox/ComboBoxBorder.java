@@ -2,11 +2,11 @@ package com.vaadin.tests.components.combobox;
 
 import java.util.Arrays;
 
-import com.vaadin.data.Property.ValueChangeEvent;
-import com.vaadin.data.Property.ValueChangeListener;
 import com.vaadin.server.UserError;
 import com.vaadin.tests.components.TestBase;
-import com.vaadin.ui.ComboBox;
+import com.vaadin.v7.data.Property.ValueChangeEvent;
+import com.vaadin.v7.data.Property.ValueChangeListener;
+import com.vaadin.v7.ui.ComboBox;
 
 public class ComboBoxBorder extends TestBase {
 
@@ -14,8 +14,8 @@ public class ComboBoxBorder extends TestBase {
     protected void setup() {
         setTheme("tests-tickets");
 
-        final ComboBox cb = new ComboBox("All errors", Arrays.asList("Error",
-                "Error 2"));
+        final ComboBox cb = new ComboBox("All errors",
+                Arrays.asList("Error", "Error 2"));
         cb.setStyleName("ComboBoxBorder");
         cb.setImmediate(true);
         cb.setWidth("200px"); // must have with to reproduce

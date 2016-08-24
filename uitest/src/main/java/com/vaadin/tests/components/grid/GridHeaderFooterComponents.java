@@ -1,12 +1,12 @@
 /*
- * Copyright 2000-2014 Vaadin Ltd.
- * 
+ * Copyright 2000-2016 Vaadin Ltd.
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -16,19 +16,17 @@
 package com.vaadin.tests.components.grid;
 
 import com.vaadin.annotations.Theme;
-import com.vaadin.data.Property.ValueChangeEvent;
-import com.vaadin.data.Property.ValueChangeListener;
-import com.vaadin.data.util.IndexedContainer;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.tests.components.AbstractTestUIWithLog;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.Component;
-import com.vaadin.ui.Grid;
-import com.vaadin.ui.Grid.FooterRow;
-import com.vaadin.ui.Grid.HeaderRow;
 import com.vaadin.ui.TextField;
+import com.vaadin.v7.data.util.IndexedContainer;
+import com.vaadin.v7.ui.Grid;
+import com.vaadin.v7.ui.Grid.FooterRow;
+import com.vaadin.v7.ui.Grid.HeaderRow;
 
 @Theme("valo")
 public class GridHeaderFooterComponents extends AbstractTestUIWithLog {
@@ -89,8 +87,8 @@ public class GridHeaderFooterComponents extends AbstractTestUIWithLog {
     }
 
     private void addRemoveHeaderRow(final Grid grid, final HeaderRow row) {
-        row.getCell("action").setComponent(
-                new Button("Remove row", new ClickListener() {
+        row.getCell("action")
+                .setComponent(new Button("Remove row", new ClickListener() {
                     @Override
                     public void buttonClick(ClickEvent event) {
                         grid.removeHeaderRow(row);
@@ -100,8 +98,8 @@ public class GridHeaderFooterComponents extends AbstractTestUIWithLog {
     }
 
     private void addRemoveFooterRow(final Grid grid, final FooterRow row) {
-        row.getCell("action").setComponent(
-                new Button("Remove row", new ClickListener() {
+        row.getCell("action")
+                .setComponent(new Button("Remove row", new ClickListener() {
                     @Override
                     public void buttonClick(ClickEvent event) {
                         grid.removeFooterRow(row);
@@ -127,12 +125,9 @@ public class GridHeaderFooterComponents extends AbstractTestUIWithLog {
         TextField filterField = new TextField();
         filterField.setColumns(8);
         filterField.setValue("Filter: " + pid);
-        filterField.addValueChangeListener(new ValueChangeListener() {
-            @Override
-            public void valueChange(ValueChangeEvent event) {
-                log("value change for field in " + pid + " to "
-                        + event.getProperty().getValue());
-            }
+        filterField.addValueChangeListener(listener -> {
+            log("value change for field in " + pid + " to "
+                    + listener.getValue());
         });
         return filterField;
     }

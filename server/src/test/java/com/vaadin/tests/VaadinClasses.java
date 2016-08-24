@@ -22,7 +22,6 @@ import com.vaadin.ui.Component;
 import com.vaadin.ui.ComponentContainer;
 import com.vaadin.ui.CustomComponent;
 import com.vaadin.ui.DragAndDropWrapper;
-import com.vaadin.ui.Field;
 import com.vaadin.ui.HorizontalSplitPanel;
 import com.vaadin.ui.LoginForm;
 import com.vaadin.ui.PopupView;
@@ -30,6 +29,7 @@ import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalSplitPanel;
 import com.vaadin.ui.Window;
 import com.vaadin.ui.themes.BaseTheme;
+import com.vaadin.v7.ui.Field;
 
 @SuppressWarnings("deprecation")
 public class VaadinClasses {
@@ -83,8 +83,8 @@ public class VaadinClasses {
 
     public static List<Class<? extends Object>> getAllServerSideClasses() {
         try {
-            return findClassesNoTests(Object.class, "com.vaadin", new String[] {
-                    "com.vaadin.tests", "com.vaadin.client" });
+            return findClassesNoTests(Object.class, "com.vaadin",
+                    new String[] { "com.vaadin.tests", "com.vaadin.client" });
         } catch (IOException e) {
             e.printStackTrace();
             return null;
@@ -126,7 +126,8 @@ public class VaadinClasses {
         try {
             // Given as name to avoid dependencies on testbench source folder
             return (List) findClasses(
-                    Class.forName("com.vaadin.tests.components.AbstractComponentTest"),
+                    Class.forName(
+                            "com.vaadin.tests.components.AbstractComponentTest"),
                     "com.vaadin.tests.components");
         } catch (Exception e) {
             e.printStackTrace();
@@ -149,8 +150,8 @@ public class VaadinClasses {
             try {
                 File f = new File(location.toURI());
                 if (!f.exists()) {
-                    throw new IOException("Directory " + f.toString()
-                            + " does not exist");
+                    throw new IOException(
+                            "Directory " + f.toString() + " does not exist");
                 }
                 findPackages(f, basePackage, baseClass, classes,
                         ignoredPackages);

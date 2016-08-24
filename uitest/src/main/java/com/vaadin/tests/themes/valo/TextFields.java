@@ -1,12 +1,12 @@
 /*
  * Copyright 2000-2013 Vaadin Ltd.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -24,11 +24,11 @@ import com.vaadin.ui.CssLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.PasswordField;
-import com.vaadin.ui.RichTextArea;
-import com.vaadin.ui.TextArea;
-import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.themes.ValoTheme;
+import com.vaadin.v7.ui.RichTextArea;
+import com.vaadin.v7.ui.TextArea;
+import com.vaadin.v7.ui.TextField;
 
 public class TextFields extends VerticalLayout implements View {
     private TestIcon testIcon = new TestIcon(140);
@@ -164,20 +164,20 @@ public class TextFields extends VerticalLayout implements View {
         row.addComponent(tf);
 
         PasswordField pwf = new PasswordField("Password");
-        pwf.setInputPrompt("Secret words");
+        pwf.setPlaceholder("Secret words");
         pwf.addStyleName(ValoTheme.TEXTFIELD_INLINE_ICON);
         pwf.setIcon(FontAwesome.LOCK);
         row.addComponent(pwf);
 
         pwf = new PasswordField("Password, right-aligned");
-        pwf.setInputPrompt("Secret words");
+        pwf.setPlaceholder("Secret words");
         pwf.addStyleName(ValoTheme.TEXTFIELD_INLINE_ICON);
         pwf.addStyleName(ValoTheme.TEXTFIELD_ALIGN_RIGHT);
         pwf.setIcon(FontAwesome.LOCK);
         row.addComponent(pwf);
 
         pwf = new PasswordField("Password, centered");
-        pwf.setInputPrompt("Secret words");
+        pwf.setPlaceholder("Secret words");
         pwf.addStyleName(ValoTheme.TEXTFIELD_INLINE_ICON);
         pwf.addStyleName(ValoTheme.TEXTFIELD_ALIGN_CENTER);
         pwf.setIcon(FontAwesome.LOCK);

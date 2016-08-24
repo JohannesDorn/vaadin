@@ -7,7 +7,7 @@ import org.junit.Test;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.GridLayout;
 import com.vaadin.ui.Label;
-import com.vaadin.ui.TextField;
+import com.vaadin.v7.ui.TextField;
 
 public class DefaultAlignmentTest {
 

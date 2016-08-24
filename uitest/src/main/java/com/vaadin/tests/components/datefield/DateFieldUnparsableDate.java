@@ -2,10 +2,10 @@ package com.vaadin.tests.components.datefield;
 
 import java.util.Date;
 
-import com.vaadin.data.Property;
-import com.vaadin.data.util.converter.Converter;
+import com.vaadin.data.Result;
 import com.vaadin.tests.components.TestBase;
 import com.vaadin.ui.DateField;
+import com.vaadin.v7.data.util.converter.Converter;
 
 public class DateFieldUnparsableDate extends TestBase {
 
@@ -14,19 +14,13 @@ public class DateFieldUnparsableDate extends TestBase {
 
         public MyDateField(String caption) {
             super(caption);
-            addListener(new Property.ValueChangeListener() {
-                @Override
-                public void valueChange(
-                        com.vaadin.data.Property.ValueChangeEvent event) {
-                    oldDate = getValue();
-                }
-            });
+            addValueChangeListener(event -> oldDate = getValue());
         }
 
         @Override
-        protected Date handleUnparsableDateString(String dateString)
+        protected Result<Date> handleUnparsableDateString(String dateString)
                 throws Converter.ConversionException {
-            return oldDate;
+            return Result.ok(oldDate);
         }
     }
 
@@ -36,9 +30,9 @@ public class DateFieldUnparsableDate extends TestBase {
         }
 
         @Override
-        protected Date handleUnparsableDateString(String dateString)
+        protected Result<Date> handleUnparsableDateString(String dateString)
                 throws Converter.ConversionException {
-            return null;
+            return Result.ok(null);
         }
     }
 
@@ -48,10 +42,9 @@ public class DateFieldUnparsableDate extends TestBase {
         }
 
         @Override
-        protected Date handleUnparsableDateString(String dateString)
+        protected Result<Date> handleUnparsableDateString(String dateString)
                 throws Converter.ConversionException {
-            throw new Converter.ConversionException(
-                    "You should not enter invalid dates!");
+            return Result.error("You should not enter invalid dates!");
         }
     }
 
@@ -61,13 +54,12 @@ public class DateFieldUnparsableDate extends TestBase {
         }
 
         @Override
-        protected Date handleUnparsableDateString(String dateString)
+        protected Result<Date> handleUnparsableDateString(String dateString)
                 throws Converter.ConversionException {
             if (dateString != null && dateString.equals("today")) {
-                return new Date();
+                return Result.ok(new Date());
             }
-            throw new Converter.ConversionException(
-                    "You should not enter invalid dates!");
+            return Result.error("You should not enter invalid dates!");
         }
     }
 

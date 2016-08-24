@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>com.vaadin</groupId>
 		<artifactId>vaadin-root</artifactId>
-		<version>7.7.0-SNAPSHOT</version>
+		<version>8.0-SNAPSHOT</version>
 	</parent>
 	<groupId>com.vaadin</groupId>
 	<artifactId>vaadin-client</artifactId>
@@ -19,43 +19,27 @@
 		<!-- LIBRARY DEPENDENCIES (compile time) -->
 		<!-- Project modules -->
 		<dependency>
-			<groupId>com.vaadin</groupId>
+			<groupId>${project.groupId}</groupId>
 			<artifactId>vaadin-shared</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 
 		<dependency>
-			<groupId>com.vaadin</groupId>
+			<groupId>${project.groupId}</groupId>
 			<artifactId>vaadin-server</artifactId>
 			<version>${project.version}</version>
 			<exclusions>
 				<exclusion>
-					<groupId>com.vaadin</groupId>
+					<groupId>${project.groupId}</groupId>
 					<artifactId>vaadin-sass-compiler</artifactId>
 				</exclusion>
 			</exclusions>
 		</dependency>
 
-		<!-- Testing dependencies -->
+		<!-- Needed GWT dependencies, includes gwt-user -->
 		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.11</version>
-			<scope>test</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.easymock</groupId>
-			<artifactId>easymock</artifactId>
-			<version>3.0</version>
-			<scope>test</scope>
-		</dependency>
-
-		<!-- Needed GWT dependencies. Required parts are packaged to jar -->
-		<dependency>
-			<groupId>com.vaadin.external.gwt</groupId>
+			<groupId>com.google.gwt</groupId>
 			<artifactId>gwt-elemental</artifactId>
-			<version>${vaadin.gwt.version}</version>
 		</dependency>
 	</dependencies>
 
@@ -95,8 +79,8 @@
 				<extensions>true</extensions>
 				<configuration>
 					<instructions>
-						<Bundle-RequiredExecutionEnvironment>JavaSE-1.6</Bundle-RequiredExecutionEnvironment>
-						<Export-Package>com.vaadin.*;version="${parsedVersion.majorVersion}.${parsedVersion.minorVersion}.${parsedVersion.incrementalVersion}"</Export-Package>
+						<Bundle-RequiredExecutionEnvironment>${osgi.execution.environment}</Bundle-RequiredExecutionEnvironment>
+						<Export-Package>com.vaadin.*;version="${osgi.bundle.version}"</Export-Package>
 						<Import-Package></Import-Package>
 					</instructions>
 				</configuration>

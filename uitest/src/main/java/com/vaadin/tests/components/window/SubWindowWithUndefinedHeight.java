@@ -3,9 +3,9 @@ package com.vaadin.tests.components.window;
 import com.vaadin.tests.components.TestBase;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.TabSheet;
-import com.vaadin.ui.Table;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Window;
+import com.vaadin.v7.ui.Table;
 
 public class SubWindowWithUndefinedHeight extends TestBase {
 
@@ -42,7 +42,8 @@ public class SubWindowWithUndefinedHeight extends TestBase {
         tabsheet.addComponent(table);
         tabsheet.addListener(new TabSheet.SelectedTabChangeListener() {
             @Override
-            public void selectedTabChange(TabSheet.SelectedTabChangeEvent event) {
+            public void selectedTabChange(
+                    TabSheet.SelectedTabChangeEvent event) {
                 if (tabsheet.getSelectedTab() == tabButton) {
                     tabsheet.setSizeUndefined();
                     layout.setSizeUndefined();

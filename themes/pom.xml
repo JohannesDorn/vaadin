@@ -5,9 +5,8 @@
 	<parent>
 		<groupId>com.vaadin</groupId>
 		<artifactId>vaadin-root</artifactId>
-		<version>7.7.0-SNAPSHOT</version>
+		<version>8.0-SNAPSHOT</version>
 	</parent>
-	<groupId>com.vaadin</groupId>
 	<artifactId>vaadin-themes</artifactId>
 	<name>vaadin-themes</name>
 	<packaging>jar</packaging>
@@ -33,22 +32,18 @@
 		<dependency>
 			<groupId>com.vaadin</groupId>
 			<artifactId>vaadin-sass-compiler</artifactId>
-			<version>${vaadin.sass.version}</version>
-			<scope>provided</scope>
-		</dependency>
-
-		<!-- remove cssparser override once sass-compiler is updated -->
-		<dependency>
-			<groupId>net.sourceforge.cssparser</groupId>
-			<artifactId>cssparser</artifactId>
-			<version>0.9.11</version>
 			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>com.carrotsearch</groupId>
 			<artifactId>smartsprites</artifactId>
-			<version>0.2.10</version>
+			<scope>provided</scope>
+		</dependency>
+		<!-- smartsprites dependency -->
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
 			<scope>provided</scope>
 		</dependency>
 	</dependencies>
@@ -147,25 +142,6 @@
 								<argument>com.vaadin.sass.SassCompiler</argument>
 								<argument> ${project.build.outputDirectory}/VAADIN/themes/chameleon/legacy-styles.scss</argument>
 								<argument> ${project.build.outputDirectory}/VAADIN/themes/chameleon/legacy-styles.css</argument>
-							</arguments>
-						</configuration>
-					</execution>
-					<execution>
-						<id>compile-legacy-liferay</id>
-						<phase>process-resources</phase>
-						<goals>
-							<goal>exec</goal>
-						</goals>
-						<configuration>
-							<classpathScope>compile</classpathScope>
-							<executable>${java.home}/bin/java</executable>
-							<arguments>
-								<argument>-classpath</argument>
-								<classpath />
-
-								<argument>com.vaadin.sass.SassCompiler</argument>
-								<argument> ${project.build.outputDirectory}/VAADIN/themes/liferay/legacy-styles.scss</argument>
-								<argument> ${project.build.outputDirectory}/VAADIN/themes/liferay/legacy-styles.css</argument>
 							</arguments>
 						</configuration>
 					</execution>
@@ -295,8 +271,8 @@
 				<extensions>true</extensions>
 				<configuration>
 					<instructions>
-						<Bundle-Version>${parsedVersion.majorVersion}.${parsedVersion.minorVersion}.${parsedVersion.incrementalVersion}</Bundle-Version>
-						<Bundle-RequiredExecutionEnvironment>JavaSE-1.6</Bundle-RequiredExecutionEnvironment>
+						<Bundle-Version>${osgi.bundle.version}</Bundle-Version>
+						<Bundle-RequiredExecutionEnvironment>${osgi.execution.environment}</Bundle-RequiredExecutionEnvironment>
 						<!-- Export package is handled in exec plugin -->
 						<Export-Package></Export-Package>
 						<Import-Package></Import-Package>

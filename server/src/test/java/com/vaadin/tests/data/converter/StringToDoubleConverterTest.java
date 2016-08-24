@@ -3,7 +3,7 @@ package com.vaadin.tests.data.converter;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.vaadin.data.util.converter.StringToDoubleConverter;
+import com.vaadin.v7.data.util.converter.StringToDoubleConverter;
 
 public class StringToDoubleConverterTest {
 

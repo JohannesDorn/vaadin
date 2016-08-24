@@ -1,5 +1,5 @@
 /*
- * Copyright 2000-2014 Vaadin Ltd.
+ * Copyright 2000-2016 Vaadin Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -30,7 +30,7 @@ import com.vaadin.ui.MenuBar.MenuItem;
  * Some of the icons are textual (using FontAwesome) and should behave like
  * items with image icons: the icon should not be considered to be a part of the
  * item's caption.
- * 
+ *
  * @since
  * @author Vaadin
  */
@@ -44,8 +44,8 @@ public class MenuBarsWithNesting extends AbstractTestUI {
     public final static String[] itemNames = { "Icon item", "Arrow down",
             "Arrow up", "Warning" };
     private final static Resource[] itemIcons = {
-            new ThemeResource("window/img/restore.png"),
-            FontAwesome.ARROW_DOWN, FontAwesome.ARROW_UP, FontAwesome.WARNING };
+            new ThemeResource("window/img/restore.png"), FontAwesome.ARROW_DOWN,
+            FontAwesome.ARROW_UP, FontAwesome.WARNING };
 
     // The last menu item is nested with the following submenu items.
     public final static String[] nestedItemnames = { "No icon", "Font icon",

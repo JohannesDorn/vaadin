@@ -3,8 +3,6 @@ package com.vaadin.tests.components.abstractfield;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.vaadin.data.Property.ValueChangeEvent;
-import com.vaadin.data.Property.ValueChangeListener;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.tests.components.AbstractTestUI;
 import com.vaadin.ui.AbsoluteLayout;
@@ -12,12 +10,12 @@ import com.vaadin.ui.CheckBox;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.ComponentContainer;
 import com.vaadin.ui.CssLayout;
-import com.vaadin.ui.Field;
 import com.vaadin.ui.GridLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
-import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
+import com.vaadin.v7.ui.Field;
+import com.vaadin.v7.ui.TextField;
 
 public class RequiredIndicatorForFieldsWithoutCaption extends AbstractTestUI {
     private Set<Field> fields = new HashSet<Field>();
@@ -27,14 +25,10 @@ public class RequiredIndicatorForFieldsWithoutCaption extends AbstractTestUI {
 
         CheckBox required = new CheckBox("Fields required", true);
         required.setImmediate(true);
-        required.addValueChangeListener(new ValueChangeListener() {
-
-            @Override
-            public void valueChange(ValueChangeEvent event) {
-                boolean required = (Boolean) event.getProperty().getValue();
-                for (Field f : fields) {
-                    f.setRequired(required);
-                }
+        required.addValueChangeListener(event -> {
+            boolean newRequired = event.getValue();
+            for (Field f : fields) {
+                f.setRequired(newRequired);
             }
         });
         addComponent(required);
@@ -72,7 +66,7 @@ public class RequiredIndicatorForFieldsWithoutCaption extends AbstractTestUI {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see com.vaadin.tests.components.AbstractTestUI#getTestDescription()
      */
     @Override
@@ -82,7 +76,7 @@ public class RequiredIndicatorForFieldsWithoutCaption extends AbstractTestUI {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see com.vaadin.tests.components.AbstractTestUI#getTicketNumber()
      */
     @Override

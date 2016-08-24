@@ -3,10 +3,10 @@ package com.vaadin.tests.data.converter;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.vaadin.data.util.converter.Converter;
-import com.vaadin.data.util.converter.Converter.ConversionException;
-import com.vaadin.data.util.converter.ReverseConverter;
-import com.vaadin.data.util.converter.StringToByteConverter;
+import com.vaadin.v7.data.util.converter.Converter;
+import com.vaadin.v7.data.util.converter.Converter.ConversionException;
+import com.vaadin.v7.data.util.converter.ReverseConverter;
+import com.vaadin.v7.data.util.converter.StringToByteConverter;
 
 public class StringToByteConverterTest {
 
@@ -23,7 +23,8 @@ public class StringToByteConverterTest {
     @Test
     public void testReverseNullConversion() {
         Assert.assertEquals("Null value reversely was converted incorrectly",
-                null, reverseConverter.convertToModel(null, String.class, null));
+                null,
+                reverseConverter.convertToModel(null, String.class, null));
     }
 
     @Test

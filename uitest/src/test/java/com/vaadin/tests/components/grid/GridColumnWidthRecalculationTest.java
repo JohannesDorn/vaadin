@@ -1,12 +1,12 @@
 /*
- * Copyright 2000-2014 Vaadin Ltd.
- * 
+ * Copyright 2000-2016 Vaadin Ltd.
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -21,10 +21,11 @@ import org.junit.Test;
 import org.openqa.selenium.Dimension;
 
 import com.vaadin.testbench.elements.ButtonElement;
-import com.vaadin.testbench.elements.GridElement;
+
 import com.vaadin.testbench.elements.GridElement.GridCellElement;
 import com.vaadin.testbench.parallel.TestCategory;
 import com.vaadin.tests.tb3.SingleBrowserTest;
+import com.vaadin.v7.testbench.customelements.GridElement;
 
 @TestCategory("grid")
 public class GridColumnWidthRecalculationTest extends SingleBrowserTest {
@@ -41,8 +42,7 @@ public class GridColumnWidthRecalculationTest extends SingleBrowserTest {
     public void columnWidthAfterSwap() {
         int column0Width = getColumnWidth(0);
         int column1Width = getColumnWidth(1);
-        Assert.assertTrue(
-                "Column 0 should be narrower than column 1 initially",
+        Assert.assertTrue("Column 0 should be narrower than column 1 initially",
                 column0Width < column1Width);
 
         $(ButtonElement.class).caption("Swap content").first().click();
@@ -59,8 +59,7 @@ public class GridColumnWidthRecalculationTest extends SingleBrowserTest {
     public void columnWidthAfterSwapAndRecalculate() {
         int column0Width = getColumnWidth(0);
         int column1Width = getColumnWidth(1);
-        Assert.assertTrue(
-                "Column 0 should be narrower than column 1 initially",
+        Assert.assertTrue("Column 0 should be narrower than column 1 initially",
                 column0Width < column1Width);
 
         $(ButtonElement.class).caption("Swap content and recalculate columns")

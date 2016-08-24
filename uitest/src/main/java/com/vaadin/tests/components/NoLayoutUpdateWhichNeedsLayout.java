@@ -9,9 +9,9 @@ import com.vaadin.server.VaadinRequest;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
+import com.vaadin.v7.ui.ProgressBar;
 import com.vaadin.ui.GridLayout;
 import com.vaadin.ui.Label;
-import com.vaadin.ui.ProgressBar;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Window;
@@ -75,8 +75,8 @@ public class NoLayoutUpdateWhichNeedsLayout extends UI {
                 w = new Window("test");
                 w.setWidth("300px");
                 w.setHeight("300px");
-                w.setContent(new VerticalLayout(new Label(
-                        "simple test label component")));
+                w.setContent(new VerticalLayout(
+                        new Label("simple test label component")));
                 w.center();
                 getUI().addWindow(w);
             }

@@ -4,9 +4,9 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.vaadin.testbench.elements.ButtonElement;
-import com.vaadin.testbench.elements.NativeSelectElement;
 import com.vaadin.testbench.elements.NotificationElement;
 import com.vaadin.tests.tb3.MultiBrowserTest;
+import com.vaadin.v7.testbench.customelements.NativeSelectElement;
 
 public class SystemMessagesTest extends MultiBrowserTest {
 
@@ -29,6 +29,7 @@ public class SystemMessagesTest extends MultiBrowserTest {
         Assert.assertEquals("Incorrect notification caption,",
                 notification.getCaption(), "Internal error");
         Assert.assertEquals("Incorrect notification description,",
-                notification.getDescription(), "MessagesInfo locale: " + locale);
+                notification.getDescription(),
+                "MessagesInfo locale: " + locale);
     }
 }

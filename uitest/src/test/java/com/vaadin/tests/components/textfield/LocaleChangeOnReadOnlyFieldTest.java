@@ -1,12 +1,13 @@
 package com.vaadin.tests.components.textfield;
 
-import com.vaadin.testbench.elements.ButtonElement;
-import com.vaadin.testbench.elements.TextFieldElement;
-import com.vaadin.tests.tb3.MultiBrowserTest;
-import org.junit.Test;
-
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
+
+import org.junit.Test;
+
+import com.vaadin.testbench.elements.ButtonElement;
+import com.vaadin.tests.tb3.MultiBrowserTest;
+import com.vaadin.v7.testbench.customelements.TextFieldElement;
 
 public class LocaleChangeOnReadOnlyFieldTest extends MultiBrowserTest {
 

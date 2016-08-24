@@ -1,10 +1,10 @@
 package com.vaadin.tests.components.datefield;
 
-import com.vaadin.data.Property;
-import com.vaadin.data.Property.ValueChangeEvent;
-import com.vaadin.data.validator.NullValidator;
 import com.vaadin.tests.components.TestBase;
-import com.vaadin.ui.DateField;
+import com.vaadin.v7.data.Property;
+import com.vaadin.v7.data.Property.ValueChangeEvent;
+import com.vaadin.v7.data.validator.NullValidator;
+import com.vaadin.v7.ui.DateField;
 
 @SuppressWarnings("serial")
 public class DefaultHandleUnparsableDateField extends TestBase {
@@ -25,10 +25,11 @@ public class DefaultHandleUnparsableDateField extends TestBase {
             }
         });
 
-        final DateField validated = new DateField("Validated Default DateField");
+        final DateField validated = new DateField(
+                "Validated Default DateField");
         validated.setImmediate(true);
-        validated.addValidator(new NullValidator("Validator: Date is NULL",
-                false));
+        validated.addValidator(
+                new NullValidator("Validator: Date is NULL", false));
         addComponent(validated);
     }
 

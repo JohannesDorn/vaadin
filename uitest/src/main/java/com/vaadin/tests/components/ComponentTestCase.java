@@ -4,22 +4,21 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 
-import com.vaadin.data.Item;
-import com.vaadin.data.Property;
-import com.vaadin.data.Property.ValueChangeEvent;
-import com.vaadin.data.Property.ValueChangeListener;
 import com.vaadin.ui.AbstractComponent;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.CheckBox;
 import com.vaadin.ui.Component;
-import com.vaadin.ui.Field;
 import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.NativeSelect;
+import com.vaadin.v7.data.Item;
+import com.vaadin.v7.data.Property;
+import com.vaadin.v7.data.Property.ValueChangeEvent;
+import com.vaadin.v7.ui.Field;
+import com.vaadin.v7.ui.NativeSelect;
 
-public abstract class ComponentTestCase<T extends AbstractComponent> extends
-        AbstractComponentTestCase<T> {
+public abstract class ComponentTestCase<T extends AbstractComponent>
+        extends AbstractComponentTestCase<T> {
 
     protected static final Object CAPTION = "caption";
 
@@ -51,7 +50,7 @@ public abstract class ComponentTestCase<T extends AbstractComponent> extends
 
     /**
      * Override to provide custom actions for the test case.
-     * 
+     *
      * @param actions
      *            Array with default actions. Add custom actions to this. Never
      *            null.
@@ -64,7 +63,7 @@ public abstract class ComponentTestCase<T extends AbstractComponent> extends
      * Method that creates the "actions" shown in the upper part of the screen.
      * Override this only if you do not want the default actions. Custom actions
      * can be added through #createCustomActions();
-     * 
+     *
      * @return A List with actions to which more actions can be added.
      */
     protected List<Component> createActions() {
@@ -112,14 +111,8 @@ public abstract class ComponentTestCase<T extends AbstractComponent> extends
             boolean initialState, final Command<T, Boolean> command) {
 
         CheckBox checkBox = new CheckBox(caption);
-        checkBox.addListener(new ValueChangeListener() {
-
-            @Override
-            public void valueChange(ValueChangeEvent event) {
-                boolean enabled = (Boolean) event.getProperty().getValue();
-                doCommand(command, enabled);
-            }
-        });
+        checkBox.addValueChangeListener(
+                event -> doCommand(command, event.getValue()));
 
         checkBox.setValue(initialState);
         checkBox.setImmediate(true);

@@ -5,7 +5,7 @@ import com.vaadin.tests.components.TestBase;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Label;
-import com.vaadin.ui.LegacyWindow;
+import com.vaadin.v7.ui.LegacyWindow;
 
 public class ApplicationCloseTest extends TestBase {
 
@@ -16,8 +16,8 @@ public class ApplicationCloseTest extends TestBase {
         Label applications = new Label("Applications in session: <br/>",
                 ContentMode.HTML);
         if (getContext() != null) {
-            applications.setValue(applications.getValue() + "App: "
-                    + getContext() + "<br/>");
+            applications.setValue(
+                    applications.getValue() + "App: " + getContext() + "<br/>");
         }
         applications.setValue(applications.getValue() + "<br/><br/>");
 
@@ -46,12 +46,10 @@ public class ApplicationCloseTest extends TestBase {
         long totalUsage = Runtime.getRuntime().totalMemory();
         String totalUsageString = totalUsage / 1000 / 1000 + "MiB";
         Label memoryUsage = new Label(
-                "Using about "
-                        + memoryConsumer.length()
-                        / 1000
-                        / 1000
+                "Using about " + memoryConsumer.length() / 1000 / 1000
                         + "MiB memory for this application.<br/>Total memory usage reported as "
-                        + totalUsageString + "<br/>", ContentMode.HTML);
+                        + totalUsageString + "<br/>",
+                ContentMode.HTML);
 
         addComponent(thisApp);
         addComponent(memoryUsage);

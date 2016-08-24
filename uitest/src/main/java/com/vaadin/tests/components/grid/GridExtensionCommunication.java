@@ -1,12 +1,12 @@
 /*
- * Copyright 2000-2014 Vaadin Ltd.
- * 
+ * Copyright 2000-2016 Vaadin Ltd.
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -16,16 +16,16 @@
 package com.vaadin.tests.components.grid;
 
 import com.vaadin.annotations.Widgetset;
-import com.vaadin.data.Item;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.shared.MouseEventDetails;
 import com.vaadin.tests.components.AbstractTestUIWithLog;
 import com.vaadin.tests.widgetset.TestingWidgetSet;
 import com.vaadin.tests.widgetset.client.grid.GridClickExtensionConnector.GridClickServerRpc;
-import com.vaadin.ui.Grid;
-import com.vaadin.ui.Grid.AbstractGridExtension;
-import com.vaadin.ui.Grid.Column;
-import com.vaadin.ui.Grid.SelectionMode;
+import com.vaadin.v7.data.Item;
+import com.vaadin.v7.ui.Grid;
+import com.vaadin.v7.ui.Grid.AbstractGridExtension;
+import com.vaadin.v7.ui.Grid.Column;
+import com.vaadin.v7.ui.Grid.SelectionMode;
 
 @Widgetset(TestingWidgetSet.NAME)
 public class GridExtensionCommunication extends AbstractTestUIWithLog {

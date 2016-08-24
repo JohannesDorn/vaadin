@@ -1,12 +1,12 @@
 /*
- * Copyright 2000-2014 Vaadin Ltd.
- * 
+ * Copyright 2000-2016 Vaadin Ltd.
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -25,17 +25,17 @@ import com.vaadin.event.Action;
 import com.vaadin.event.Action.Handler;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.tests.components.AbstractTestUI;
-import com.vaadin.ui.Calendar;
-import com.vaadin.ui.Calendar.TimeFormat;
 import com.vaadin.ui.Notification;
-import com.vaadin.ui.components.calendar.CalendarComponentEvents.EventClick;
-import com.vaadin.ui.components.calendar.CalendarComponentEvents.EventClickHandler;
-import com.vaadin.ui.components.calendar.CalendarComponentEvents.EventMoveHandler;
-import com.vaadin.ui.components.calendar.CalendarComponentEvents.EventResizeHandler;
-import com.vaadin.ui.components.calendar.CalendarComponentEvents.MoveEvent;
-import com.vaadin.ui.components.calendar.event.BasicEvent;
-import com.vaadin.ui.components.calendar.event.CalendarEvent;
-import com.vaadin.ui.components.calendar.event.CalendarEventProvider;
+import com.vaadin.v7.ui.Calendar;
+import com.vaadin.v7.ui.Calendar.TimeFormat;
+import com.vaadin.v7.ui.components.calendar.CalendarComponentEvents.EventClick;
+import com.vaadin.v7.ui.components.calendar.CalendarComponentEvents.EventClickHandler;
+import com.vaadin.v7.ui.components.calendar.CalendarComponentEvents.EventMoveHandler;
+import com.vaadin.v7.ui.components.calendar.CalendarComponentEvents.EventResizeHandler;
+import com.vaadin.v7.ui.components.calendar.CalendarComponentEvents.MoveEvent;
+import com.vaadin.v7.ui.components.calendar.event.BasicEvent;
+import com.vaadin.v7.ui.components.calendar.event.CalendarEvent;
+import com.vaadin.v7.ui.components.calendar.event.CalendarEventProvider;
 
 public class CalendarActionsMenuTest extends AbstractTestUI {
 
@@ -46,7 +46,7 @@ public class CalendarActionsMenuTest extends AbstractTestUI {
         calendar = new Calendar(new CalendarEventProvider() {
 
             @Override
-            public List<com.vaadin.ui.components.calendar.event.CalendarEvent> getEvents(
+            public List<com.vaadin.v7.ui.components.calendar.event.CalendarEvent> getEvents(
                     Date startDate, Date endDate) {
 
                 List<CalendarEvent> events = new ArrayList<CalendarEvent>();
@@ -79,10 +79,10 @@ public class CalendarActionsMenuTest extends AbstractTestUI {
 
         });
         try {
-            calendar.setStartDate(new SimpleDateFormat("yyyy-MM-dd")
-                    .parse("2013-01-01"));
-            calendar.setEndDate(new SimpleDateFormat("yyyy-MM-dd")
-                    .parse("2013-01-31"));
+            calendar.setStartDate(
+                    new SimpleDateFormat("yyyy-MM-dd").parse("2013-01-01"));
+            calendar.setEndDate(
+                    new SimpleDateFormat("yyyy-MM-dd").parse("2013-01-31"));
         } catch (ParseException e) {
             // Nothing to do
         }
@@ -95,7 +95,8 @@ public class CalendarActionsMenuTest extends AbstractTestUI {
         setEnabled(true);
         calendar.addActionHandler(new Handler() {
             @Override
-            public void handleAction(Action action, Object sender, Object target) {
+            public void handleAction(Action action, Object sender,
+                    Object target) {
                 Notification.show("ACTION CLICKED");
 
             }

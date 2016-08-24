@@ -1,5 +1,5 @@
 /*
- * Copyright 2000-2014 Vaadin Ltd.
+ * Copyright 2000-2016 Vaadin Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -22,8 +22,8 @@ import org.openqa.selenium.WebElement;
 import com.vaadin.testbench.By;
 import com.vaadin.testbench.commands.TestBenchElementCommands;
 import com.vaadin.testbench.elements.CheckBoxElement;
-import com.vaadin.testbench.elements.ComboBoxElement;
 import com.vaadin.tests.tb3.MultiBrowserTest;
+import com.vaadin.v7.testbench.customelements.ComboBoxElement;
 
 public class ComboBoxNoTextInputTest extends MultiBrowserTest {
 
@@ -38,11 +38,13 @@ public class ComboBoxNoTextInputTest extends MultiBrowserTest {
         ComboBoxElement cb = $(ComboBoxElement.class).first();
         click(cb);
         // popup is opened lazily
-        waitForElementPresent(By.vaadin("//com.vaadin.ui.ComboBox[0]#popup"));
+        waitForElementPresent(
+                By.vaadin("//com.vaadin.v7.ui.ComboBox[0]#popup"));
     }
 
     @Test
-    public void testComboBoxWithTextInputNoPopupOpensOnClick() throws Exception {
+    public void testComboBoxWithTextInputNoPopupOpensOnClick()
+            throws Exception {
         openTestURL();
 
         // click and check that no popup appears

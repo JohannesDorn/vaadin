@@ -167,7 +167,8 @@ such as Servlet 3.0, you should use:
   id="WebApp_ID" version="**3.0**"
   xmlns="http://java.sun.com/xml/ns/j2ee"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="**http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd**"&gt;
+  xsi:schemaLocation="**http://java.sun.com/xml/ns/javaee
+      http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd**"&gt;
 ----
 Servlet 3.0 support is useful for at least server push.
 
@@ -189,11 +190,11 @@ class MyUI extends UI {
 
 You can also define it in the [filename]#web.xml# descriptor for the servlet:
 
-[source, xml, subs="normal"]
+[subs="normal"]
 ----
 <init-param>
   <param-name>widgetset</param-name>
-  <param-value>com.example.myproject.MyWidgetSet</param-value>
+  <param-value>[replaceable]##com.example.myproject.MyWidgetSet##</param-value>
 </init-param>
 ----
 

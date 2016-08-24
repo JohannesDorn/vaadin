@@ -1,11 +1,11 @@
 package com.vaadin.tests.components.combobox;
 
-import com.vaadin.data.Property;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.tests.components.AbstractTestUI;
-import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.Label;
-import com.vaadin.ui.TextField;
+import com.vaadin.v7.data.Property;
+import com.vaadin.v7.ui.ComboBox;
+import com.vaadin.v7.ui.TextField;
 
 public class ComboBoxSelecting extends AbstractTestUI {
     protected ComboBox comboBox;

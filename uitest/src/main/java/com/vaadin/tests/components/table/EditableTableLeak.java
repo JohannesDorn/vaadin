@@ -6,9 +6,6 @@ import java.io.OutputStream;
 import java.io.Serializable;
 import java.util.HashMap;
 
-import com.vaadin.data.Container;
-import com.vaadin.data.Property.ValueChangeEvent;
-import com.vaadin.data.Property.ValueChangeListener;
 import com.vaadin.shared.ui.label.ContentMode;
 import com.vaadin.tests.components.TestBase;
 import com.vaadin.tests.util.TestUtils;
@@ -17,10 +14,11 @@ import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.CheckBox;
 import com.vaadin.ui.Component;
-import com.vaadin.ui.DefaultFieldFactory;
-import com.vaadin.ui.Field;
 import com.vaadin.ui.Label;
-import com.vaadin.ui.Table;
+import com.vaadin.v7.data.Container;
+import com.vaadin.v7.ui.DefaultFieldFactory;
+import com.vaadin.v7.ui.Field;
+import com.vaadin.v7.ui.Table;
 
 public class EditableTableLeak extends TestBase {
     private final Table table = new Table("ISO-3166 Country Codes and flags");
@@ -86,15 +84,11 @@ public class EditableTableLeak extends TestBase {
     protected void setup() {
         addComponent(useFieldFactory);
         useFieldFactory.setImmediate(true);
-        useFieldFactory.addListener(new ValueChangeListener() {
-
-            @Override
-            public void valueChange(ValueChangeEvent event) {
-                if (useFieldFactory.getValue()) {
-                    table.setTableFieldFactory(new CachingFieldFactory());
-                } else {
-                    table.setTableFieldFactory(DefaultFieldFactory.get());
-                }
+        useFieldFactory.addValueChangeListener(event -> {
+            if (useFieldFactory.getValue()) {
+                table.setTableFieldFactory(new CachingFieldFactory());
+            } else {
+                table.setTableFieldFactory(DefaultFieldFactory.get());
             }
         });
         addComponent(table);

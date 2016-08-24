@@ -1,5 +1,5 @@
 /*
- * Copyright 2000-2014 Vaadin Ltd.
+ * Copyright 2000-2016 Vaadin Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -102,8 +102,8 @@ public abstract class ConnectorBundleLoader {
     public boolean isBundleLoaded(String bundleName) {
         AsyncBundleLoader loader = asyncBlockLoaders.get(bundleName);
         if (loader == null) {
-            throw new IllegalArgumentException("Bundle " + bundleName
-                    + " not recognized");
+            throw new IllegalArgumentException(
+                    "Bundle " + bundleName + " not recognized");
         }
         return loader.getState() == State.LOADED;
     }

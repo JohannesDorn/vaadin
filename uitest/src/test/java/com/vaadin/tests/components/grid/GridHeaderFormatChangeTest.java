@@ -1,12 +1,12 @@
 /*
- * Copyright 2000-2014 Vaadin Ltd.
- * 
+ * Copyright 2000-2016 Vaadin Ltd.
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -20,9 +20,10 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 
 import com.vaadin.testbench.elements.ButtonElement;
-import com.vaadin.testbench.elements.GridElement;
+
 import com.vaadin.testbench.parallel.TestCategory;
 import com.vaadin.tests.tb3.MultiBrowserTest;
+import com.vaadin.v7.testbench.customelements.GridElement;
 
 @TestCategory("grid")
 public class GridHeaderFormatChangeTest extends MultiBrowserTest {
@@ -34,16 +35,15 @@ public class GridHeaderFormatChangeTest extends MultiBrowserTest {
 
         // Assert that we do not have the select all checkbox
         Assert.assertTrue(
-                "Found input in header even though none should exist.", grid
-                        .getHeader().findElements(By.tagName("input"))
-                        .isEmpty());
+                "Found input in header even though none should exist.",
+                grid.getHeader().findElements(By.tagName("input")).isEmpty());
 
         // Set grid into multiselection mode
         toggleSelectionMode();
 
         // Assert that we now have a select all checkbox in the header
-        Assert.assertFalse("Expected one input field in header", grid
-                .getHeader().findElements(By.tagName("input")).isEmpty());
+        Assert.assertFalse("Expected one input field in header",
+                grid.getHeader().findElements(By.tagName("input")).isEmpty());
 
         // Hide the firstName column from the grid.
         toggleFirstName();
@@ -57,9 +57,8 @@ public class GridHeaderFormatChangeTest extends MultiBrowserTest {
 
         // Assert that we still have the select all checkbox in the header.
         Assert.assertFalse(
-                "Header was missing checkbox after bringing back column", grid
-                        .getHeader().findElements(By.tagName("input"))
-                        .isEmpty());
+                "Header was missing checkbox after bringing back column",
+                grid.getHeader().findElements(By.tagName("input")).isEmpty());
     }
 
     @Test
@@ -69,16 +68,15 @@ public class GridHeaderFormatChangeTest extends MultiBrowserTest {
 
         // Assert that we do not have the select all checkbox
         Assert.assertTrue(
-                "Found input in header even though none should exist.", grid
-                        .getHeader().findElements(By.tagName("input"))
-                        .isEmpty());
+                "Found input in header even though none should exist.",
+                grid.getHeader().findElements(By.tagName("input")).isEmpty());
 
         // Set grid into multiselection mode
         toggleSelectionMode();
 
         // Assert that we now have a select all checkbox in the header
-        Assert.assertFalse("Expected one input field in header", grid
-                .getHeader().findElements(By.tagName("input")).isEmpty());
+        Assert.assertFalse("Expected one input field in header",
+                grid.getHeader().findElements(By.tagName("input")).isEmpty());
 
         // Add Join columns header
         toggleJoin();
@@ -92,9 +90,8 @@ public class GridHeaderFormatChangeTest extends MultiBrowserTest {
 
         // Assert that we still have the select all checkbox in the header.
         Assert.assertFalse(
-                "Header was missing checkbox after bringing back column", grid
-                        .getHeader().findElements(By.tagName("input"))
-                        .isEmpty());
+                "Header was missing checkbox after bringing back column",
+                grid.getHeader().findElements(By.tagName("input")).isEmpty());
     }
 
     @Test
@@ -104,16 +101,15 @@ public class GridHeaderFormatChangeTest extends MultiBrowserTest {
 
         // Assert that we do not have the select all checkbox
         Assert.assertTrue(
-                "Found input in header even though none should exist.", grid
-                        .getHeader().findElements(By.tagName("input"))
-                        .isEmpty());
+                "Found input in header even though none should exist.",
+                grid.getHeader().findElements(By.tagName("input")).isEmpty());
 
         // Set grid into multiselection mode
         toggleSelectionMode();
 
         // Assert that we now have a select all checkbox in the header
-        Assert.assertFalse("Should not be selected after adding", grid
-                .getHeader().findElement(By.tagName("input")).isSelected());
+        Assert.assertFalse("Should not be selected after adding",
+                grid.getHeader().findElement(By.tagName("input")).isSelected());
 
         grid.getHeader().findElement(By.tagName("input")).click();
 

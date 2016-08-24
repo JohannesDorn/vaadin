@@ -15,10 +15,10 @@
  */
 package com.vaadin.tests.components.textfield;
 
-import com.vaadin.data.util.BeanItem;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.tests.components.AbstractTestUI;
-import com.vaadin.ui.TextField;
+import com.vaadin.v7.data.util.BeanItem;
+import com.vaadin.v7.ui.TextField;
 
 public class TextFieldWithDataSourceAndInputPrompt extends AbstractTestUI {
     public static class Pojo {
@@ -35,7 +35,8 @@ public class TextFieldWithDataSourceAndInputPrompt extends AbstractTestUI {
 
     @Override
     protected void setup(VaadinRequest request) {
-        TextField textField = new TextField("TextField with null value");
+        TextField textField = new TextField(
+                "TextField with null value");
         textField.setInputPrompt("Me is input prompt");
         textField.setNullRepresentation(null);
         textField.setValue(null);

@@ -3,8 +3,8 @@ package com.vaadin.tests.components.textfield;
 import com.vaadin.event.FieldEvents.TextChangeEvent;
 import com.vaadin.event.FieldEvents.TextChangeListener;
 import com.vaadin.tests.components.TestBase;
-import com.vaadin.ui.AbstractTextField.TextChangeEventMode;
-import com.vaadin.ui.TextField;
+import com.vaadin.v7.ui.AbstractTextField.TextChangeEventMode;
+import com.vaadin.v7.ui.TextField;
 
 public class TextFieldEagerRepaint extends TestBase {
 
@@ -13,7 +13,7 @@ public class TextFieldEagerRepaint extends TestBase {
 
         final TextField tf1 = new TextField("Updates value");
         tf1.setTextChangeEventMode(TextChangeEventMode.EAGER);
-        tf1.addListener(new TextChangeListener() {
+        tf1.addTextChangeListener(new TextChangeListener() {
             @Override
             public void textChange(TextChangeEvent event) {
                 String text = event.getText();
@@ -26,7 +26,7 @@ public class TextFieldEagerRepaint extends TestBase {
 
         final TextField tf2 = new TextField("Updates width");
         tf2.setTextChangeEventMode(TextChangeEventMode.EAGER);
-        tf2.addListener(new TextChangeListener() {
+        tf2.addTextChangeListener(new TextChangeListener() {
             @Override
             public void textChange(TextChangeEvent event) {
                 String text = event.getText();

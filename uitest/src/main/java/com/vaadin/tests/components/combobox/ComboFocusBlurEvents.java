@@ -3,15 +3,15 @@ package com.vaadin.tests.components.combobox;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.vaadin.data.util.ObjectProperty;
 import com.vaadin.event.FieldEvents;
 import com.vaadin.event.FieldEvents.BlurEvent;
 import com.vaadin.event.FieldEvents.FocusEvent;
 import com.vaadin.shared.ui.label.ContentMode;
 import com.vaadin.tests.components.TestBase;
-import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.Label;
-import com.vaadin.ui.TextField;
+import com.vaadin.v7.data.util.ObjectProperty;
+import com.vaadin.v7.ui.ComboBox;
+import com.vaadin.v7.ui.TextField;
 
 public class ComboFocusBlurEvents extends TestBase {
 
@@ -33,7 +33,7 @@ public class ComboFocusBlurEvents extends TestBase {
 
         final ObjectProperty<String> log = new ObjectProperty<String>("");
 
-        cb.addListener(new FieldEvents.FocusListener() {
+        cb.addFocusListener(new FieldEvents.FocusListener() {
             @Override
             public void focus(FocusEvent event) {
                 log.setValue(log.getValue().toString() + "<br>" + counter
@@ -42,7 +42,7 @@ public class ComboFocusBlurEvents extends TestBase {
             }
         });
 
-        cb.addListener(new FieldEvents.BlurListener() {
+        cb.addBlurListener(new FieldEvents.BlurListener() {
             @Override
             public void blur(BlurEvent event) {
                 log.setValue(log.getValue().toString() + "<br>" + counter

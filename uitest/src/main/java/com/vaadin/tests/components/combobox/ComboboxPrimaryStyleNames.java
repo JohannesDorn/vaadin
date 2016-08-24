@@ -3,7 +3,7 @@ package com.vaadin.tests.components.combobox;
 import com.vaadin.tests.components.TestBase;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
-import com.vaadin.ui.ComboBox;
+import com.vaadin.v7.ui.ComboBox;
 
 public class ComboboxPrimaryStyleNames extends TestBase {
 
@@ -21,8 +21,8 @@ public class ComboboxPrimaryStyleNames extends TestBase {
         addItem(box, "Value 4");
 
         addComponent(box);
-        addComponent(new Button("Set primary style",
-                new Button.ClickListener() {
+        addComponent(
+                new Button("Set primary style", new Button.ClickListener() {
                     @Override
                     public void buttonClick(ClickEvent event) {
                         box.setPrimaryStyleName("my-second-combobox");

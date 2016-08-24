@@ -2,8 +2,6 @@ package com.vaadin.tests.minitutorials.v71beta;
 
 import java.util.Arrays;
 
-import com.vaadin.data.Property.ValueChangeEvent;
-import com.vaadin.data.Property.ValueChangeListener;
 import com.vaadin.server.Page;
 import com.vaadin.server.Page.Styles;
 import com.vaadin.server.VaadinRequest;
@@ -11,17 +9,19 @@ import com.vaadin.shared.ui.MarginInfo;
 import com.vaadin.shared.ui.colorpicker.Color;
 import com.vaadin.shared.ui.label.ContentMode;
 import com.vaadin.ui.Alignment;
-import com.vaadin.ui.ColorPicker;
-import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Panel;
-import com.vaadin.ui.TextArea;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
-import com.vaadin.ui.components.colorpicker.ColorChangeEvent;
-import com.vaadin.ui.components.colorpicker.ColorChangeListener;
+import com.vaadin.v7.data.Property.ValueChangeEvent;
+import com.vaadin.v7.data.Property.ValueChangeListener;
+import com.vaadin.v7.ui.ColorPicker;
+import com.vaadin.v7.ui.ComboBox;
+import com.vaadin.v7.ui.TextArea;
+import com.vaadin.v7.ui.components.colorpicker.ColorChangeEvent;
+import com.vaadin.v7.ui.components.colorpicker.ColorChangeListener;
 
 public class CSSInjectWithColorpicker extends UI {
 
@@ -29,26 +29,27 @@ public class CSSInjectWithColorpicker extends UI {
     protected void init(VaadinRequest request) {
 
         // Create a text editor
-        Component editor = createEditor("Lorem ipsum dolor sit amet, lacus pharetra sed, sit a "
-                + "tortor. Id aliquam lorem pede, orci ut enim metus, diam nulla mi "
-                + "suspendisse tempor tortor. Eleifend lorem proin, morbi vel diam ut. "
-                + "Tempor est tellus vitae, pretium condimentum facilisis sit. Sagittis "
-                + "quam, ac urna eros est cras id cras, eleifend eu mattis nec."
-                + "Lorem ipsum dolor sit amet, lacus pharetra sed, sit a "
-                + "tortor. Id aliquam lorem pede, orci ut enim metus, diam nulla mi "
-                + "suspendisse tempor tortor. Eleifend lorem proin, morbi vel diam ut. "
-                + "Tempor est tellus vitae, pretium condimentum facilisis sit. Sagittis "
-                + "quam, ac urna eros est cras id cras, eleifend eu mattis nec."
-                + "Lorem ipsum dolor sit amet, lacus pharetra sed, sit a "
-                + "tortor. Id aliquam lorem pede, orci ut enim metus, diam nulla mi "
-                + "suspendisse tempor tortor. Eleifend lorem proin, morbi vel diam ut. "
-                + "Tempor est tellus vitae, pretium condimentum facilisis sit. Sagittis "
-                + "quam, ac urna eros est cras id cras, eleifend eu mattis nec."
-                + "Lorem ipsum dolor sit amet, lacus pharetra sed, sit a "
-                + "tortor. Id aliquam lorem pede, orci ut enim metus, diam nulla mi "
-                + "suspendisse tempor tortor. Eleifend lorem proin, morbi vel diam ut. "
-                + "Tempor est tellus vitae, pretium condimentum facilisis sit. Sagittis "
-                + "quam, ac urna eros est cras id cras, eleifend eu mattis nec.");
+        Component editor = createEditor(
+                "Lorem ipsum dolor sit amet, lacus pharetra sed, sit a "
+                        + "tortor. Id aliquam lorem pede, orci ut enim metus, diam nulla mi "
+                        + "suspendisse tempor tortor. Eleifend lorem proin, morbi vel diam ut. "
+                        + "Tempor est tellus vitae, pretium condimentum facilisis sit. Sagittis "
+                        + "quam, ac urna eros est cras id cras, eleifend eu mattis nec."
+                        + "Lorem ipsum dolor sit amet, lacus pharetra sed, sit a "
+                        + "tortor. Id aliquam lorem pede, orci ut enim metus, diam nulla mi "
+                        + "suspendisse tempor tortor. Eleifend lorem proin, morbi vel diam ut. "
+                        + "Tempor est tellus vitae, pretium condimentum facilisis sit. Sagittis "
+                        + "quam, ac urna eros est cras id cras, eleifend eu mattis nec."
+                        + "Lorem ipsum dolor sit amet, lacus pharetra sed, sit a "
+                        + "tortor. Id aliquam lorem pede, orci ut enim metus, diam nulla mi "
+                        + "suspendisse tempor tortor. Eleifend lorem proin, morbi vel diam ut. "
+                        + "Tempor est tellus vitae, pretium condimentum facilisis sit. Sagittis "
+                        + "quam, ac urna eros est cras id cras, eleifend eu mattis nec."
+                        + "Lorem ipsum dolor sit amet, lacus pharetra sed, sit a "
+                        + "tortor. Id aliquam lorem pede, orci ut enim metus, diam nulla mi "
+                        + "suspendisse tempor tortor. Eleifend lorem proin, morbi vel diam ut. "
+                        + "Tempor est tellus vitae, pretium condimentum facilisis sit. Sagittis "
+                        + "quam, ac urna eros est cras id cras, eleifend eu mattis nec.");
 
         VerticalLayout content = new VerticalLayout(editor);
         content.setMargin(true);
@@ -57,7 +58,7 @@ public class CSSInjectWithColorpicker extends UI {
 
     /**
      * Creates a text editor for visually editing text
-     * 
+     *
      * @param text
      *            The text editor
      * @return
@@ -203,8 +204,8 @@ public class CSSInjectWithColorpicker extends UI {
      */
     private Component createFontSizeSelect() {
 
-        final ComboBox select = new ComboBox(null, Arrays.asList(8, 9, 10, 12,
-                14, 16, 20, 25, 30, 40, 50));
+        final ComboBox select = new ComboBox(null,
+                Arrays.asList(8, 9, 10, 12, 14, 16, 20, 25, 30, 40, 50));
         select.setWidth("100px");
         select.setValue(12);
         select.setInputPrompt("Font size");

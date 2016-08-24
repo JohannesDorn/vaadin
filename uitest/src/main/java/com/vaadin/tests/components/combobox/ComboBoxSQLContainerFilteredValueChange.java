@@ -4,17 +4,17 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import com.vaadin.data.Property;
-import com.vaadin.data.Property.ValueChangeEvent;
-import com.vaadin.data.util.sqlcontainer.SQLContainer;
-import com.vaadin.data.util.sqlcontainer.connection.JDBCConnectionPool;
-import com.vaadin.data.util.sqlcontainer.connection.SimpleJDBCConnectionPool;
-import com.vaadin.data.util.sqlcontainer.query.TableQuery;
 import com.vaadin.tests.components.TestBase;
-import com.vaadin.ui.AbstractSelect.Filtering;
-import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
+import com.vaadin.v7.data.Property;
+import com.vaadin.v7.data.Property.ValueChangeEvent;
+import com.vaadin.v7.data.util.sqlcontainer.SQLContainer;
+import com.vaadin.v7.data.util.sqlcontainer.connection.JDBCConnectionPool;
+import com.vaadin.v7.data.util.sqlcontainer.connection.SimpleJDBCConnectionPool;
+import com.vaadin.v7.data.util.sqlcontainer.query.TableQuery;
+import com.vaadin.v7.ui.AbstractSelect.Filtering;
+import com.vaadin.v7.ui.ComboBox;
 
 public class ComboBoxSQLContainerFilteredValueChange extends TestBase {
 
@@ -55,8 +55,8 @@ public class ComboBoxSQLContainerFilteredValueChange extends TestBase {
         myCombo.addListener(new Property.ValueChangeListener() {
             @Override
             public void valueChange(ValueChangeEvent event) {
-                selectedLabel.setValue("Selected: "
-                        + event.getProperty().getValue());
+                selectedLabel.setValue(
+                        "Selected: " + event.getProperty().getValue());
             }
         });
     }
@@ -73,7 +73,7 @@ public class ComboBoxSQLContainerFilteredValueChange extends TestBase {
 
     /**
      * (Re)creates the test table
-     * 
+     *
      * @param connectionPool
      */
     private void createTestTable(JDBCConnectionPool connectionPool) {
@@ -99,7 +99,7 @@ public class ComboBoxSQLContainerFilteredValueChange extends TestBase {
 
     /**
      * Adds test data to the test table
-     * 
+     *
      * @param connectionPool
      * @throws SQLException
      */

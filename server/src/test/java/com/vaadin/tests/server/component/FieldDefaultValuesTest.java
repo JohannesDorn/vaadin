@@ -1,12 +1,12 @@
 /*
- * Copyright 2000-2014 Vaadin Ltd.
- * 
+ * Copyright 2000-2016 Vaadin Ltd.
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -22,8 +22,8 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.vaadin.tests.VaadinClasses;
-import com.vaadin.ui.Field;
 import com.vaadin.ui.Slider;
+import com.vaadin.v7.ui.Field;
 
 public class FieldDefaultValuesTest {
 
@@ -36,8 +36,10 @@ public class FieldDefaultValuesTest {
 
             Object clearedValue = field.getValue();
 
-            Assert.assertEquals("Expected to get default value after clearing "
-                    + field.getClass().getName(), originalValue, clearedValue);
+            Assert.assertEquals(
+                    "Expected to get default value after clearing "
+                            + field.getClass().getName(),
+                    originalValue, clearedValue);
         }
     }
 
@@ -52,19 +54,21 @@ public class FieldDefaultValuesTest {
                         field.isEmpty());
 
             } else {
-                Assert.assertTrue(field.getClass().getName()
-                        + " should be empty after being cleared",
+                Assert.assertTrue(
+                        field.getClass().getName()
+                                + " should be empty after being cleared",
                         field.isEmpty());
             }
         }
     }
 
     @SuppressWarnings("rawtypes")
-    private static List<Field<?>> createFields() throws InstantiationException,
-            IllegalAccessException {
+    private static List<Field<?>> createFields()
+            throws InstantiationException, IllegalAccessException {
         List<Field<?>> fieldInstances = new ArrayList<Field<?>>();
 
-        for (Class<? extends Field> fieldType : VaadinClasses.getFields()) {
+        for (Class<? extends Field> fieldType : VaadinClasses
+                .getFields()) {
             fieldInstances.add(fieldType.newInstance());
         }
         return fieldInstances;

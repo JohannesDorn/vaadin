@@ -8,7 +8,7 @@ import com.vaadin.tests.components.AbstractTestCase;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.DateField;
 import com.vaadin.ui.GridLayout;
-import com.vaadin.ui.LegacyWindow;
+import com.vaadin.v7.ui.LegacyWindow;
 
 public class DateFieldPopupOffScreen extends AbstractTestCase {
 
@@ -59,7 +59,8 @@ public class DateFieldPopupOffScreen extends AbstractTestCase {
         DateField df = new DateField();
         df.setLocale(new Locale("fi"));
         df.setResolution(Resolution.SECOND);
-        df.setDescription("This is a long, multiline tooltip.<br/>It should always be on screen so it can be read.");
+        df.setDescription(
+                "This is a long, multiline tooltip.<br/>It should always be on screen so it can be read.");
         df.setValue(new Date(1000000L));
         return df;
     }

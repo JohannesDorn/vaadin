@@ -11,7 +11,8 @@ import com.vaadin.shared.ui.datefield.Resolution;
 import com.vaadin.tests.components.abstractfield.AbstractFieldTest;
 import com.vaadin.ui.DateField;
 
-public class DateFieldTest<T extends DateField> extends AbstractFieldTest<T> {
+public class DateFieldTest<T extends DateField>
+        extends AbstractFieldTest<T, Date> {
 
     @SuppressWarnings("unchecked")
     @Override
@@ -31,7 +32,8 @@ public class DateFieldTest<T extends DateField> extends AbstractFieldTest<T> {
     protected void createActions() {
         super.createActions();
         createResolutionSelectAction(CATEGORY_FEATURES);
-        createBooleanAction("Lenient", CATEGORY_FEATURES, false, lenientCommand);
+        createBooleanAction("Lenient", CATEGORY_FEATURES, false,
+                lenientCommand);
         createBooleanAction("Show week numbers", CATEGORY_FEATURES, false,
                 weekNumberCommand);
         createDateFormatSelectAction(CATEGORY_FEATURES);

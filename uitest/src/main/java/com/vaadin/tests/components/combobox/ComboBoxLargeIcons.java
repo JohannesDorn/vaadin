@@ -2,11 +2,11 @@ package com.vaadin.tests.components.combobox;
 
 import java.util.Date;
 
-import com.vaadin.data.Item;
 import com.vaadin.server.Resource;
 import com.vaadin.server.ThemeResource;
 import com.vaadin.tests.components.TestBase;
-import com.vaadin.ui.ComboBox;
+import com.vaadin.v7.data.Item;
+import com.vaadin.v7.ui.ComboBox;
 
 public class ComboBoxLargeIcons extends TestBase {
 
@@ -34,9 +34,9 @@ public class ComboBoxLargeIcons extends TestBase {
                 "document-ppt", "document-txt", "document-web", "document" };
         for (String icon : icons) {
             Item item = cb.addItem(icon);
-            item.getItemProperty("icon").setValue(
-                    new ThemeResource("../runo/icons/32/" + icon + ".png?"
-                            + new Date().getTime()));
+            item.getItemProperty("icon")
+                    .setValue(new ThemeResource("../runo/icons/32/" + icon
+                            + ".png?" + new Date().getTime()));
         }
 
     }

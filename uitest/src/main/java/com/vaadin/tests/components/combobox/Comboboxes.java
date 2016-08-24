@@ -6,8 +6,8 @@ import java.util.List;
 
 import com.vaadin.server.ThemeResource;
 import com.vaadin.tests.components.ComponentTestCase;
-import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.Component;
+import com.vaadin.v7.ui.ComboBox;
 
 public class Comboboxes extends ComponentTestCase<ComboBox> {
 
@@ -78,7 +78,7 @@ public class Comboboxes extends ComponentTestCase<ComboBox> {
     public class PageLength0ComboBox extends ComboBox {
         public PageLength0ComboBox() {
             super();
-            pageLength = 0;
+            setPageLength(0);
         }
     }
 
@@ -141,8 +141,8 @@ public class Comboboxes extends ComponentTestCase<ComboBox> {
                             if (value == null) {
                                 c.setItemIcon(id, null);
                             } else {
-                                c.setItemIcon(id, new ThemeResource(value + "?"
-                                        + new Date().getTime()));
+                                c.setItemIcon(id, new ThemeResource(
+                                        value + "?" + new Date().getTime()));
                             }
                         }
                     }

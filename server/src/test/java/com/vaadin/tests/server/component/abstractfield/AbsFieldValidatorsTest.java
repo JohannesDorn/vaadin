@@ -8,8 +8,8 @@ import static org.junit.Assert.assertTrue;
 import org.easymock.EasyMock;
 import org.junit.Test;
 
-import com.vaadin.data.Validator;
-import com.vaadin.ui.AbstractField;
+import com.vaadin.v7.data.Validator;
+import com.vaadin.v7.ui.AbstractField;
 
 public class AbsFieldValidatorsTest {
 
@@ -69,48 +69,10 @@ public class AbsFieldValidatorsTest {
     }
 
     @Test
-    public void validatorShouldMakeImmediate() {
-        assertFalse("field should not be immediate by default",
-                field.isImmediate());
-        field.addValidator(validator);
-        assertTrue("field should be immediate when it has a validator",
-                field.isImmediate());
-    }
-
-    @Test
     public void nonImmediateFieldWithValidator() {
         field.setImmediate(false);
         field.addValidator(validator);
         assertFalse("field should be non-immediate because explicitly set",
-                field.isImmediate());
-    }
-
-    @Test
-    public void removeValidatorMakesNonImmediate() {
-        field.addValidator(validator);
-        field.removeValidator(validator);
-        assertFalse(
-                "field should be non-immediate after validator was removed",
-                field.isImmediate());
-    }
-
-    @Test
-    public void requiredMakesImmediate() {
-        assertFalse("field should not be immediate by default",
-                field.isImmediate());
-        field.setRequired(true);
-        assertTrue("field should be immediate when it is required",
-                field.isImmediate());
-    }
-
-    @Test
-    public void removeRequiredMakesNonImmediate() {
-        assertFalse("field should not be immediate by default",
-                field.isImmediate());
-        field.setRequired(true);
-        field.setRequired(false);
-        assertFalse(
-                "field should not be immediate even though it was required",
                 field.isImmediate());
     }
 

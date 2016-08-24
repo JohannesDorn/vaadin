@@ -5,26 +5,26 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 
-import com.vaadin.data.Container;
-import com.vaadin.data.Container.Hierarchical;
-import com.vaadin.data.util.HierarchicalContainer;
 import com.vaadin.event.Action;
 import com.vaadin.event.Action.Handler;
 import com.vaadin.shared.ui.MultiSelectMode;
 import com.vaadin.tests.components.select.AbstractSelectTestCase;
-import com.vaadin.ui.Tree;
-import com.vaadin.ui.Tree.CollapseEvent;
-import com.vaadin.ui.Tree.CollapseListener;
-import com.vaadin.ui.Tree.ExpandEvent;
-import com.vaadin.ui.Tree.ExpandListener;
-import com.vaadin.ui.Tree.ItemStyleGenerator;
+import com.vaadin.v7.data.Container;
+import com.vaadin.v7.data.Container.Hierarchical;
+import com.vaadin.v7.data.util.HierarchicalContainer;
+import com.vaadin.v7.ui.Tree;
+import com.vaadin.v7.ui.Tree.CollapseEvent;
+import com.vaadin.v7.ui.Tree.CollapseListener;
+import com.vaadin.v7.ui.Tree.ExpandEvent;
+import com.vaadin.v7.ui.Tree.ExpandListener;
+import com.vaadin.v7.ui.Tree.ItemStyleGenerator;
 
-public class Trees extends AbstractSelectTestCase<Tree> implements
-        ExpandListener, CollapseListener {
+public class Trees extends AbstractSelectTestCase<Tree>
+        implements ExpandListener, CollapseListener {
 
     private int rootItemIds = 3;
 
-    private ItemStyleGenerator rootGreenSecondLevelRed = new com.vaadin.ui.Tree.ItemStyleGenerator() {
+    private ItemStyleGenerator rootGreenSecondLevelRed = new com.vaadin.v7.ui.Tree.ItemStyleGenerator() {
 
         @Override
         public String getStyle(Tree source, Object itemId) {
@@ -49,7 +49,7 @@ public class Trees extends AbstractSelectTestCase<Tree> implements
 
     };
 
-    private ItemStyleGenerator evenItemsBold = new com.vaadin.ui.Tree.ItemStyleGenerator() {
+    private ItemStyleGenerator evenItemsBold = new com.vaadin.v7.ui.Tree.ItemStyleGenerator() {
 
         @Override
         public String getStyle(Tree source, Object itemId) {
@@ -137,8 +137,8 @@ public class Trees extends AbstractSelectTestCase<Tree> implements
         cm.addItem("Caption only", null);
         cm.addItem("Has icon", ICON_16_USER_PNG_UNCACHEABLE);
         options.put("With and without icon", cm);
-        options.put("Only one large icon", new ContextMenu("Icon",
-                ICON_64_EMAIL_REPLY_PNG_UNCACHEABLE));
+        options.put("Only one large icon",
+                new ContextMenu("Icon", ICON_64_EMAIL_REPLY_PNG_UNCACHEABLE));
 
         createSelectAction("Context menu", category, options, "None",
                 contextMenuCommand, true);
@@ -146,10 +146,11 @@ public class Trees extends AbstractSelectTestCase<Tree> implements
 
     private void createItemStyleGenerator(String category) {
 
-        LinkedHashMap<String, com.vaadin.ui.Tree.ItemStyleGenerator> options = new LinkedHashMap<String, com.vaadin.ui.Tree.ItemStyleGenerator>();
+        LinkedHashMap<String, com.vaadin.v7.ui.Tree.ItemStyleGenerator> options = new LinkedHashMap<String, com.vaadin.v7.ui.Tree.ItemStyleGenerator>();
 
         options.put("-", null);
-        options.put(rootGreenSecondLevelRed.toString(), rootGreenSecondLevelRed);
+        options.put(rootGreenSecondLevelRed.toString(),
+                rootGreenSecondLevelRed);
         options.put(evenItemsBold.toString(), evenItemsBold);
 
         createSelectAction("Item Style generator", category, options, "-",
@@ -384,11 +385,11 @@ public class Trees extends AbstractSelectTestCase<Tree> implements
         }
     };
 
-    private Command<Tree, com.vaadin.ui.Tree.ItemStyleGenerator> itemStyleGeneratorCommand = new Command<Tree, com.vaadin.ui.Tree.ItemStyleGenerator>() {
+    private Command<Tree, com.vaadin.v7.ui.Tree.ItemStyleGenerator> itemStyleGeneratorCommand = new Command<Tree, com.vaadin.v7.ui.Tree.ItemStyleGenerator>() {
 
         @Override
-        public void execute(Tree c,
-                com.vaadin.ui.Tree.ItemStyleGenerator value, Object data) {
+        public void execute(Tree c, com.vaadin.v7.ui.Tree.ItemStyleGenerator value,
+                Object data) {
             c.setItemStyleGenerator(value);
 
         }

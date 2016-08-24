@@ -1,12 +1,12 @@
 /*
- * Copyright 2000-2014 Vaadin Ltd.
- * 
+ * Copyright 2000-2016 Vaadin Ltd.
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -21,15 +21,16 @@ import org.openqa.selenium.WebElement;
 
 import com.vaadin.testbench.By;
 import com.vaadin.testbench.TestBenchElement;
-import com.vaadin.tests.components.grid.basicfeatures.element.CustomGridElement;
+import com.vaadin.v7.testbench.customelements.GridElement;
 
 /**
  * GridBasicClientFeatures.
- * 
+ *
  * @since
  * @author Vaadin Ltd
  */
-public abstract class GridBasicClientFeaturesTest extends GridBasicFeaturesTest {
+public abstract class GridBasicClientFeaturesTest
+        extends GridBasicFeaturesTest {
 
     private boolean composite = false;
 
@@ -59,17 +60,17 @@ public abstract class GridBasicClientFeaturesTest extends GridBasicFeaturesTest 
 
     @Override
     protected WebElement getMenuElement(String menuCaption) {
-        return getDriver().findElement(
-                By.xpath("//td[text() = '" + menuCaption + "']"));
+        return getDriver()
+                .findElement(By.xpath("//td[text() = '" + menuCaption + "']"));
     }
 
     @Override
-    protected CustomGridElement getGridElement() {
+    protected GridElement getGridElement() {
         if (composite) {
             // Composite requires the basic client features widget for subparts
-            return ((TestBenchElement) findElement(By
-                    .vaadin("//TestWidgetComponent")))
-                    .wrap(CustomGridElement.class);
+            return ((TestBenchElement) findElement(
+                    By.vaadin("//TestWidgetComponent")))
+                            .wrap(GridElement.class);
         } else {
             return super.getGridElement();
         }

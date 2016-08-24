@@ -2,12 +2,12 @@ package com.vaadin.tests.components.textfield;
 
 import com.vaadin.event.FieldEvents.TextChangeEvent;
 import com.vaadin.event.FieldEvents.TextChangeListener;
+import com.vaadin.shared.ui.textfield.ValueChangeMode;
 import com.vaadin.tests.components.TestBase;
 import com.vaadin.tests.util.Log;
 import com.vaadin.tests.util.TestUtils;
-import com.vaadin.ui.AbstractTextField.TextChangeEventMode;
-import com.vaadin.ui.TextArea;
 import com.vaadin.ui.TextField;
+import com.vaadin.v7.ui.TextArea;
 
 public class TextChangeEvents extends TestBase {
     Log l = new Log(10);
@@ -28,27 +28,43 @@ public class TextChangeEvents extends TestBase {
             }
         };
 
-        tf.addListener(inputEventListener);
+        tf.addValueChangeListener(listener -> {
+            l.log("Text change event for  " + tf.getCaption()
+                    + ", text content currently:'" + listener.getValue()
+                    + "' Cursor at index:" + tf.getCursorPosition());
+        });
 
         getLayout().addComponent(tf);
 
         TextField eager = new TextField("Eager");
-        eager.addListener(inputEventListener);
-        eager.setTextChangeEventMode(TextChangeEventMode.EAGER);
+        eager.addValueChangeListener(listener -> {
+            l.log("Text change event for  " + eager.getCaption()
+                    + ", text content currently:'" + listener.getValue()
+                    + "' Cursor at index:" + eager.getCursorPosition());
+        });
+        eager.setValueChangeMode(ValueChangeMode.EAGER);
         getLayout().addComponent(eager);
 
         TextField to = new TextField("Timeout 3s");
-        to.addListener(inputEventListener);
-        to.setTextChangeEventMode(TextChangeEventMode.TIMEOUT);
-        to.setTextChangeTimeout(3000);
+        to.addValueChangeListener(listener -> {
+            l.log("Text change event for  " + to.getCaption()
+                    + ", text content currently:'" + listener.getValue()
+                    + "' Cursor at index:" + to.getCursorPosition());
+        });
+        to.setValueChangeMode(ValueChangeMode.TIMEOUT);
+        to.setValueChangeTimeout(3000);
         getLayout().addComponent(to);
 
         TextArea ta = new TextArea("Default text area");
-        ta.addListener(inputEventListener);
+        ta.addTextChangeListener(inputEventListener);
         getLayout().addComponent(ta);
 
         VaadinDeveloperNameField vd = new VaadinDeveloperNameField();
-        vd.addListener(inputEventListener);
+        vd.addValueChangeListener(listener -> {
+            l.log("Text change event for  " + vd.getCaption()
+                    + ", text content currently:'" + listener.getValue()
+                    + "' Cursor at index:" + vd.getCursorPosition());
+        });
         getLayout().addComponent(vd);
 
         getLayout().addComponent(l);
@@ -66,22 +82,36 @@ public class TextChangeEvents extends TestBase {
 
     /**
      * "Autosuggest"
-     * 
+     *
      * Known issue is timing if suggestion comes while typing more content. IMO
      * we will not support this kind of features in default TextField, but
      * hopefully make it easily extendable to perfect suggest feature. MT
      * 2010-10
-     * 
+     *
      */
-    private class VaadinDeveloperNameField extends TextField implements
-            TextChangeListener {
+    private class VaadinDeveloperNameField extends TextField {
         private String[] names = new String[] { "Matti Tahvonen",
                 "Marc Englund", "Joonas Lehtinen", "Jouni Koivuviita",
                 "Marko Grönroos", "Artur Signell" };
 
         public VaadinDeveloperNameField() {
             setCaption("Start typing 'old' Vaadin developers.");
-            addListener((TextChangeListener) this);
+            addValueChangeListener(listener -> {
+                boolean atTheEndOfText = listener.getValue()
+                        .length() == getCursorPosition();
+                String match = findMatch(listener.getValue());
+                if (match != null) {
+                    setStyleName("match");
+                    String curText = listener.getValue();
+                    int matchlenght = curText.length();
+                    // autocomplete if caret is at the end of the text
+                    if (atTheEndOfText) {
+                        suggest(match, matchlenght);
+                    }
+                } else {
+                    setStyleName("nomatch");
+                }
+            });
             setStyleName("nomatch");
         }
 
@@ -92,26 +122,9 @@ public class TextChangeEvents extends TestBase {
                     + ".nomatch {background:red;}");
         }
 
-        @Override
-        public void textChange(TextChangeEvent event) {
-            boolean atTheEndOfText = event.getText().length() == getCursorPosition();
-            String match = findMatch(event.getText());
-            if (match != null) {
-                setStyleName("match");
-                String curText = event.getText();
-                int matchlenght = curText.length();
-                // autocomplete if garret is at the end of the text
-                if (atTheEndOfText) {
-                    suggest(match, matchlenght);
-                }
-            } else {
-                setStyleName("nomatch");
-            }
-        }
-
         private void suggest(String match, int matchlenght) {
             setValue(match);
-            setSelectionRange(matchlenght, match.length() - matchlenght);
+            setSelection(matchlenght, match.length() - matchlenght);
         }
 
         private String findMatch(String currentTextContent) {

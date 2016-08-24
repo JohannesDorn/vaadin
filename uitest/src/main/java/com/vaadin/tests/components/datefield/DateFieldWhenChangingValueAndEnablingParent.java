@@ -2,8 +2,6 @@ package com.vaadin.tests.components.datefield;
 
 import java.util.Date;
 
-import com.vaadin.data.Property.ValueChangeEvent;
-import com.vaadin.data.Property.ValueChangeListener;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.tests.components.AbstractTestUI;
 import com.vaadin.ui.CheckBox;
@@ -11,7 +9,8 @@ import com.vaadin.ui.DateField;
 import com.vaadin.ui.PopupDateField;
 import com.vaadin.ui.VerticalLayout;
 
-public class DateFieldWhenChangingValueAndEnablingParent extends AbstractTestUI {
+public class DateFieldWhenChangingValueAndEnablingParent
+        extends AbstractTestUI {
 
     @Override
     protected void setup(VaadinRequest request) {
@@ -39,24 +38,20 @@ public class DateFieldWhenChangingValueAndEnablingParent extends AbstractTestUI 
         main.addComponent(chk);
         main.addComponent(sub);
 
-        chk.addValueChangeListener(new ValueChangeListener() {
-
-            @Override
-            public void valueChange(ValueChangeEvent event) {
-                df1.setValue(new Date());
-                df2.setValue(new Date());
-                pdf1.setValue(new Date());
-                pdf2.setValue(new Date());
-                pdf3.setValue(new Date());
-                pdf4.setValue(new Date());
-                sub.setEnabled(chk.getValue());
-            }
+        chk.addValueChangeListener(event -> {
+            df1.setValue(new Date());
+            df2.setValue(new Date());
+            pdf1.setValue(new Date());
+            pdf2.setValue(new Date());
+            pdf3.setValue(new Date());
+            pdf4.setValue(new Date());
+            sub.setEnabled(chk.getValue());
         });
     }
 
     private DateField createDateField(boolean enabled) {
-        DateField df = new DateField("DateField, "
-                + (enabled ? "enabled" : "disabled"));
+        DateField df = new DateField(
+                "DateField, " + (enabled ? "enabled" : "disabled"));
         df.setEnabled(enabled);
         df.setId("DATEFIELD_" + (enabled ? "ENABLED" : "DISABLED"));
         return df;

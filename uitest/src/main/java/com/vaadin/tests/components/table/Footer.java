@@ -1,19 +1,17 @@
 package com.vaadin.tests.components.table;
 
-import com.vaadin.data.Container;
-import com.vaadin.data.Item;
-import com.vaadin.data.Property;
-import com.vaadin.data.Property.ValueChangeEvent;
-import com.vaadin.data.util.IndexedContainer;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.tests.components.AbstractTestUI;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.CheckBox;
 import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.Table;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
+import com.vaadin.v7.data.Container;
+import com.vaadin.v7.data.Item;
+import com.vaadin.v7.data.util.IndexedContainer;
+import com.vaadin.v7.ui.Table;
 
 public class Footer extends AbstractTestUI {
 
@@ -49,13 +47,8 @@ public class Footer extends AbstractTestUI {
 
         final CheckBox visible = new CheckBox("Footers Visible", true);
         visible.setImmediate(true);
-        visible.addValueChangeListener(new Property.ValueChangeListener() {
-            @Override
-            public void valueChange(ValueChangeEvent event) {
-                table.setFooterVisible(visible.getValue());
-
-            }
-        });
+        visible.addValueChangeListener(
+                event -> table.setFooterVisible(visible.getValue()));
 
         options.addComponent(visible);
 
@@ -64,9 +57,8 @@ public class Footer extends AbstractTestUI {
         Button footer1Btn = new Button("Change", new Button.ClickListener() {
             @Override
             public void buttonClick(ClickEvent event) {
-                table.setColumnFooter("col1",
-                        footer1Value.getValue() == null ? "" : footer1Value
-                                .getValue().toString());
+                table.setColumnFooter("col1", footer1Value.getValue() == null
+                        ? "" : footer1Value.getValue());
             }
         });
         HorizontalLayout footer1 = new HorizontalLayout();
@@ -79,9 +71,8 @@ public class Footer extends AbstractTestUI {
         Button footer2Btn = new Button("Change", new Button.ClickListener() {
             @Override
             public void buttonClick(ClickEvent event) {
-                table.setColumnFooter("col2",
-                        footer2Value.getValue() == null ? "" : footer2Value
-                                .getValue().toString());
+                table.setColumnFooter("col2", footer2Value.getValue() == null
+                        ? "" : footer2Value.getValue());
             }
         });
         HorizontalLayout footer2 = new HorizontalLayout();
@@ -94,9 +85,8 @@ public class Footer extends AbstractTestUI {
         Button footer3Btn = new Button("Change", new Button.ClickListener() {
             @Override
             public void buttonClick(ClickEvent event) {
-                table.setColumnFooter("col3",
-                        footer3Value.getValue() == null ? "" : footer3Value
-                                .getValue().toString());
+                table.setColumnFooter("col3", footer3Value.getValue() == null
+                        ? "" : footer3Value.getValue());
             }
         });
         HorizontalLayout footer3 = new HorizontalLayout();

@@ -5,11 +5,11 @@ import org.junit.Test;
 import org.openqa.selenium.WebElement;
 
 import com.vaadin.testbench.By;
-import com.vaadin.testbench.elements.DateFieldElement;
-import com.vaadin.testbench.elements.InlineDateFieldElement;
-import com.vaadin.testbench.elements.PopupDateFieldElement;
-import com.vaadin.testbench.elements.TextFieldElement;
 import com.vaadin.tests.tb3.MultiBrowserTest;
+import com.vaadin.v7.testbench.customelements.DateFieldElement;
+import com.vaadin.v7.testbench.customelements.InlineDateFieldElement;
+import com.vaadin.v7.testbench.customelements.PopupDateFieldElement;
+import com.vaadin.v7.testbench.customelements.TextFieldElement;
 
 public class DateFormTest extends MultiBrowserTest {
 
@@ -20,15 +20,15 @@ public class DateFormTest extends MultiBrowserTest {
                 getDateFieldValue());
         Assert.assertEquals("Unexpected PopupDateField value,", "1/20/84",
                 getPopupDateFieldValue());
-        WebElement day20 = getInlineDateFieldCalendarPanel().findElement(
-                By.vaadin("#day20"));
+        WebElement day20 = getInlineDateFieldCalendarPanel()
+                .findElement(By.vaadin("#day20"));
         Assert.assertTrue(
                 "Unexpected InlineDateField state, 20th not selected.",
                 hasCssClass(day20,
                         "v-inline-datefield-calendarpanel-day-selected"));
         Assert.assertEquals("Unexpected TextField contents,",
-                "Jan 20, 1984 4:34:49 PM", $(TextFieldElement.class).first()
-                        .getValue());
+                "Jan 20, 1984 4:34:49 PM",
+                $(TextFieldElement.class).first().getValue());
     }
 
     protected String getDateFieldValue() {
@@ -40,8 +40,8 @@ public class DateFormTest extends MultiBrowserTest {
     }
 
     protected WebElement getInlineDateFieldCalendarPanel() {
-        return $(InlineDateFieldElement.class).first().findElement(
-                By.className("v-inline-datefield-calendarpanel"));
+        return $(InlineDateFieldElement.class).first()
+                .findElement(By.className("v-inline-datefield-calendarpanel"));
     }
 
 }

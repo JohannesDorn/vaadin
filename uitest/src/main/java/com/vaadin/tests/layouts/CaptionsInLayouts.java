@@ -3,14 +3,10 @@ package com.vaadin.tests.layouts;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.vaadin.data.Item;
-import com.vaadin.data.Property.ValueChangeEvent;
-import com.vaadin.data.Property.ValueChangeListener;
 import com.vaadin.server.ThemeResource;
 import com.vaadin.server.UserError;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.tests.components.AbstractTestUI;
-import com.vaadin.ui.AbstractField;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
@@ -22,9 +18,13 @@ import com.vaadin.ui.GridLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.NativeButton;
-import com.vaadin.ui.NativeSelect;
-import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
+import com.vaadin.v7.data.Item;
+import com.vaadin.v7.data.Property.ValueChangeEvent;
+import com.vaadin.v7.data.Property.ValueChangeListener;
+import com.vaadin.v7.ui.AbstractField;
+import com.vaadin.v7.ui.NativeSelect;
+import com.vaadin.v7.ui.TextField;
 
 public class CaptionsInLayouts extends AbstractTestUI {
 
@@ -81,13 +81,8 @@ public class CaptionsInLayouts extends AbstractTestUI {
         CheckBox requiredToggle = new CheckBox();
         requiredToggle.setImmediate(true);
         requiredToggle.setCaption("Required");
-        requiredToggle.addListener(new ValueChangeListener() {
-
-            @Override
-            public void valueChange(ValueChangeEvent event) {
-                setRequired((Boolean) event.getProperty().getValue());
-            }
-        });
+        requiredToggle
+                .addValueChangeListener(event -> setRequired(event.getValue()));
         return requiredToggle;
     }
 
@@ -95,13 +90,7 @@ public class CaptionsInLayouts extends AbstractTestUI {
         CheckBox iconToggle = new CheckBox();
         iconToggle.setImmediate(true);
         iconToggle.setCaption("Icons");
-        iconToggle.addListener(new ValueChangeListener() {
-
-            @Override
-            public void valueChange(ValueChangeEvent event) {
-                setIcon((Boolean) event.getProperty().getValue());
-            }
-        });
+        iconToggle.addValueChangeListener(event -> setIcon(event.getValue()));
         return iconToggle;
     }
 
@@ -127,13 +116,7 @@ public class CaptionsInLayouts extends AbstractTestUI {
         CheckBox errorToggle = new CheckBox();
         errorToggle.setImmediate(true);
         errorToggle.setCaption("Error");
-        errorToggle.addListener(new ValueChangeListener() {
-
-            @Override
-            public void valueChange(ValueChangeEvent event) {
-                setError((Boolean) event.getProperty().getValue());
-            }
-        });
+        errorToggle.addValueChangeListener(event -> setError(event.getValue()));
         return errorToggle;
     }
 
@@ -245,8 +228,8 @@ public class CaptionsInLayouts extends AbstractTestUI {
             for (String width : new String[] { "400px", "auto" }) {
                 Object id = layoutSelect.addItem();
                 Item i = layoutSelect.getItem(id);
-                i.getItemProperty(CAPTION).setValue(
-                        cls.getSimpleName() + ", " + width);
+                i.getItemProperty(CAPTION)
+                        .setValue(cls.getSimpleName() + ", " + width);
                 i.getItemProperty(CLASS).setValue(cls);
                 i.getItemProperty(WIDTH).setValue(width);
             }
@@ -260,10 +243,11 @@ public class CaptionsInLayouts extends AbstractTestUI {
             public void valueChange(ValueChangeEvent event) {
                 Item i = layoutSelect.getItem(event.getProperty().getValue());
 
-                setLayout(getLayout((String) i.getItemProperty(CAPTION)
-                        .getValue(), (Class<? extends Layout>) i
-                        .getItemProperty(CLASS).getValue(), (String) i
-                        .getItemProperty(WIDTH).getValue()));
+                setLayout(getLayout(
+                        (String) i.getItemProperty(CAPTION).getValue(),
+                        (Class<? extends Layout>) i.getItemProperty(CLASS)
+                                .getValue(),
+                        (String) i.getItemProperty(WIDTH).getValue()));
             }
         });
 

@@ -8,18 +8,18 @@ import java.util.logging.Level;
 
 import com.vaadin.annotations.Push;
 import com.vaadin.annotations.Theme;
-import com.vaadin.data.Item;
-import com.vaadin.data.util.IndexedContainer;
 import com.vaadin.event.SelectionEvent;
 import com.vaadin.event.SelectionEvent.SelectionListener;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.tests.components.AbstractTestUI;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
-import com.vaadin.ui.Grid;
-import com.vaadin.ui.Grid.SelectionMode;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.VerticalLayout;
+import com.vaadin.v7.data.Item;
+import com.vaadin.v7.data.util.IndexedContainer;
+import com.vaadin.v7.ui.Grid;
+import com.vaadin.v7.ui.Grid.SelectionMode;
 
 @Push
 @Theme("valo")
@@ -42,13 +42,14 @@ public class GridFastAsyncUpdate extends AbstractTestUI {
 
                             ++counter;
                             Item item = container.addItem(counter);
-                            item.getItemProperty("sequenceNumber").setValue(
-                                    String.valueOf(counter));
-                            item.getItemProperty("millis").setValue(
-                                    String.valueOf(Calendar.getInstance()
-                                            .getTimeInMillis() - loggingStart));
-                            item.getItemProperty("level").setValue(
-                                    Level.INFO.toString());
+                            item.getItemProperty("sequenceNumber")
+                                    .setValue(String.valueOf(counter));
+                            item.getItemProperty("millis")
+                                    .setValue(String.valueOf(Calendar
+                                            .getInstance().getTimeInMillis()
+                                            - loggingStart));
+                            item.getItemProperty("level")
+                                    .setValue(Level.INFO.toString());
                             item.getItemProperty("message").setValue("Message");
                             if (grid != null && !scrollLock) {
                                 grid.scrollToEnd();

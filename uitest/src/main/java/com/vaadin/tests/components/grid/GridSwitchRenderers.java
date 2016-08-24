@@ -4,18 +4,16 @@ import java.util.List;
 import java.util.Random;
 
 import com.vaadin.annotations.Theme;
-import com.vaadin.data.Item;
-import com.vaadin.data.Property.ValueChangeEvent;
-import com.vaadin.data.Property.ValueChangeListener;
-import com.vaadin.data.util.IndexedContainer;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.tests.components.AbstractTestUIWithLog;
 import com.vaadin.ui.CheckBox;
-import com.vaadin.ui.Grid;
-import com.vaadin.ui.Grid.Column;
-import com.vaadin.ui.Grid.SelectionMode;
-import com.vaadin.ui.renderers.HtmlRenderer;
-import com.vaadin.ui.renderers.TextRenderer;
+import com.vaadin.v7.data.Item;
+import com.vaadin.v7.data.util.IndexedContainer;
+import com.vaadin.v7.ui.Grid;
+import com.vaadin.v7.ui.Grid.Column;
+import com.vaadin.v7.ui.Grid.SelectionMode;
+import com.vaadin.v7.ui.renderers.HtmlRenderer;
+import com.vaadin.v7.ui.renderers.TextRenderer;
 
 @SuppressWarnings("serial")
 @Theme("valo")
@@ -62,8 +60,8 @@ public class GridSwitchRenderers extends AbstractTestUIWithLog {
         grid.getColumn(EXPANSION_COLUMN_ID).setWidth(50);
         for (int col = MANUALLY_FORMATTED_COLUMNS; col < COLUMNS; col++) {
             grid.getColumn(getColumnProperty(col)).setWidth(300);
-            grid.getColumn(getColumnProperty(col)).setRenderer(
-                    new TextRenderer());
+            grid.getColumn(getColumnProperty(col))
+                    .setRenderer(new TextRenderer());
         }
 
         grid.setSelectionMode(SelectionMode.NONE);
@@ -71,17 +69,14 @@ public class GridSwitchRenderers extends AbstractTestUIWithLog {
 
         final CheckBox changeRenderer = new CheckBox(
                 "SetHtmlRenderer for Column 2", false);
-        changeRenderer.addValueChangeListener(new ValueChangeListener() {
-            @Override
-            public void valueChange(ValueChangeEvent event) {
-                Column column = grid.getColumn(getColumnProperty(1));
-                if (changeRenderer.getValue()) {
-                    column.setRenderer(new HtmlRenderer());
-                } else {
-                    column.setRenderer(new TextRenderer());
-                }
-                grid.markAsDirty();
+        changeRenderer.addValueChangeListener(event -> {
+            Column column = grid.getColumn(getColumnProperty(1));
+            if (changeRenderer.getValue()) {
+                column.setRenderer(new HtmlRenderer());
+            } else {
+                column.setRenderer(new TextRenderer());
             }
+            grid.markAsDirty();
         });
         addComponent(changeRenderer);
     }
@@ -91,8 +86,8 @@ public class GridSwitchRenderers extends AbstractTestUIWithLog {
         int col = MANUALLY_FORMATTED_COLUMNS;
 
         for (; col < COLUMNS; col++) {
-            item.getItemProperty(getColumnProperty(col)).setValue(
-                    "<b>(" + content + ", " + col + ")</b>");
+            item.getItemProperty(getColumnProperty(col))
+                    .setValue("<b>(" + content + ", " + col + ")</b>");
         }
     }
 

@@ -6,12 +6,12 @@ import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.GridLayout;
 import com.vaadin.ui.Label;
-import com.vaadin.ui.LegacyWindow;
-import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
+import com.vaadin.v7.ui.LegacyWindow;
+import com.vaadin.v7.ui.TextField;
 
-public class GridLayoutExpandRatioModification extends TestBase implements
-        ClickListener {
+public class GridLayoutExpandRatioModification extends TestBase
+        implements ClickListener {
 
     private boolean isVisible = false;
     private GridLayout mainLayout;

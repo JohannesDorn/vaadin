@@ -1,5 +1,5 @@
 /*
- * Copyright 2000-2014 Vaadin Ltd.
+ * Copyright 2000-2016 Vaadin Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -73,9 +73,9 @@ public class LegacyUidlWriter implements Serializable {
 
         writer.write("[");
         for (Component c : legacyComponents) {
-            getLogger().fine(
-                    "Painting LegacyComponent " + c.getClass().getName() + "@"
-                            + Integer.toHexString(c.hashCode()));
+            getLogger()
+                    .fine("Painting LegacyComponent " + c.getClass().getName()
+                            + "@" + Integer.toHexString(c.hashCode()));
             target.startTag("change");
             final String pid = c.getConnectorId();
             target.addAttribute("pid", pid);

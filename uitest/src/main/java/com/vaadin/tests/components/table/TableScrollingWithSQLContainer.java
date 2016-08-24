@@ -4,19 +4,19 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import com.vaadin.data.util.sqlcontainer.SQLContainer;
-import com.vaadin.data.util.sqlcontainer.connection.JDBCConnectionPool;
-import com.vaadin.data.util.sqlcontainer.connection.SimpleJDBCConnectionPool;
-import com.vaadin.data.util.sqlcontainer.query.QueryDelegate;
-import com.vaadin.data.util.sqlcontainer.query.TableQuery;
-import com.vaadin.data.util.sqlcontainer.query.generator.DefaultSQLGenerator;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
-import com.vaadin.ui.Table;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
+import com.vaadin.v7.data.util.sqlcontainer.SQLContainer;
+import com.vaadin.v7.data.util.sqlcontainer.connection.JDBCConnectionPool;
+import com.vaadin.v7.data.util.sqlcontainer.connection.SimpleJDBCConnectionPool;
+import com.vaadin.v7.data.util.sqlcontainer.query.QueryDelegate;
+import com.vaadin.v7.data.util.sqlcontainer.query.TableQuery;
+import com.vaadin.v7.data.util.sqlcontainer.query.generator.DefaultSQLGenerator;
+import com.vaadin.v7.ui.Table;
 
 @SuppressWarnings("serial")
 public class TableScrollingWithSQLContainer extends UI {
@@ -44,8 +44,8 @@ public class TableScrollingWithSQLContainer extends UI {
             // Will fail if table doesn't exist, which is OK.
             conn.rollback();
         }
-        statement
-                .execute("create table people (id integer generated always as identity,"
+        statement.execute(
+                "create table people (id integer generated always as identity,"
                         + " name varchar(32), AGE INTEGER)");
         statement.execute("alter table people add primary key (id)");
         for (int i = 0; i < 5000; i++) {

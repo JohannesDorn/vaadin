@@ -1,12 +1,12 @@
 /*
- * Copyright 2000-2014 Vaadin Ltd.
- * 
+ * Copyright 2000-2016 Vaadin Ltd.
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -22,16 +22,17 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.vaadin.data.util.ObjectProperty;
-import com.vaadin.data.util.converter.Converter;
-import com.vaadin.data.util.converter.ReverseConverter;
 import com.vaadin.tests.data.bean.AnotherTestEnum;
 import com.vaadin.tests.data.bean.TestEnum;
-import com.vaadin.ui.TextField;
+import com.vaadin.v7.data.util.ObjectProperty;
+import com.vaadin.v7.data.util.converter.Converter;
+import com.vaadin.v7.data.util.converter.ReverseConverter;
+import com.vaadin.v7.ui.TextField;
 
 public class AnyEnumToStringConverterTest {
 
-    public class AnyEnumToStringConverter implements Converter<Enum, String> {
+    public class AnyEnumToStringConverter
+            implements Converter<Enum, String> {
 
         public AnyEnumToStringConverter() {
         }
@@ -39,7 +40,7 @@ public class AnyEnumToStringConverterTest {
         @Override
         public String convertToModel(Enum value,
                 Class<? extends String> targetType, Locale locale)
-                throws com.vaadin.data.util.converter.Converter.ConversionException {
+                throws com.vaadin.v7.data.util.converter.Converter.ConversionException {
             if (value == null) {
                 return null;
             }
@@ -50,7 +51,7 @@ public class AnyEnumToStringConverterTest {
         @Override
         public Enum convertToPresentation(String value,
                 Class<? extends Enum> targetType, Locale locale)
-                throws com.vaadin.data.util.converter.Converter.ConversionException {
+                throws com.vaadin.v7.data.util.converter.Converter.ConversionException {
             if (value == null) {
                 return null;
             }
@@ -99,8 +100,8 @@ public class AnyEnumToStringConverterTest {
     public void stringToEnumConversion() {
         Assert.assertEquals(TestEnum.TWO, converter.convertToPresentation(
                 TestEnum.TWO.toString(), TestEnum.class, null));
-        Assert.assertEquals(AnotherTestEnum.TWO, converter
-                .convertToPresentation(AnotherTestEnum.TWO.toString(),
+        Assert.assertEquals(AnotherTestEnum.TWO,
+                converter.convertToPresentation(AnotherTestEnum.TWO.toString(),
                         AnotherTestEnum.class, null));
     }
 
@@ -113,15 +114,16 @@ public class AnyEnumToStringConverterTest {
         tf.setValue(AnotherTestEnum.ONE.toString());
         Assert.assertEquals(AnotherTestEnum.ONE.toString(), tf.getValue());
         Assert.assertEquals(AnotherTestEnum.ONE, tf.getConvertedValue());
-        Assert.assertEquals(AnotherTestEnum.ONE, tf.getPropertyDataSource()
-                .getValue());
+        Assert.assertEquals(AnotherTestEnum.ONE,
+                tf.getPropertyDataSource().getValue());
 
         tf.setPropertyDataSource(new ObjectProperty(TestEnum.TWO));
         Assert.assertEquals(TestEnum.TWO.toString(), tf.getValue());
         tf.setValue(TestEnum.ONE.toString());
         Assert.assertEquals(TestEnum.ONE.toString(), tf.getValue());
         Assert.assertEquals(TestEnum.ONE, tf.getConvertedValue());
-        Assert.assertEquals(TestEnum.ONE, tf.getPropertyDataSource().getValue());
+        Assert.assertEquals(TestEnum.ONE,
+                tf.getPropertyDataSource().getValue());
 
     }
 }

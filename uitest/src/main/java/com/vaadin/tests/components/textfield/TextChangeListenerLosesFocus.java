@@ -20,14 +20,15 @@ import com.vaadin.event.FieldEvents.TextChangeEvent;
 import com.vaadin.event.FieldEvents.TextChangeListener;
 import com.vaadin.tests.components.TestBase;
 import com.vaadin.tests.util.TestUtils;
-import com.vaadin.ui.AbstractTextField;
-import com.vaadin.ui.Field;
-import com.vaadin.ui.TextArea;
-import com.vaadin.ui.TextField;
+import com.vaadin.v7.ui.AbstractTextField;
+import com.vaadin.v7.ui.Field;
+import com.vaadin.v7.ui.TextArea;
+import com.vaadin.v7.ui.TextField;
 
 public class TextChangeListenerLosesFocus extends TestBase {
 
     private final TextChangeListener listener = new TextChangeListener() {
+        @Override
         public void textChange(TextChangeEvent event) {
             final String value = event.getText();
             if (value.length() > 2) {
@@ -46,13 +47,13 @@ public class TextChangeListenerLosesFocus extends TestBase {
         AbstractTextField field = new TextField();
         field.setDebugId("test-textfield");
         field.setInputPrompt("Enter at least 3 characters");
-        field.addListener(listener);
+        field.addTextChangeListener(listener);
         addComponent(field);
 
         field = new TextArea();
         field.setDebugId("test-textarea");
         field.setInputPrompt("Enter at least 3 characters");
-        field.addListener(listener);
+        field.addTextChangeListener(listener);
         addComponent(field);
 
     }

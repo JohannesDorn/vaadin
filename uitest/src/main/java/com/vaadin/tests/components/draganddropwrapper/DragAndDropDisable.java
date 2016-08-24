@@ -1,7 +1,5 @@
 package com.vaadin.tests.components.draganddropwrapper;
 
-import com.vaadin.data.Property.ValueChangeEvent;
-import com.vaadin.data.Property.ValueChangeListener;
 import com.vaadin.event.dd.DragAndDropEvent;
 import com.vaadin.event.dd.DropHandler;
 import com.vaadin.event.dd.acceptcriteria.AcceptAll;
@@ -14,8 +12,8 @@ import com.vaadin.ui.DragAndDropWrapper;
 import com.vaadin.ui.DragAndDropWrapper.DragStartMode;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Panel;
-import com.vaadin.ui.Table;
-import com.vaadin.ui.Table.TableDragMode;
+import com.vaadin.v7.ui.Table;
+import com.vaadin.v7.ui.Table.TableDragMode;
 
 public class DragAndDropDisable extends AbstractTestUI {
 
@@ -41,13 +39,8 @@ public class DragAndDropDisable extends AbstractTestUI {
             final CheckBox enabled = new CheckBox("Enabled", true);
             addComponent(enabled);
             enabled.setImmediate(true);
-            enabled.addListener(new ValueChangeListener() {
-
-                @Override
-                public void valueChange(ValueChangeEvent event) {
-                    dnd.setEnabled(enabled.booleanValue());
-                }
-            });
+            enabled.addValueChangeListener(
+                    event -> dnd.setEnabled(event.getValue()));
 
             dnd.setDropHandler(new DropHandler() {
 
@@ -80,13 +73,8 @@ public class DragAndDropDisable extends AbstractTestUI {
             final CheckBox enabled = new CheckBox("Enabled", true);
             addComponent(enabled);
             enabled.setImmediate(true);
-            enabled.addListener(new ValueChangeListener() {
-
-                @Override
-                public void valueChange(ValueChangeEvent event) {
-                    dnd.setEnabled(enabled.booleanValue());
-                }
-            });
+            enabled.addValueChangeListener(
+                    event -> dnd.setEnabled(event.getValue()));
 
             dnd.setDropHandler(new DropHandler() {
 
@@ -129,13 +117,8 @@ public class DragAndDropDisable extends AbstractTestUI {
             final CheckBox enabled = new CheckBox("Enabled", true);
             addComponent(enabled);
             enabled.setImmediate(true);
-            enabled.addListener(new ValueChangeListener() {
-
-                @Override
-                public void valueChange(ValueChangeEvent event) {
-                    tbl.setEnabled(enabled.booleanValue());
-                }
-            });
+            enabled.addValueChangeListener(
+                    event -> tbl.setEnabled(event.getValue()));
         }
     }
 

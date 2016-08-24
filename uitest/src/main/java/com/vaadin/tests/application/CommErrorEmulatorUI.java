@@ -1,12 +1,12 @@
 /*
- * Copyright 2000-2014 Vaadin Ltd.
- * 
+ * Copyright 2000-2016 Vaadin Ltd.
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -16,8 +16,6 @@
 package com.vaadin.tests.application;
 
 import com.vaadin.annotations.Theme;
-import com.vaadin.data.Property.ValueChangeEvent;
-import com.vaadin.data.Property.ValueChangeListener;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
 import com.vaadin.tests.components.AbstractTestUIWithLog;
@@ -30,11 +28,13 @@ import com.vaadin.ui.Component;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Panel;
-import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
+import com.vaadin.v7.data.Property.ValueChangeEvent;
+import com.vaadin.v7.data.Property.ValueChangeListener;
+import com.vaadin.v7.ui.TextField;
 
 /**
- * 
+ *
  * @since
  * @author Vaadin Ltd
  */
@@ -98,7 +98,8 @@ public class CommErrorEmulatorUI extends AbstractTestUIWithLog {
         vl.setSpacing(true);
         vl.setMargin(true);
         p.setContent(vl);
-        vl.addComponent(createTemporaryResponseCodeSetters("UIDL", uidlResponse));
+        vl.addComponent(
+                createTemporaryResponseCodeSetters("UIDL", uidlResponse));
         vl.addComponent(createTemporaryResponseCodeSetters("Heartbeat",
                 heartbeatResponse));
         vl.addComponent(new Button("Activate", new ClickListener() {
@@ -132,8 +133,8 @@ public class CommErrorEmulatorUI extends AbstractTestUIWithLog {
         final TextField reconnectDialogMessage = new TextField(
                 "Reconnect message");
         reconnectDialogMessage.setWidth("50em");
-        reconnectDialogMessage.setValue(getReconnectDialogConfiguration()
-                .getDialogText());
+        reconnectDialogMessage
+                .setValue(getReconnectDialogConfiguration().getDialogText());
         reconnectDialogMessage
                 .addValueChangeListener(new ValueChangeListener() {
                     @Override
@@ -147,8 +148,8 @@ public class CommErrorEmulatorUI extends AbstractTestUIWithLog {
                 "Reconnect gave up message");
         reconnectDialogGaveUpMessage.setWidth("50em");
 
-        reconnectDialogGaveUpMessage.setValue(getReconnectDialogConfiguration()
-                .getDialogTextGaveUp());
+        reconnectDialogGaveUpMessage.setValue(
+                getReconnectDialogConfiguration().getDialogTextGaveUp());
         reconnectDialogGaveUpMessage
                 .addValueChangeListener(new ValueChangeListener() {
                     @Override
@@ -160,9 +161,8 @@ public class CommErrorEmulatorUI extends AbstractTestUIWithLog {
         final TextField reconnectDialogReconnectAttempts = new TextField(
                 "Reconnect attempts");
         reconnectDialogReconnectAttempts.setConverter(Integer.class);
-        reconnectDialogReconnectAttempts
-                .setConvertedValue(getReconnectDialogConfiguration()
-                        .getReconnectAttempts());
+        reconnectDialogReconnectAttempts.setConvertedValue(
+                getReconnectDialogConfiguration().getReconnectAttempts());
         reconnectDialogReconnectAttempts
                 .addValueChangeListener(new ValueChangeListener() {
                     @Override
@@ -175,9 +175,8 @@ public class CommErrorEmulatorUI extends AbstractTestUIWithLog {
         final TextField reconnectDialogReconnectInterval = new TextField(
                 "Reconnect interval (ms)");
         reconnectDialogReconnectInterval.setConverter(Integer.class);
-        reconnectDialogReconnectInterval
-                .setConvertedValue(getReconnectDialogConfiguration()
-                        .getReconnectInterval());
+        reconnectDialogReconnectInterval.setConvertedValue(
+                getReconnectDialogConfiguration().getReconnectInterval());
         reconnectDialogReconnectInterval
                 .addValueChangeListener(new ValueChangeListener() {
                     @Override
@@ -191,9 +190,8 @@ public class CommErrorEmulatorUI extends AbstractTestUIWithLog {
         final TextField reconnectDialogGracePeriod = new TextField(
                 "Reconnect dialog grace period (ms)");
         reconnectDialogGracePeriod.setConverter(Integer.class);
-        reconnectDialogGracePeriod
-                .setConvertedValue(getReconnectDialogConfiguration()
-                        .getDialogGracePeriod());
+        reconnectDialogGracePeriod.setConvertedValue(
+                getReconnectDialogConfiguration().getDialogGracePeriod());
         reconnectDialogGracePeriod
                 .addValueChangeListener(new ValueChangeListener() {
                     @Override
@@ -206,15 +204,11 @@ public class CommErrorEmulatorUI extends AbstractTestUIWithLog {
 
         final CheckBox reconnectDialogModal = new CheckBox(
                 "Reconnect dialog modality");
-        reconnectDialogModal.setValue(getReconnectDialogConfiguration()
-                .isDialogModal());
-        reconnectDialogModal.addValueChangeListener(new ValueChangeListener() {
-            @Override
-            public void valueChange(ValueChangeEvent event) {
-                getReconnectDialogConfiguration().setDialogModal(
-                        reconnectDialogModal.getValue());
-            }
-        });
+        reconnectDialogModal
+                .setValue(getReconnectDialogConfiguration().isDialogModal());
+        reconnectDialogModal.addValueChangeListener(
+                event -> getReconnectDialogConfiguration()
+                        .setDialogModal(reconnectDialogModal.getValue()));
 
         VerticalLayout vl = new VerticalLayout();
         vl.setMargin(true);
@@ -234,11 +228,13 @@ public class CommErrorEmulatorUI extends AbstractTestUIWithLog {
         hl.setSpacing(true);
         hl.setDefaultComponentAlignment(Alignment.MIDDLE_LEFT);
         Label l1 = new Label("Respond to " + type + " requests with code");
-        final TextField responseCode = new TextField(null, "" + response.code);
+        final TextField responseCode = new TextField(null,
+                "" + response.code);
         responseCode.setConverter(Integer.class);
         responseCode.setWidth("5em");
         Label l2 = new Label("for the following");
-        final TextField timeField = new TextField(null, "" + response.time);
+        final TextField timeField = new TextField(null,
+                "" + response.time);
         timeField.setConverter(Integer.class);
         timeField.setWidth("5em");
         Label l3 = new Label("seconds");

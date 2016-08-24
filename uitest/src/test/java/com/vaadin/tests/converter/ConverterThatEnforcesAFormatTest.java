@@ -5,8 +5,8 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 
-import com.vaadin.testbench.elements.TextFieldElement;
 import com.vaadin.tests.tb3.MultiBrowserTest;
+import com.vaadin.v7.testbench.customelements.TextFieldElement;
 
 public class ConverterThatEnforcesAFormatTest extends MultiBrowserTest {
 
@@ -64,9 +64,8 @@ public class ConverterThatEnforcesAFormatTest extends MultiBrowserTest {
 
             @Override
             public String toString() {
-                return String.format(
-                        "the field to have value '%s' (was: '%s')", expected,
-                        actual);
+                return String.format("the field to have value '%s' (was: '%s')",
+                        expected, actual);
             }
         });
     }

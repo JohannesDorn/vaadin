@@ -1,12 +1,12 @@
 /*
- * Copyright 2000-2014 Vaadin Ltd.
- * 
+ * Copyright 2000-2016 Vaadin Ltd.
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -23,7 +23,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import com.vaadin.testbench.elements.CheckBoxElement;
-import com.vaadin.testbench.elements.TreeElement;
+import com.vaadin.v7.testbench.customelements.TreeElement;
 import com.vaadin.tests.tb3.SingleBrowserTest;
 
 public class TreeHtmlContentAllowedTest extends SingleBrowserTest {
@@ -54,8 +54,8 @@ public class TreeHtmlContentAllowedTest extends SingleBrowserTest {
 
     private void assertTreeCaptionTexts(String... captions) {
         TreeElement tree = $(TreeElement.class).first();
-        List<WebElement> nodes = tree.findElements(By
-                .className("v-tree-node-caption"));
+        List<WebElement> nodes = tree
+                .findElements(By.className("v-tree-node-caption"));
 
         Assert.assertEquals(captions.length, nodes.size());
         for (int i = 0; i < captions.length; i++) {

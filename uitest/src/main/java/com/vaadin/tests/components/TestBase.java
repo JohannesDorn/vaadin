@@ -3,11 +3,11 @@ package com.vaadin.tests.components;
 import com.vaadin.shared.ui.label.ContentMode;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.Label;
-import com.vaadin.ui.LegacyWindow;
 import com.vaadin.ui.VerticalLayout;
+import com.vaadin.v7.ui.LegacyWindow;
 
 /**
- * 
+ *
  * @deprecated Use {@link AbstractTestUI} or {@link AbstractTestUIWithLog}
  *             instead. TestBase is a LegacyApplication
  */

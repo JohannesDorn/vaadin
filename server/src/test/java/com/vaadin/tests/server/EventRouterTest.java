@@ -2,9 +2,9 @@ package com.vaadin.tests.server;
 
 import org.junit.Test;
 
-import com.vaadin.data.Property.ValueChangeEvent;
-import com.vaadin.data.Property.ValueChangeListener;
-import com.vaadin.ui.TextField;
+import com.vaadin.v7.data.Property.ValueChangeEvent;
+import com.vaadin.v7.data.Property.ValueChangeListener;
+import com.vaadin.v7.ui.TextField;
 
 public class EventRouterTest {
 

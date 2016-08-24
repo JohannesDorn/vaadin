@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>com.vaadin</groupId>
 		<artifactId>vaadin-root</artifactId>
-		<version>7.7.0-SNAPSHOT</version>
+		<version>8.0-SNAPSHOT</version>
 	</parent>
 	<artifactId>vaadin-liferay</artifactId>
 	<name>vaadin-liferay</name>
@@ -76,7 +76,6 @@
 									<includes>
 										VAADIN/themes/base/**,
 										VAADIN/themes/chameleon/**,
-										VAADIN/themes/liferay/**,
 										VAADIN/themes/runo/**,
 										VAADIN/themes/reindeer/**
 									</includes>

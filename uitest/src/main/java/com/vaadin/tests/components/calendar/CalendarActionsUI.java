@@ -22,11 +22,11 @@ import com.vaadin.event.Action;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
-import com.vaadin.ui.Calendar;
 import com.vaadin.ui.GridLayout;
 import com.vaadin.ui.UI;
-import com.vaadin.ui.components.calendar.CalendarDateRange;
-import com.vaadin.ui.components.calendar.event.BasicEvent;
+import com.vaadin.v7.ui.Calendar;
+import com.vaadin.v7.ui.components.calendar.CalendarDateRange;
+import com.vaadin.v7.ui.components.calendar.event.BasicEvent;
 
 public class CalendarActionsUI extends UI {
 
@@ -52,13 +52,14 @@ public class CalendarActionsUI extends UI {
 
             /*
              * (non-Javadoc)
-             * 
+             *
              * @see
              * com.vaadin.event.Action.Handler#handleAction(com.vaadin.event
              * .Action, java.lang.Object, java.lang.Object)
              */
             @Override
-            public void handleAction(Action action, Object sender, Object target) {
+            public void handleAction(Action action, Object sender,
+                    Object target) {
                 Date date = (Date) target;
                 if (action == NEW_EVENT) {
                     BasicEvent event = new BasicEvent("New event",
@@ -69,7 +70,7 @@ public class CalendarActionsUI extends UI {
 
             /*
              * (non-Javadoc)
-             * 
+             *
              * @see com.vaadin.event.Action.Handler#getActions(java.lang.Object,
              * java.lang.Object)
              */
@@ -96,8 +97,8 @@ public class CalendarActionsUI extends UI {
 
         content.addComponent(calendar);
 
-        content.addComponent(new Button("Set week view",
-                new Button.ClickListener() {
+        content.addComponent(
+                new Button("Set week view", new Button.ClickListener() {
                     @Override
                     public void buttonClick(ClickEvent event) {
                         calendar.setEndDate(new Date(100, 1, 7));

@@ -1,12 +1,12 @@
 /*
- * Copyright 2000-2014 Vaadin Ltd.
- * 
+ * Copyright 2000-2016 Vaadin Ltd.
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -22,14 +22,14 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
 import com.vaadin.testbench.elements.ButtonElement;
-import com.vaadin.testbench.elements.DateFieldElement;
-import com.vaadin.testbench.elements.GridElement;
 import com.vaadin.testbench.elements.GridElement.GridCellElement;
 import com.vaadin.testbench.elements.GridElement.GridEditorElement;
-import com.vaadin.testbench.elements.NativeSelectElement;
-import com.vaadin.testbench.elements.TextFieldElement;
 import com.vaadin.testbench.parallel.TestCategory;
 import com.vaadin.tests.tb3.MultiBrowserThemeTest;
+import com.vaadin.v7.testbench.customelements.DateFieldElement;
+import com.vaadin.v7.testbench.customelements.GridElement;
+import com.vaadin.v7.testbench.customelements.NativeSelectElement;
+import com.vaadin.v7.testbench.customelements.TextFieldElement;
 
 @TestCategory("grid")
 public class GridThemeUITest extends MultiBrowserThemeTest {
@@ -77,10 +77,6 @@ public class GridThemeUITest extends MultiBrowserThemeTest {
         TextFieldElement age = editor.$(TextFieldElement.class).caption("Age")
                 .first();
         age.sendKeys("abc", Keys.TAB);
-        if (age.getValue().equals("21")) {
-            // Yes IE8, really type into the field
-            age.sendKeys("abc", Keys.TAB);
-        }
         editor.save();
 
         compareScreen("two-invalid");

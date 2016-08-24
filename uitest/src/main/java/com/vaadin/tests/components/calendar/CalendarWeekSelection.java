@@ -6,7 +6,7 @@ import java.util.Locale;
 
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.tests.components.AbstractTestUI;
-import com.vaadin.ui.Calendar;
+import com.vaadin.v7.ui.Calendar;
 
 public class CalendarWeekSelection extends AbstractTestUI {
     @Override
@@ -15,10 +15,10 @@ public class CalendarWeekSelection extends AbstractTestUI {
         calendar.setLocale(Locale.US);
 
         try {
-            calendar.setStartDate(new SimpleDateFormat("yyyy-MM-dd")
-                    .parse("2013-12-15"));
-            calendar.setEndDate(new SimpleDateFormat("yyyy-MM-dd")
-                    .parse("2014-01-15"));
+            calendar.setStartDate(
+                    new SimpleDateFormat("yyyy-MM-dd").parse("2013-12-15"));
+            calendar.setEndDate(
+                    new SimpleDateFormat("yyyy-MM-dd").parse("2014-01-15"));
         } catch (ParseException e) {
             e.printStackTrace();
         }

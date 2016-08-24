@@ -4,8 +4,8 @@ import com.vaadin.event.FieldEvents.TextChangeEvent;
 import com.vaadin.event.FieldEvents.TextChangeListener;
 import com.vaadin.tests.components.TestBase;
 import com.vaadin.tests.util.TestUtils;
-import com.vaadin.ui.AbstractTextField.TextChangeEventMode;
-import com.vaadin.ui.TextField;
+import com.vaadin.v7.ui.AbstractTextField.TextChangeEventMode;
+import com.vaadin.v7.ui.TextField;
 
 public class TextChangeListenerChangingNonTextProperties extends TestBase {
 
@@ -22,15 +22,12 @@ public class TextChangeListenerChangingNonTextProperties extends TestBase {
             @Override
             public void attach() {
                 super.attach();
-                TestUtils
-                        .injectCSS(
-                                getUI(),
-                                ".red { background:red;} "
-                                        + ".green { background:green;} .blue { background:blue;} .cyan { background:cyan;} .magenta { background:magenta;}");
+                TestUtils.injectCSS(getUI(), ".red { background:red;} "
+                        + ".green { background:green;} .blue { background:blue;} .cyan { background:cyan;} .magenta { background:magenta;}");
             }
         };
         tf2.setTextChangeEventMode(TextChangeEventMode.EAGER);
-        tf2.addListener(new TextChangeListener() {
+        tf2.addTextChangeListener(new TextChangeListener() {
             @Override
             public void textChange(TextChangeEvent event) {
                 tf2.setStyleName(getNextStyle());

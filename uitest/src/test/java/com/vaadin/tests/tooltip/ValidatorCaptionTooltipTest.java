@@ -1,5 +1,5 @@
 /*
- * Copyright 2000-2014 Vaadin Ltd.
+ * Copyright 2000-2016 Vaadin Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -17,12 +17,12 @@ package com.vaadin.tests.tooltip;
 
 import org.junit.Test;
 
-import com.vaadin.testbench.elements.TextFieldElement;
 import com.vaadin.tests.tb3.TooltipTest;
+import com.vaadin.v7.testbench.customelements.TextFieldElement;
 
 /**
  * Test to see if validators create error tooltips correctly.
- * 
+ *
  * @author Vaadin Ltd
  */
 public class ValidatorCaptionTooltipTest extends TooltipTest {

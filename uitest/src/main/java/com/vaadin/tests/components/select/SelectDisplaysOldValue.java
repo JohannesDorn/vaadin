@@ -5,12 +5,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.vaadin.data.Item;
-import com.vaadin.data.Property;
-import com.vaadin.data.util.IndexedContainer;
 import com.vaadin.tests.components.TestBase;
 import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.Select;
+import com.vaadin.v7.data.Item;
+import com.vaadin.v7.data.Property;
+import com.vaadin.v7.data.util.IndexedContainer;
+import com.vaadin.v7.ui.Select;
 
 public class SelectDisplaysOldValue extends TestBase {
 
@@ -75,7 +75,8 @@ public class SelectDisplaysOldValue extends TestBase {
         }
 
         private void buildSlaveDropdown(Integer masterId) {
-            IndexedContainer slaveOptionContainer = initSlaveOptionContainer(masterId);
+            IndexedContainer slaveOptionContainer = initSlaveOptionContainer(
+                    masterId);
             slaveComboBox = new Select(SLAVE_COMBO_BOX_CAPTION,
                     slaveOptionContainer);
             configureSlaveOptionDropdown();
@@ -91,8 +92,8 @@ public class SelectDisplaysOldValue extends TestBase {
 
             for (Integer optionId : controllerOptionMap.keySet()) {
                 itemAdded = containerToReturn.addItem(optionId);
-                itemAdded.getItemProperty(NAME_PROPERTY_ID).setValue(
-                        controllerOptionMap.get(optionId));
+                itemAdded.getItemProperty(NAME_PROPERTY_ID)
+                        .setValue(controllerOptionMap.get(optionId));
             }
 
             return containerToReturn;
@@ -139,12 +140,13 @@ public class SelectDisplaysOldValue extends TestBase {
             System.out.println("Slave value: " + slaveComboBox.getValue());
         }
 
-        private class ControllerUpdatedListener implements
-                Property.ValueChangeListener {
+        private class ControllerUpdatedListener
+                implements Property.ValueChangeListener {
             @Override
-            public void valueChange(Property.ValueChangeEvent valueChangeEvent) {
-                refreshSlaveDropdown((Integer) valueChangeEvent.getProperty()
-                        .getValue());
+            public void valueChange(
+                    Property.ValueChangeEvent valueChangeEvent) {
+                refreshSlaveDropdown(
+                        (Integer) valueChangeEvent.getProperty().getValue());
             }
         }
     }

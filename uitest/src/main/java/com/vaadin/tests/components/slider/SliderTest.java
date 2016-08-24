@@ -6,7 +6,7 @@ import com.vaadin.shared.ui.slider.SliderOrientation;
 import com.vaadin.tests.components.abstractfield.AbstractFieldTest;
 import com.vaadin.ui.Slider;
 
-public class SliderTest extends AbstractFieldTest<Slider> {
+public class SliderTest extends AbstractFieldTest<Slider, Double> {
 
     private Command<Slider, Double> minCommand = new Command<Slider, Double>() {
         @Override

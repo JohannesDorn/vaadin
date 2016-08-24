@@ -1,14 +1,14 @@
 package com.vaadin.tests.validation;
 
-import com.vaadin.data.Property.ValueChangeEvent;
-import com.vaadin.data.Property.ValueChangeListener;
-import com.vaadin.data.Validator;
-import com.vaadin.data.validator.IntegerValidator;
-import com.vaadin.data.validator.StringLengthValidator;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.tests.components.AbstractTestUI;
 import com.vaadin.ui.CheckBox;
-import com.vaadin.ui.TextField;
+import com.vaadin.v7.data.Property.ValueChangeEvent;
+import com.vaadin.v7.data.Property.ValueChangeListener;
+import com.vaadin.v7.data.Validator;
+import com.vaadin.v7.data.validator.IntegerValidator;
+import com.vaadin.v7.data.validator.StringLengthValidator;
+import com.vaadin.v7.ui.TextField;
 
 @SuppressWarnings("deprecation")
 public class ValidationOfRequiredEmptyFields extends AbstractTestUI {
@@ -28,12 +28,8 @@ public class ValidationOfRequiredEmptyFields extends AbstractTestUI {
     protected void setup(VaadinRequest request) {
         requiredInput = new CheckBox("Field required");
         requiredInput.setImmediate(true);
-        requiredInput.addValueChangeListener(new ValueChangeListener() {
-            @Override
-            public void valueChange(ValueChangeEvent event) {
-                tf.setRequired(requiredInput.getValue());
-            }
-        });
+        requiredInput.addValueChangeListener(
+                event -> tf.setRequired(requiredInput.getValue()));
 
         requiredErrorInput = new TextField("Required error message");
         requiredErrorInput.setImmediate(true);
@@ -46,31 +42,22 @@ public class ValidationOfRequiredEmptyFields extends AbstractTestUI {
 
         integerValidatorInput = new CheckBox("Integer validator");
         integerValidatorInput.setImmediate(true);
-        integerValidatorInput.addValueChangeListener(new ValueChangeListener() {
-
-            @Override
-            public void valueChange(ValueChangeEvent event) {
-                if (integerValidatorInput.getValue()) {
-                    tf.addValidator(integerValidator);
-                } else {
-                    tf.removeValidator(integerValidator);
-                }
+        integerValidatorInput.addValueChangeListener(event -> {
+            if (integerValidatorInput.getValue()) {
+                tf.addValidator(integerValidator);
+            } else {
+                tf.removeValidator(integerValidator);
             }
         });
         stringLengthValidatorInput = new CheckBox("String length validator");
         stringLengthValidatorInput.setImmediate(true);
-        stringLengthValidatorInput
-                .addValueChangeListener(new ValueChangeListener() {
-
-                    @Override
-                    public void valueChange(ValueChangeEvent event) {
-                        if (stringLengthValidatorInput.getValue()) {
-                            tf.addValidator(stringLengthValidator);
-                        } else {
-                            tf.removeValidator(stringLengthValidator);
-                        }
-                    }
-                });
+        stringLengthValidatorInput.addValueChangeListener(event -> {
+            if (stringLengthValidatorInput.getValue()) {
+                tf.addValidator(stringLengthValidator);
+            } else {
+                tf.removeValidator(stringLengthValidator);
+            }
+        });
 
         tf = new TextField();
         tf.setImmediate(true);

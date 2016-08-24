@@ -23,13 +23,7 @@ import java.util.Map;
 import java.util.TimeZone;
 
 import com.vaadin.annotations.Theme;
-import com.vaadin.data.Item;
-import com.vaadin.data.Property;
-import com.vaadin.data.Property.ValueChangeEvent;
-import com.vaadin.data.Property.ValueChangeListener;
-import com.vaadin.data.fieldgroup.FieldGroup;
-import com.vaadin.data.fieldgroup.FieldGroup.CommitException;
-import com.vaadin.data.util.BeanItem;
+import com.vaadin.data.Binder;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.shared.ui.MarginInfo;
 import com.vaadin.shared.ui.combobox.FilteringMode;
@@ -38,33 +32,39 @@ import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
-import com.vaadin.ui.Calendar;
-import com.vaadin.ui.Calendar.TimeFormat;
 import com.vaadin.ui.CheckBox;
-import com.vaadin.ui.ComboBox;
-import com.vaadin.ui.DateField;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.GridLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
-import com.vaadin.ui.TextArea;
-import com.vaadin.ui.TextField;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Window;
-import com.vaadin.ui.components.calendar.CalendarComponentEvents.DateClickEvent;
-import com.vaadin.ui.components.calendar.CalendarComponentEvents.EventClick;
-import com.vaadin.ui.components.calendar.CalendarComponentEvents.EventClickHandler;
-import com.vaadin.ui.components.calendar.CalendarComponentEvents.RangeSelectEvent;
-import com.vaadin.ui.components.calendar.CalendarComponentEvents.RangeSelectHandler;
-import com.vaadin.ui.components.calendar.CalendarComponentEvents.WeekClick;
-import com.vaadin.ui.components.calendar.CalendarComponentEvents.WeekClickHandler;
-import com.vaadin.ui.components.calendar.event.BasicEvent;
-import com.vaadin.ui.components.calendar.event.BasicEventProvider;
-import com.vaadin.ui.components.calendar.event.CalendarEvent;
-import com.vaadin.ui.components.calendar.handler.BasicDateClickHandler;
-import com.vaadin.ui.components.calendar.handler.BasicWeekClickHandler;
+import com.vaadin.v7.data.Item;
+import com.vaadin.v7.data.Property.ValueChangeEvent;
+import com.vaadin.v7.data.Property.ValueChangeListener;
+import com.vaadin.v7.data.fieldgroup.FieldGroup;
+import com.vaadin.v7.data.fieldgroup.FieldGroup.CommitException;
+import com.vaadin.v7.data.util.BeanItem;
+import com.vaadin.v7.ui.Calendar;
+import com.vaadin.v7.ui.Calendar.TimeFormat;
+import com.vaadin.v7.ui.ComboBox;
+import com.vaadin.v7.ui.DateField;
+import com.vaadin.v7.ui.TextArea;
+import com.vaadin.v7.ui.TextField;
+import com.vaadin.v7.ui.components.calendar.CalendarComponentEvents.DateClickEvent;
+import com.vaadin.v7.ui.components.calendar.CalendarComponentEvents.EventClick;
+import com.vaadin.v7.ui.components.calendar.CalendarComponentEvents.EventClickHandler;
+import com.vaadin.v7.ui.components.calendar.CalendarComponentEvents.RangeSelectEvent;
+import com.vaadin.v7.ui.components.calendar.CalendarComponentEvents.RangeSelectHandler;
+import com.vaadin.v7.ui.components.calendar.CalendarComponentEvents.WeekClick;
+import com.vaadin.v7.ui.components.calendar.CalendarComponentEvents.WeekClickHandler;
+import com.vaadin.v7.ui.components.calendar.event.BasicEvent;
+import com.vaadin.v7.ui.components.calendar.event.BasicEventProvider;
+import com.vaadin.v7.ui.components.calendar.event.CalendarEvent;
+import com.vaadin.v7.ui.components.calendar.handler.BasicDateClickHandler;
+import com.vaadin.v7.ui.components.calendar.handler.BasicWeekClickHandler;
 
 /** Calendar component test application */
 @Theme("tests-calendar")
@@ -116,6 +116,7 @@ public class CalendarTest extends UI {
 
     private final FormLayout scheduleEventFieldLayout = new FormLayout();
     private FieldGroup scheduleEventFieldGroup = new FieldGroup();
+    private Binder<CalendarEvent> scheduledEventBinder = new Binder<>();
 
     private Button deleteEventButton;
 
@@ -305,7 +306,8 @@ public class CalendarTest extends UI {
         event = getNewEvent("Appointment", start, end);
         event.setWhere("Office");
         event.setStyleName("color1");
-        event.setDescription("A longer description, which should display correctly.");
+        event.setDescription(
+                "A longer description, which should display correctly.");
         dataSource.addEvent(event);
 
         calendar.add(GregorianCalendar.DATE, 1);
@@ -407,9 +409,9 @@ public class CalendarTest extends UI {
                 // simulate week click
                 WeekClickHandler handler = (WeekClickHandler) calendarComponent
                         .getHandler(WeekClick.EVENT_ID);
-                handler.weekClick(new WeekClick(calendarComponent, calendar
-                        .get(GregorianCalendar.WEEK_OF_YEAR), calendar
-                        .get(GregorianCalendar.YEAR)));
+                handler.weekClick(new WeekClick(calendarComponent,
+                        calendar.get(GregorianCalendar.WEEK_OF_YEAR),
+                        calendar.get(GregorianCalendar.YEAR)));
             }
         });
 
@@ -435,22 +437,14 @@ public class CalendarTest extends UI {
     private void initHideWeekEndButton() {
         hideWeekendsButton = new CheckBox("Hide weekends");
         hideWeekendsButton.setImmediate(true);
-        hideWeekendsButton
-                .addValueChangeListener(new Property.ValueChangeListener() {
-
-                    private static final long serialVersionUID = 1L;
-
-                    @Override
-                    public void valueChange(ValueChangeEvent event) {
-                        setWeekendsHidden(hideWeekendsButton.getValue());
-                    }
-                });
+        hideWeekendsButton.addValueChangeListener(
+                event -> setWeekendsHidden(hideWeekendsButton.getValue()));
     }
 
     private void setWeekendsHidden(boolean weekendsHidden) {
         if (weekendsHidden) {
-            int firstToShow = (GregorianCalendar.MONDAY - calendar
-                    .getFirstDayOfWeek()) % 7;
+            int firstToShow = (GregorianCalendar.MONDAY
+                    - calendar.getFirstDayOfWeek()) % 7;
             calendarComponent.setFirstVisibleDayOfWeek(firstToShow + 1);
             calendarComponent.setLastVisibleDayOfWeek(firstToShow + 5);
         } else {
@@ -463,31 +457,15 @@ public class CalendarTest extends UI {
     private void initReadOnlyButton() {
         readOnlyButton = new CheckBox("Read-only mode");
         readOnlyButton.setImmediate(true);
-        readOnlyButton
-                .addValueChangeListener(new Property.ValueChangeListener() {
-
-                    private static final long serialVersionUID = 1L;
-
-                    @Override
-                    public void valueChange(ValueChangeEvent event) {
-                        calendarComponent.setReadOnly(readOnlyButton.getValue());
-                    }
-                });
+        readOnlyButton.addValueChangeListener(event -> calendarComponent
+                .setReadOnly(readOnlyButton.getValue()));
     }
 
     private void initDisabledButton() {
         disabledButton = new CheckBox("Disabled");
         disabledButton.setImmediate(true);
-        disabledButton
-                .addValueChangeListener(new Property.ValueChangeListener() {
-
-                    private static final long serialVersionUID = 1L;
-
-                    @Override
-                    public void valueChange(ValueChangeEvent event) {
-                        calendarComponent.setEnabled(!disabledButton.getValue());
-                    }
-                });
+        disabledButton.addValueChangeListener(event -> calendarComponent
+                .setEnabled(!disabledButton.getValue()));
     }
 
     public void initAddNewEventButton() {
@@ -517,21 +495,12 @@ public class CalendarTest extends UI {
         endDateField = createDateField("End date");
 
         final CheckBox allDayField = createCheckBox("All-day");
-        allDayField.addValueChangeListener(new Property.ValueChangeListener() {
-
-            private static final long serialVersionUID = -7104996493482558021L;
-
-            @Override
-            public void valueChange(ValueChangeEvent event) {
-                Object value = event.getProperty().getValue();
-                if (value instanceof Boolean && Boolean.TRUE.equals(value)) {
-                    setFormDateResolution(Resolution.DAY);
-
-                } else {
-                    setFormDateResolution(Resolution.MINUTE);
-                }
+        allDayField.addValueChangeListener(event -> {
+            if (event.getValue()) {
+                setFormDateResolution(Resolution.DAY);
+            } else {
+                setFormDateResolution(Resolution.MINUTE);
             }
-
         });
 
         captionField = createTextField("Caption");
@@ -559,7 +528,7 @@ public class CalendarTest extends UI {
             scheduleEventFieldGroup.bind(whereField, "where");
         }
         scheduleEventFieldGroup.bind(styleNameField, "styleName");
-        scheduleEventFieldGroup.bind(allDayField, "allDay");
+        scheduledEventBinder.bind(allDayField, CalendarEvent::isAllDay, null);
     }
 
     private CheckBox createCheckBox(String caption) {
@@ -718,8 +687,8 @@ public class CalendarTest extends UI {
         s.setFilteringMode(FilteringMode.CONTAINS);
 
         Item i = s.addItem(DEFAULT_ITEMID);
-        i.getItemProperty("caption").setValue(
-                "Default (" + TimeZone.getDefault().getID() + ")");
+        i.getItemProperty("caption")
+                .setValue("Default (" + TimeZone.getDefault().getID() + ")");
         for (String id : TimeZone.getAvailableIDs()) {
             if (!s.containsId(id)) {
                 i = s.addItem(id);
@@ -1064,6 +1033,7 @@ public class CalendarTest extends UI {
         initFormFields(scheduleEventFieldLayout, event.getClass());
         scheduleEventFieldGroup.setBuffered(true);
         scheduleEventFieldGroup.setItemDataSource(item);
+        scheduledEventBinder.load(event);
     }
 
     private void setFormDateResolution(Resolution resolution) {
@@ -1096,6 +1066,7 @@ public class CalendarTest extends UI {
     private void commitCalendarEvent() throws CommitException {
         scheduleEventFieldGroup.commit();
         BasicEvent event = getFormCalendarEvent();
+        scheduledEventBinder.save(event);
         if (event.getEnd() == null) {
             event.setEnd(event.getStart());
         }
@@ -1108,6 +1079,7 @@ public class CalendarTest extends UI {
 
     private void discardCalendarEvent() {
         scheduleEventFieldGroup.discard();
+        scheduledEventBinder.load(getFormCalendarEvent());
         removeWindow(scheduleEventPopup);
     }
 
@@ -1175,12 +1147,14 @@ public class CalendarTest extends UI {
 
     private void updateCaptionLabel() {
         DateFormatSymbols s = new DateFormatSymbols(getLocale());
-        String month = s.getShortMonths()[calendar.get(GregorianCalendar.MONTH)];
-        captionLabel.setValue(month + " "
-                + calendar.get(GregorianCalendar.YEAR));
+        String month = s.getShortMonths()[calendar
+                .get(GregorianCalendar.MONTH)];
+        captionLabel
+                .setValue(month + " " + calendar.get(GregorianCalendar.YEAR));
     }
 
-    private CalendarTestEvent getNewEvent(String caption, Date start, Date end) {
+    private CalendarTestEvent getNewEvent(String caption, Date start,
+            Date end) {
         CalendarTestEvent event = new CalendarTestEvent();
         event.setCaption(caption);
         event.setStart(start);

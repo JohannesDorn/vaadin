@@ -1,12 +1,12 @@
 /*
- * Copyright 2000-2014 Vaadin Ltd.
- * 
+ * Copyright 2000-2016 Vaadin Ltd.
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -23,11 +23,11 @@ import com.vaadin.server.VaadinRequest;
 import com.vaadin.tests.components.AbstractTestUIWithLog;
 import com.vaadin.tests.fieldgroup.ComplexPerson;
 import com.vaadin.ui.Button;
-import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.Component;
-import com.vaadin.ui.CustomField;
-import com.vaadin.ui.Grid;
 import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.v7.ui.ComboBox;
+import com.vaadin.v7.ui.CustomField;
+import com.vaadin.v7.ui.Grid;
 
 @Theme("valo")
 public class GridEditorCustomField extends AbstractTestUIWithLog {
@@ -38,7 +38,7 @@ public class GridEditorCustomField extends AbstractTestUIWithLog {
         grid.setWidth("800px");
         grid.setColumns("firstName", "lastName", "address.city");
         grid.setEditorEnabled(true);
-        Set<String> cities = new HashSet<String>();
+        Set<String> cities = new HashSet<>();
         for (Object o : grid.getContainerDataSource().getItemIds()) {
             ComplexPerson p = (ComplexPerson) o;
             cities.add(p.getAddress().getCity());

@@ -27,9 +27,9 @@ import com.vaadin.ui.GridLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Image;
 import com.vaadin.ui.Label;
-import com.vaadin.ui.Table;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Window;
+import com.vaadin.v7.ui.Table;
 
 @Theme("reindeer")
 public class ThemeChangeOnTheFly extends AbstractTestUIWithLog {
@@ -40,8 +40,8 @@ public class ThemeChangeOnTheFly extends AbstractTestUIWithLog {
 
             @Override
             public void buttonClick(ClickEvent event) {
-                getPage().getStyles().add(
-                        ".v-app { background: blue !important;}");
+                getPage().getStyles()
+                        .add(".v-app { background: blue !important;}");
 
             }
         });
@@ -78,11 +78,11 @@ public class ThemeChangeOnTheFly extends AbstractTestUIWithLog {
         Label l = new Label("Chameleon theme image in caption");
         l.setIcon(new ThemeResource("img/magnifier.png"));
         images.addComponent(l);
-        Image image = new Image("Runo theme image", new ThemeResource(
-                "icons/64/ok.png"));
+        Image image = new Image("Runo theme image",
+                new ThemeResource("icons/64/ok.png"));
         images.addComponent(image);
-        image = new Image("Reindeer theme image", new ThemeResource(
-                "button/img/left-focus.png"));
+        image = new Image("Reindeer theme image",
+                new ThemeResource("button/img/left-focus.png"));
         images.addComponent(image);
         addComponent(images);
         addComponent(gl);

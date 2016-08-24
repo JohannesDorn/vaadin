@@ -3,7 +3,7 @@ package com.vaadin.tests.components.combobox;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.shared.ui.combobox.FilteringMode;
 import com.vaadin.tests.components.AbstractTestUI;
-import com.vaadin.ui.ComboBox;
+import com.vaadin.v7.ui.ComboBox;
 
 public class ComboBoxValueInput extends AbstractTestUI {
 
@@ -44,7 +44,8 @@ public class ComboBoxValueInput extends AbstractTestUI {
         return 3268;
     }
 
-    private ComboBox getComboBox(String caption, boolean addNullItem, String id) {
+    private ComboBox getComboBox(String caption, boolean addNullItem,
+            String id) {
         ComboBox cb = new ComboBox(caption);
         cb.setImmediate(true);
         if (addNullItem) {

@@ -1,5 +1,5 @@
 /*
- * Copyright 2000-2014 Vaadin Ltd.
+ * Copyright 2000-2016 Vaadin Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -47,16 +47,14 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionBindingEvent;
 import javax.servlet.http.HttpSessionBindingListener;
 
-import com.vaadin.data.util.converter.Converter;
-import com.vaadin.data.util.converter.ConverterFactory;
-import com.vaadin.data.util.converter.DefaultConverterFactory;
 import com.vaadin.event.EventRouter;
 import com.vaadin.shared.communication.PushMode;
-import com.vaadin.ui.AbstractField;
-import com.vaadin.ui.Table;
 import com.vaadin.ui.UI;
 import com.vaadin.util.CurrentInstance;
 import com.vaadin.util.ReflectTools;
+import com.vaadin.v7.data.util.converter.Converter;
+import com.vaadin.v7.data.util.converter.ConverterFactory;
+import com.vaadin.v7.data.util.converter.DefaultConverterFactory;
 
 /**
  * Contains everything that Vaadin needs to store for a specific user. This is
@@ -115,7 +113,7 @@ public class VaadinSession implements HttpSessionBindingListener, Serializable {
              * deadlocks unless implemented very carefully. get(long, TimeUnit)
              * does not have the same detection since a sensible timeout should
              * avoid completely locking up the application.
-             * 
+             *
              * Even though no deadlock could occur after the runnable has been
              * run, the check is always done as the deterministic behavior makes
              * it easier to detect potential problems.
@@ -204,9 +202,9 @@ public class VaadinSession implements HttpSessionBindingListener, Serializable {
     private static final Method BOOTSTRAP_FRAGMENT_METHOD = ReflectTools
             .findMethod(BootstrapListener.class, "modifyBootstrapFragment",
                     BootstrapFragmentResponse.class);
-    private static final Method BOOTSTRAP_PAGE_METHOD = ReflectTools
-            .findMethod(BootstrapListener.class, "modifyBootstrapPage",
-                    BootstrapPageResponse.class);
+    private static final Method BOOTSTRAP_PAGE_METHOD = ReflectTools.findMethod(
+            BootstrapListener.class, "modifyBootstrapPage",
+            BootstrapPageResponse.class);
 
     /**
      * Configuration for the session.
@@ -299,17 +297,17 @@ public class VaadinSession implements HttpSessionBindingListener, Serializable {
         // closing
         // Notify the service
         if (service == null) {
-            getLogger()
-                    .warning(
-                            "A VaadinSession instance not associated to any service is getting unbound. "
-                                    + "Session destroy events will not be fired and UIs in the session will not get detached. "
-                                    + "This might happen if a session is deserialized but never used before it expires.");
+            getLogger().warning(
+                    "A VaadinSession instance not associated to any service is getting unbound. "
+                            + "Session destroy events will not be fired and UIs in the session will not get detached. "
+                            + "This might happen if a session is deserialized but never used before it expires.");
         } else if (VaadinService.getCurrentRequest() != null
                 && getCurrent() == this) {
             assert hasLock();
             // Ignore if the session is being moved to a different backing
             // session or if GAEVaadinServlet is doing its normal cleanup.
-            if (getAttribute(VaadinService.PRESERVE_UNBOUND_SESSION_ATTRIBUTE) == Boolean.TRUE) {
+            if (getAttribute(
+                    VaadinService.PRESERVE_UNBOUND_SESSION_ATTRIBUTE) == Boolean.TRUE) {
                 return;
             }
 
@@ -506,7 +504,8 @@ public class VaadinSession implements HttpSessionBindingListener, Serializable {
      * Updates the transient session lock from VaadinService.
      */
     private void refreshLock() {
-        assert lock == null || lock == service.getSessionLock(session) : "Cannot change the lock from one instance to another";
+        assert lock == null || lock == service.getSessionLock(
+                session) : "Cannot change the lock from one instance to another";
         assert hasLock(service, session);
         lock = service.getSessionLock(session);
     }
@@ -608,16 +607,10 @@ public class VaadinSession implements HttpSessionBindingListener, Serializable {
      * Sets the {@link ConverterFactory} used to locate a suitable
      * {@link Converter} for fields in the session.
      * <p>
-     * The {@link ConverterFactory} is used to find a suitable converter when
-     * binding data to a UI component and the data type does not match the UI
-     * component type, e.g. binding a Double to a TextField (which is based on a
-     * String).
-     * </p>
-     * <p>
-     * The {@link Converter} for an individual field can be overridden using
-     * {@link AbstractField#setConverter(Converter)} and for individual property
-     * ids in a {@link Table} using
-     * {@link Table#setConverter(Object, Converter)}.
+     * The {@link ConverterFactory} is used to find a suitable converter
+     * when binding data to a UI component and the data type does not match the
+     * UI component type, e.g. binding a Double to a TextField (which is based
+     * on a String).
      * </p>
      * <p>
      * The converter factory must never be set to null.
@@ -892,7 +885,8 @@ public class VaadinSession implements HttpSessionBindingListener, Serializable {
      *
      * @since 7.0.0
      */
-    public GlobalResourceHandler getGlobalResourceHandler(boolean createOnDemand) {
+    public GlobalResourceHandler getGlobalResourceHandler(
+            boolean createOnDemand) {
         assert hasLock();
         if (globalResourceHandler == null && createOnDemand) {
             globalResourceHandler = new GlobalResourceHandler();
@@ -990,7 +984,8 @@ public class VaadinSession implements HttpSessionBindingListener, Serializable {
                 getService().runPendingAccessTasks(this);
 
                 for (UI ui : getUIs()) {
-                    if (ui.getPushConfiguration().getPushMode() == PushMode.AUTOMATIC) {
+                    if (ui.getPushConfiguration()
+                            .getPushMode() == PushMode.AUTOMATIC) {
                         Map<Class<?>, CurrentInstance> oldCurrent = CurrentInstance
                                 .setCurrent(ui);
                         try {
@@ -1052,7 +1047,8 @@ public class VaadinSession implements HttpSessionBindingListener, Serializable {
      * <code>null</code> clears the stored value.
      * <p>
      * The fully qualified name of the type is used as the name when storing the
-     * value. The outcome of calling this method is thus the same as if calling<br />
+     * value. The outcome of calling this method is thus the same as if
+     * calling<br />
      * <br />
      * <code>setAttribute(type.getName(), value);</code>
      *
@@ -1071,9 +1067,8 @@ public class VaadinSession implements HttpSessionBindingListener, Serializable {
             throw new IllegalArgumentException("type can not be null");
         }
         if (value != null && !type.isInstance(value)) {
-            throw new IllegalArgumentException("value of type "
-                    + type.getName() + " expected but got "
-                    + value.getClass().getName());
+            throw new IllegalArgumentException("value of type " + type.getName()
+                    + " expected but got " + value.getClass().getName());
         }
         setAttribute(type.getName(), value);
     }
@@ -1104,7 +1099,8 @@ public class VaadinSession implements HttpSessionBindingListener, Serializable {
      * <code>null</code> is returned.
      * <p>
      * The fully qualified name of the type is used as the name when getting the
-     * value. The outcome of calling this method is thus the same as if calling<br />
+     * value. The outcome of calling this method is thus the same as if
+     * calling<br />
      * <br />
      * <code>getAttribute(type.getName());</code>
      *
@@ -1164,8 +1160,8 @@ public class VaadinSession implements HttpSessionBindingListener, Serializable {
             Integer previousUiId = embedIdMap.put(embedId, uiId);
             if (previousUiId != null) {
                 UI previousUi = uIs.get(previousUiId);
-                assert previousUi != null
-                        && embedId.equals(previousUi.getEmbedId()) : "UI id map and embed id map not in sync";
+                assert previousUi != null && embedId.equals(previousUi
+                        .getEmbedId()) : "UI id map and embed id map not in sync";
 
                 // Will fire cleanup events at the end of the request handling.
                 previousUi.close();
@@ -1409,8 +1405,8 @@ public class VaadinSession implements HttpSessionBindingListener, Serializable {
      * Override default deserialization logic to account for transient
      * {@link #pendingAccessQueue}.
      */
-    private void readObject(ObjectInputStream stream) throws IOException,
-            ClassNotFoundException {
+    private void readObject(ObjectInputStream stream)
+            throws IOException, ClassNotFoundException {
         Map<Class<?>, CurrentInstance> old = CurrentInstance.setCurrent(this);
         try {
             stream.defaultReadObject();
@@ -1465,7 +1461,7 @@ public class VaadinSession implements HttpSessionBindingListener, Serializable {
      * date.
      * <p>
      * Called internally by the framework.
-     * 
+     *
      * @since 7.6
      * @param wrappedSession
      *            the session this VaadinSession is stored in

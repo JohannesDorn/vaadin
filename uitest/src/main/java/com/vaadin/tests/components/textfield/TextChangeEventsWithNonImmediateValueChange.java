@@ -1,12 +1,12 @@
 package com.vaadin.tests.components.textfield;
 
-import com.vaadin.data.Property.ValueChangeEvent;
-import com.vaadin.data.Property.ValueChangeListener;
 import com.vaadin.event.FieldEvents.TextChangeEvent;
 import com.vaadin.event.FieldEvents.TextChangeListener;
 import com.vaadin.tests.components.TestBase;
 import com.vaadin.tests.util.Log;
-import com.vaadin.ui.TextField;
+import com.vaadin.v7.data.Property.ValueChangeEvent;
+import com.vaadin.v7.data.Property.ValueChangeListener;
+import com.vaadin.v7.ui.TextField;
 
 public class TextChangeEventsWithNonImmediateValueChange extends TestBase {
     Log l = new Log(5);
@@ -26,7 +26,7 @@ public class TextChangeEventsWithNonImmediateValueChange extends TestBase {
             }
         };
 
-        tf.addListener(inputEventListener);
+        tf.addTextChangeListener(inputEventListener);
 
         // tf.setImmediate(true); // works when this is set
 

@@ -1,12 +1,12 @@
 /*
- * Copyright 2000-2014 Vaadin Ltd.
- * 
+ * Copyright 2000-2016 Vaadin Ltd.
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -31,11 +31,12 @@ import org.openqa.selenium.WebElement;
 
 import com.vaadin.testbench.By;
 import com.vaadin.testbench.TestBenchElement;
-import com.vaadin.testbench.elements.GridElement;
+
 import com.vaadin.testbench.elements.GridElement.GridCellElement;
 import com.vaadin.testbench.elements.NotificationElement;
 import com.vaadin.tests.components.grid.basicfeatures.GridBasicFeatures;
 import com.vaadin.tests.components.grid.basicfeatures.GridBasicFeaturesTest;
+import com.vaadin.v7.testbench.customelements.GridElement;
 
 public class GridStructureTest extends GridBasicFeaturesTest {
 
@@ -49,8 +50,8 @@ public class GridStructureTest extends GridBasicFeaturesTest {
             assertFalse(isElementPresent(NotificationElement.class));
         }
 
-        assertEquals("Headers still visible.", 0, getGridHeaderRowCells()
-                .size());
+        assertEquals("Headers still visible.", 0,
+                getGridHeaderRowCells().size());
     }
 
     @Test
@@ -58,16 +59,16 @@ public class GridStructureTest extends GridBasicFeaturesTest {
         setDebug(true);
         openTestURL();
 
-        assertEquals("column 0", getGridElement().getHeaderCell(0, 0).getText()
-                .toLowerCase());
+        assertEquals("column 0",
+                getGridElement().getHeaderCell(0, 0).getText().toLowerCase());
         selectMenuPath("Component", "Columns", "Column 0", "Add / Remove");
-        assertEquals("column 1", getGridElement().getHeaderCell(0, 0).getText()
-                .toLowerCase());
+        assertEquals("column 1",
+                getGridElement().getHeaderCell(0, 0).getText().toLowerCase());
         selectMenuPath("Component", "Columns", "Column 0", "Add / Remove");
 
         // Column 0 is now the last column in Grid.
-        assertEquals("Unexpected column content", "(0, 0)", getGridElement()
-                .getCell(0, 11).getText());
+        assertEquals("Unexpected column content", "(0, 0)",
+                getGridElement().getCell(0, 11).getText());
     }
 
     @Test
@@ -316,9 +317,10 @@ public class GridStructureTest extends GridBasicFeaturesTest {
             try {
                 GridCellElement cell = getGridElement().getCell(row, 1);
                 foundElements = true;
-                assertTrue("Unexpected cell contents. "
-                        + "Did the ItemSetChange work after all?", cell
-                        .getText().startsWith("(23"));
+                assertTrue(
+                        "Unexpected cell contents. "
+                                + "Did the ItemSetChange work after all?",
+                        cell.getText().startsWith("(23"));
             } catch (NoSuchElementException e) {
                 assertTrue("No rows were found", foundElements);
                 return;
@@ -357,10 +359,11 @@ public class GridStructureTest extends GridBasicFeaturesTest {
         // Compare with reversed order
         for (int i = 0; i < gridData.length; ++i) {
             final int column = gridData.length - 1 - i;
-            final String newText = grid.getCell(0, column).getAttribute(
-                    "innerHTML");
-            assertEquals("Grid contained unexpected values. (0, " + column
-                    + ")", gridData[i], newText);
+            final String newText = grid.getCell(0, column)
+                    .getAttribute("innerHTML");
+            assertEquals(
+                    "Grid contained unexpected values. (0, " + column + ")",
+                    gridData[i], newText);
         }
     }
 
@@ -369,10 +372,11 @@ public class GridStructureTest extends GridBasicFeaturesTest {
         setDebug(true);
         openTestURL();
 
-        assertNotEquals("property value", getGridElement().getCell(0, 0)
-                .getText());
+        assertNotEquals("property value",
+                getGridElement().getCell(0, 0).getText());
         selectMenuPath("Component", "Properties", "Prepend property");
-        assertEquals("property value", getGridElement().getCell(0, 0).getText());
+        assertEquals("property value",
+                getGridElement().getCell(0, 0).getText());
     }
 
     @Test
@@ -380,20 +384,20 @@ public class GridStructureTest extends GridBasicFeaturesTest {
         openTestURL();
 
         assertEquals("(0, 0)", getGridElement().getCell(0, 0).getText());
-        assertNotEquals("property value", getGridElement().getCell(0, 0)
-                .getText());
+        assertNotEquals("property value",
+                getGridElement().getCell(0, 0).getText());
 
         selectMenuPath("Component", "Properties", "Prepend property");
         selectMenuPath("Component", "Properties", "Prepend property");
 
-        assertNotEquals("property value", getGridElement().getCell(0, 0)
-                .getText());
+        assertNotEquals("property value",
+                getGridElement().getCell(0, 0).getText());
         assertEquals("(0, 0)", getGridElement().getCell(0, 0).getText());
     }
 
     private boolean verticalScrollbarIsPresent() {
-        return "scroll".equals(getGridVerticalScrollbar().getCssValue(
-                "overflow-y"));
+        return "scroll"
+                .equals(getGridVerticalScrollbar().getCssValue("overflow-y"));
     }
 
     @Test
@@ -444,7 +448,8 @@ public class GridStructureTest extends GridBasicFeaturesTest {
         assertFalse("Error notification was present after removing all rows",
                 isElementPresent(NotificationElement.class));
 
-        assertFalse(getGridElement().isElementPresent(By.vaadin("#cell[0][0]")));
+        assertFalse(
+                getGridElement().isElementPresent(By.vaadin("#cell[0][0]")));
     }
 
     private void assertPrimaryStylename(String stylename) {
@@ -457,8 +462,8 @@ public class GridStructureTest extends GridBasicFeaturesTest {
         String hscrollStyleName = getGridElement().getHorizontalScroller()
                 .getAttribute("class");
         assertTrue(hscrollStyleName.contains(stylename + "-scroller"));
-        assertTrue(hscrollStyleName
-                .contains(stylename + "-scroller-horizontal"));
+        assertTrue(
+                hscrollStyleName.contains(stylename + "-scroller-horizontal"));
 
         String vscrollStyleName = getGridElement().getVerticalScroller()
                 .getAttribute("class");

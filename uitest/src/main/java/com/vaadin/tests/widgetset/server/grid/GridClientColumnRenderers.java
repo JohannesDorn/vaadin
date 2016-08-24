@@ -1,5 +1,5 @@
 /*
- * Copyright 2000-2014 Vaadin Ltd.
+ * Copyright 2000-2016 Vaadin Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -24,15 +24,15 @@ import com.vaadin.tests.widgetset.TestingWidgetSet;
 import com.vaadin.tests.widgetset.client.grid.GridClientColumnRendererConnector.Renderers;
 import com.vaadin.tests.widgetset.client.grid.GridClientColumnRendererRpc;
 import com.vaadin.ui.AbstractComponent;
-import com.vaadin.ui.AbstractSelect.ItemCaptionMode;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.CssLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.NativeButton;
-import com.vaadin.ui.NativeSelect;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
+import com.vaadin.v7.ui.AbstractSelect.ItemCaptionMode;
+import com.vaadin.v7.ui.NativeSelect;
 
 @Widgetset(TestingWidgetSet.NAME)
 public class GridClientColumnRenderers extends UI {
@@ -92,8 +92,8 @@ public class GridClientColumnRenderers extends UI {
         content.addComponent(controls);
         setContent(content);
 
-        final NativeSelect select = new NativeSelect(
-                "Add Column with Renderer", Arrays.asList(Renderers.values()));
+        final NativeSelect select = new NativeSelect("Add Column with Renderer",
+                Arrays.asList(Renderers.values()));
         select.setItemCaptionMode(ItemCaptionMode.EXPLICIT);
         for (Renderers renderer : Renderers.values()) {
             select.setItemCaption(renderer, renderer.toString());

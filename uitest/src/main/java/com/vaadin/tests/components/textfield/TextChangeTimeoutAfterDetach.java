@@ -3,11 +3,11 @@ package com.vaadin.tests.components.textfield;
 import com.vaadin.event.FieldEvents.TextChangeEvent;
 import com.vaadin.event.FieldEvents.TextChangeListener;
 import com.vaadin.tests.components.TestBase;
-import com.vaadin.ui.AbstractTextField.TextChangeEventMode;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Label;
-import com.vaadin.ui.TextField;
+import com.vaadin.v7.ui.AbstractTextField.TextChangeEventMode;
+import com.vaadin.v7.ui.TextField;
 
 public class TextChangeTimeoutAfterDetach extends TestBase {
 
@@ -17,7 +17,7 @@ public class TextChangeTimeoutAfterDetach extends TestBase {
         field.setImmediate(false);
         field.setTextChangeTimeout(2000);
         field.setTextChangeEventMode(TextChangeEventMode.TIMEOUT);
-        field.addListener(new TextChangeListener() {
+        field.addTextChangeListener(new TextChangeListener() {
             @Override
             public void textChange(TextChangeEvent event) {
                 // Need to add a listener for events to occur

@@ -10,7 +10,6 @@ import com.vaadin.ui.ComponentContainer;
 import com.vaadin.ui.CustomLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
-import com.vaadin.ui.components.colorpicker.ColorPickerPreview;
 
 public class AddRemoveComponentTest {
 
@@ -22,7 +21,6 @@ public class AddRemoveComponentTest {
 
         // No default constructor, special case
         containerClasses.remove(CustomLayout.class);
-        containerClasses.remove(ColorPickerPreview.class);
         testRemoveComponentFromWrongContainer(new CustomLayout("dummy"));
 
         for (Class<? extends ComponentContainer> c : containerClasses) {
@@ -37,7 +35,8 @@ public class AddRemoveComponentTest {
         hl.addComponent(label);
 
         componentContainer.removeComponent(label);
-        Assert.assertEquals("Parent no longer correct for "
-                + componentContainer.getClass(), hl, label.getParent());
+        Assert.assertEquals(
+                "Parent no longer correct for " + componentContainer.getClass(),
+                hl, label.getParent());
     }
 }

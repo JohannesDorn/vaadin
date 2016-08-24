@@ -5,19 +5,18 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Locale;
 
-import com.vaadin.data.Property;
-import com.vaadin.data.Property.ValueChangeEvent;
-import com.vaadin.data.Property.ValueChangeListener;
-import com.vaadin.data.util.sqlcontainer.SQLContainer;
-import com.vaadin.data.util.sqlcontainer.connection.JDBCConnectionPool;
-import com.vaadin.data.util.sqlcontainer.connection.SimpleJDBCConnectionPool;
-import com.vaadin.data.util.sqlcontainer.query.TableQuery;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.tests.components.AbstractTestUI;
 import com.vaadin.ui.CheckBox;
 import com.vaadin.ui.Label;
-import com.vaadin.ui.Table;
 import com.vaadin.ui.VerticalLayout;
+import com.vaadin.v7.data.Property;
+import com.vaadin.v7.data.Property.ValueChangeEvent;
+import com.vaadin.v7.data.util.sqlcontainer.SQLContainer;
+import com.vaadin.v7.data.util.sqlcontainer.connection.JDBCConnectionPool;
+import com.vaadin.v7.data.util.sqlcontainer.connection.SimpleJDBCConnectionPool;
+import com.vaadin.v7.data.util.sqlcontainer.query.TableQuery;
+import com.vaadin.v7.ui.Table;
 
 public class TableSqlContainer extends AbstractTestUI {
 
@@ -59,24 +58,20 @@ public class TableSqlContainer extends AbstractTestUI {
         table.addValueChangeListener(new Property.ValueChangeListener() {
             @Override
             public void valueChange(ValueChangeEvent event) {
-                selectedLabel.setValue("Selected: "
-                        + event.getProperty().getValue());
+                selectedLabel.setValue(
+                        "Selected: " + event.getProperty().getValue());
             }
         });
 
         final CheckBox editMode = new CheckBox("Edit mode");
-        editMode.addValueChangeListener(new ValueChangeListener() {
-            @Override
-            public void valueChange(ValueChangeEvent event) {
-                table.setEditable(editMode.getValue());
-            }
-        });
+        editMode.addValueChangeListener(
+                event -> table.setEditable(editMode.getValue()));
         addComponent(editMode);
     }
 
     /**
      * (Re)creates the test table
-     * 
+     *
      * @param connectionPool
      */
     private void createTestTable(JDBCConnectionPool connectionPool) {
@@ -102,7 +97,7 @@ public class TableSqlContainer extends AbstractTestUI {
 
     /**
      * Adds test data to the test table
-     * 
+     *
      * @param connectionPool
      * @throws SQLException
      */
@@ -113,14 +108,14 @@ public class TableSqlContainer extends AbstractTestUI {
             conn = connectionPool.reserveConnection();
             Statement statement = conn.createStatement();
 
-            statement
-                    .executeUpdate("INSERT INTO mytable VALUES(1, '2013-05-24', 'A0')");
-            statement
-                    .executeUpdate("INSERT INTO mytable VALUES(2, '2013-04-26', 'A1')");
-            statement
-                    .executeUpdate("INSERT INTO mytable VALUES(3, '2013-05-27', 'B0')");
-            statement
-                    .executeUpdate("INSERT INTO mytable VALUES(4, '2013-04-28', 'B1')");
+            statement.executeUpdate(
+                    "INSERT INTO mytable VALUES(1, '2013-05-24', 'A0')");
+            statement.executeUpdate(
+                    "INSERT INTO mytable VALUES(2, '2013-04-26', 'A1')");
+            statement.executeUpdate(
+                    "INSERT INTO mytable VALUES(3, '2013-05-27', 'B0')");
+            statement.executeUpdate(
+                    "INSERT INTO mytable VALUES(4, '2013-04-28', 'B1')");
 
             statement.close();
             conn.commit();

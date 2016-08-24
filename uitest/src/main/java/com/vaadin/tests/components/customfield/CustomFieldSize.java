@@ -1,12 +1,12 @@
 /*
- * Copyright 2000-2014 Vaadin Ltd.
- * 
+ * Copyright 2000-2016 Vaadin Ltd.
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -23,7 +23,7 @@ import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
 
 /**
- * 
+ *
  * @since
  * @author Vaadin Ltd
  */
@@ -37,19 +37,7 @@ public class CustomFieldSize extends AbstractTestUI {
 
         layout.addComponent(new TextField());
 
-        layout.addComponent(new CustomField<String>() {
-
-            @Override
-            protected Component initContent() {
-                return new TextField();
-            }
-
-            @Override
-            public Class<? extends String> getType() {
-                return String.class;
-            }
-
-        });
+        layout.addComponent(new TestCustomField());
     }
 
     @Override
@@ -60,6 +48,26 @@ public class CustomFieldSize extends AbstractTestUI {
     @Override
     protected Integer getTicketNumber() {
         return 12482;
+    }
+
+    private static class TestCustomField extends CustomField<String> {
+
+        private TextField field = new TextField();
+
+        @Override
+        protected Component initContent() {
+            return field;
+        }
+
+        @Override
+        public String getValue() {
+            return field.getValue();
+        }
+
+        @Override
+        protected void doSetValue(String value) {
+            field.setValue(value);
+        }
     }
 
 }

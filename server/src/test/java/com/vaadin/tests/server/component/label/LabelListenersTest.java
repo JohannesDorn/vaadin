@@ -9,11 +9,11 @@ import static org.easymock.EasyMock.verify;
 import org.easymock.EasyMock;
 import org.junit.Test;
 
-import com.vaadin.data.Property;
-import com.vaadin.data.Property.ValueChangeListener;
 import com.vaadin.tests.server.component.AbstractListenerMethodsTestBase;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Label.ValueChangeEvent;
+import com.vaadin.v7.data.Property;
+import com.vaadin.v7.data.Property.ValueChangeListener;
 
 public class LabelListenersTest extends AbstractListenerMethodsTestBase {
 
@@ -28,10 +28,11 @@ public class LabelListenersTest extends AbstractListenerMethodsTestBase {
         Label underTest = new Label();
 
         // setup the mock listener
-        ValueChangeListener mockListener = createStrictMock(ValueChangeListener.class);
+        ValueChangeListener mockListener = createStrictMock(
+                ValueChangeListener.class);
         // record
-        mockListener
-                .valueChange(anyObject(com.vaadin.data.Property.ValueChangeEvent.class));
+        mockListener.valueChange(
+                anyObject(com.vaadin.v7.data.Property.ValueChangeEvent.class));
 
         // test
         underTest.addValueChangeListener(mockListener);
@@ -50,10 +51,11 @@ public class LabelListenersTest extends AbstractListenerMethodsTestBase {
 
         Property mockProperty = EasyMock.createMock(Property.class);
 
-        ValueChangeListener mockListener = createStrictMock(ValueChangeListener.class);
+        ValueChangeListener mockListener = createStrictMock(
+                ValueChangeListener.class);
         // record
-        mockListener
-                .valueChange(anyObject(com.vaadin.data.Property.ValueChangeEvent.class));
+        mockListener.valueChange(
+                anyObject(com.vaadin.v7.data.Property.ValueChangeEvent.class));
 
         expect(mockProperty.getType()).andReturn(String.class).atLeastOnce();
         expect(mockProperty.getValue()).andReturn("Any").atLeastOnce();
@@ -72,7 +74,8 @@ public class LabelListenersTest extends AbstractListenerMethodsTestBase {
     public void testValueChangeNotFiredWhenNotSettingValue() {
         Label underTest = new Label();
         // setup the mock listener
-        ValueChangeListener mockListener = createStrictMock(ValueChangeListener.class);
+        ValueChangeListener mockListener = createStrictMock(
+                ValueChangeListener.class);
         // record: nothing to record
 
         // test
@@ -85,7 +88,8 @@ public class LabelListenersTest extends AbstractListenerMethodsTestBase {
     public void testNoValueChangeFiredWhenSettingPropertyDataSourceToNull() {
         Label underTest = new Label();
         // setup the mock Listener
-        ValueChangeListener mockListener = createStrictMock(ValueChangeListener.class);
+        ValueChangeListener mockListener = createStrictMock(
+                ValueChangeListener.class);
         // record: nothing to record
 
         // test

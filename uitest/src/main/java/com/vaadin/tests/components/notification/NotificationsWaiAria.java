@@ -1,21 +1,22 @@
 package com.vaadin.tests.components.notification;
 
-import com.vaadin.data.Item;
 import com.vaadin.server.Page;
 import com.vaadin.server.VaadinRequest;
+import com.vaadin.shared.ui.textfield.ValueChangeMode;
 import com.vaadin.shared.ui.ui.NotificationRole;
 import com.vaadin.tests.components.AbstractTestUI;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
-import com.vaadin.ui.ComboBox;
-import com.vaadin.ui.NativeSelect;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.Notification.Type;
 import com.vaadin.ui.NotificationConfiguration;
-import com.vaadin.ui.TextArea;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.UI;
+import com.vaadin.v7.data.Item;
+import com.vaadin.v7.ui.ComboBox;
+import com.vaadin.v7.ui.NativeSelect;
+import com.vaadin.v7.ui.TextArea;
 
 /**
  * Test UI for different roles of Notifications.
@@ -38,10 +39,15 @@ public class NotificationsWaiAria extends AbstractTestUI {
     @Override
     protected void setup(VaadinRequest request) {
         prefix = new TextField("Prefix", "Info");
+        // The text fields need to be non-immediate to avoid an extra event that
+        // hides the notification while the test is still trying to read its
+        // contents.
+        prefix.setValueChangeMode(ValueChangeMode.BLUR);
         addComponent(prefix);
 
         postfix = new TextField("Postfix",
                 " - closes automatically after 10 seconds");
+        postfix.setValueChangeMode(ValueChangeMode.BLUR);
         addComponent(postfix);
 
         role = new NativeSelect("NotificationRole");
@@ -51,6 +57,7 @@ public class NotificationsWaiAria extends AbstractTestUI {
         addComponent(role);
 
         tf = new TextArea("Text", "Hello world");
+        tf.setImmediate(false);
         tf.setRows(10);
         addComponent(tf);
         type = new ComboBox();

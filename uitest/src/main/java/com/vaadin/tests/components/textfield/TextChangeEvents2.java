@@ -1,7 +1,5 @@
 package com.vaadin.tests.components.textfield;
 
-import com.vaadin.data.Property.ValueChangeEvent;
-import com.vaadin.data.Property.ValueChangeListener;
 import com.vaadin.event.FieldEvents.BlurEvent;
 import com.vaadin.event.FieldEvents.BlurListener;
 import com.vaadin.event.FieldEvents.FocusEvent;
@@ -9,10 +7,12 @@ import com.vaadin.event.FieldEvents.FocusListener;
 import com.vaadin.event.FieldEvents.TextChangeEvent;
 import com.vaadin.event.FieldEvents.TextChangeListener;
 import com.vaadin.tests.components.TestBase;
-import com.vaadin.ui.AbstractTextField.TextChangeEventMode;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
-import com.vaadin.ui.TextField;
+import com.vaadin.v7.data.Property.ValueChangeEvent;
+import com.vaadin.v7.data.Property.ValueChangeListener;
+import com.vaadin.v7.ui.AbstractTextField.TextChangeEventMode;
+import com.vaadin.v7.ui.TextField;
 
 public class TextChangeEvents2 extends TestBase {
     @Override
@@ -22,7 +22,7 @@ public class TextChangeEvents2 extends TestBase {
             final TextField tf = new TextField("Debug");
             getLayout().addComponent(tf);
 
-            tf.addListener(new TextChangeListener() {
+            tf.addTextChangeListener(new TextChangeListener() {
                 @Override
                 public void textChange(TextChangeEvent event) {
                     System.err.println(tf.getCaption() + " textChange");
@@ -36,7 +36,7 @@ public class TextChangeEvents2 extends TestBase {
                 }
             });
 
-            tf.addListener(new BlurListener() {
+            tf.addBlurListener(new BlurListener() {
 
                 @Override
                 public void blur(BlurEvent event) {
@@ -44,7 +44,7 @@ public class TextChangeEvents2 extends TestBase {
                 }
             });
 
-            tf.addListener(new FocusListener() {
+            tf.addFocusListener(new FocusListener() {
                 @Override
                 public void focus(FocusEvent event) {
                     System.err.println(tf.getCaption() + " focus");
@@ -58,7 +58,7 @@ public class TextChangeEvents2 extends TestBase {
             getLayout().addComponent(tf);
             final Label l = new Label();
             getLayout().addComponent(l);
-            tf.addListener(new TextChangeListener() {
+            tf.addTextChangeListener(new TextChangeListener() {
                 @Override
                 public void textChange(TextChangeEvent event) {
                     l.setValue(event.getText());
@@ -81,7 +81,7 @@ public class TextChangeEvents2 extends TestBase {
             getLayout().addComponent(tf);
             final Label l = new Label();
             getLayout().addComponent(l);
-            tf.addListener(new TextChangeListener() {
+            tf.addTextChangeListener(new TextChangeListener() {
 
                 @Override
                 public void textChange(TextChangeEvent event) {
@@ -104,7 +104,7 @@ public class TextChangeEvents2 extends TestBase {
             getLayout().addComponent(tf);
             final Label l = new Label();
             getLayout().addComponent(l);
-            tf.addListener(new TextChangeListener() {
+            tf.addTextChangeListener(new TextChangeListener() {
 
                 @Override
                 public void textChange(TextChangeEvent event) {
@@ -122,8 +122,9 @@ public class TextChangeEvents2 extends TestBase {
         }
 
         {
-            final TextField[] tfs = new TextField[] { new TextField(),
-                    new TextField(), new TextField(), new TextField() };
+            final TextField[] tfs = new TextField[] {
+                    new TextField(), new TextField(),
+                    new TextField(), new TextField() };
             HorizontalLayout hl = new HorizontalLayout();
             hl.setCaption("Blää");
             getLayout().addComponent(hl);
@@ -132,7 +133,7 @@ public class TextChangeEvents2 extends TestBase {
                 tf.setTextChangeEventMode(TextChangeEventMode.EAGER);
                 hl.addComponent(tf);
 
-                tf.addListener(new TextChangeListener() {
+                tf.addTextChangeListener(new TextChangeListener() {
 
                     @Override
                     public void textChange(TextChangeEvent event) {
@@ -149,8 +150,8 @@ public class TextChangeEvents2 extends TestBase {
                                 TextField next = tfs[idx + 1];
                                 next.focus();
                                 if (len > 4) {
-                                    next.setValue(txt.substring(4, len > 8 ? 8
-                                            : len));
+                                    next.setValue(txt.substring(4,
+                                            len > 8 ? 8 : len));
                                 } else {
                                     next.selectAll();
                                 }
@@ -162,7 +163,8 @@ public class TextChangeEvents2 extends TestBase {
 
                     @Override
                     public void valueChange(ValueChangeEvent event) {
-                        TextField tf = (TextField) event.getProperty();
+                        TextField tf = (TextField) event
+                                .getProperty();
                         String val = tf.getValue();
                         if (val != null && val.length() > 4) {
                             tf.setValue(val.substring(0, 4));

@@ -4,14 +4,14 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import com.vaadin.data.Property;
-import com.vaadin.data.util.AbstractProperty;
-import com.vaadin.data.util.converter.Converter.ConversionException;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinSession;
 import com.vaadin.tests.util.AlwaysLockedVaadinSession;
-import com.vaadin.ui.AbstractField;
 import com.vaadin.ui.UI;
+import com.vaadin.v7.data.Property;
+import com.vaadin.v7.data.util.AbstractProperty;
+import com.vaadin.v7.data.util.converter.Converter.ConversionException;
+import com.vaadin.v7.ui.AbstractField;
 
 public class RemoveListenersOnDetachTest {
 
@@ -71,8 +71,8 @@ public class RemoveListenersOnDetachTest {
         }
 
         @Override
-        public void setValue(String newValue) throws ReadOnlyException,
-                ConversionException {
+        public void setValue(String newValue)
+                throws ReadOnlyException, ConversionException {
             fireValueChange();
         }
 

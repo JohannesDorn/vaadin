@@ -1,12 +1,10 @@
 package com.vaadin.tests.components.table;
 
-import com.vaadin.data.Property.ValueChangeEvent;
-import com.vaadin.data.Property.ValueChangeListener;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.tests.components.AbstractTestUI;
 import com.vaadin.ui.CheckBox;
-import com.vaadin.ui.Table;
-import com.vaadin.ui.Table.ColumnHeaderMode;
+import com.vaadin.v7.ui.Table;
+import com.vaadin.v7.ui.Table.ColumnHeaderMode;
 
 public class HeaderUpdateWhenNoRows extends AbstractTestUI {
 
@@ -20,15 +18,12 @@ public class HeaderUpdateWhenNoRows extends AbstractTestUI {
         table.setImmediate(true);
 
         final CheckBox showHeaders = new CheckBox("Show headers");
-        showHeaders.addValueChangeListener(new ValueChangeListener() {
-
-            @Override
-            public void valueChange(ValueChangeEvent event) {
-                if (showHeaders.getValue()) {
-                    table.setColumnHeaderMode(ColumnHeaderMode.EXPLICIT_DEFAULTS_ID);
-                } else {
-                    table.setColumnHeaderMode(ColumnHeaderMode.HIDDEN);
-                }
+        showHeaders.addValueChangeListener(event -> {
+            if (showHeaders.getValue()) {
+                table.setColumnHeaderMode(
+                        ColumnHeaderMode.EXPLICIT_DEFAULTS_ID);
+            } else {
+                table.setColumnHeaderMode(ColumnHeaderMode.HIDDEN);
             }
         });
 

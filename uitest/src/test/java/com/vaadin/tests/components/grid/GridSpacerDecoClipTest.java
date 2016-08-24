@@ -1,6 +1,6 @@
 /*
- * Copyright 2000-2014 Vaadin Ltd.
- * 
+ * Copyright 2000-2016 Vaadin Ltd.
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
@@ -21,10 +21,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.SearchContext;
 
 import com.vaadin.testbench.TestBenchElement;
-import com.vaadin.testbench.elements.GridElement;
+
 import com.vaadin.testbench.parallel.TestCategory;
 import com.vaadin.tests.minitutorials.v7_5.ShowingExtraDataForRows;
 import com.vaadin.tests.tb3.MultiBrowserTest;
+import com.vaadin.v7.testbench.customelements.GridElement;
 
 /**
  * Test for "Grid detail row outline overflows" (#17826)
@@ -92,7 +93,7 @@ public class GridSpacerDecoClipTest extends MultiBrowserTest {
 
     private TestBenchElement getSpacerDeco(int index) {
         SearchContext context = getContext();
-        return (TestBenchElement) context.findElements(
-                By.className(SPACER_CSS_CLASS_DECO)).get(index);
+        return (TestBenchElement) context
+                .findElements(By.className(SPACER_CSS_CLASS_DECO)).get(index);
     }
 }

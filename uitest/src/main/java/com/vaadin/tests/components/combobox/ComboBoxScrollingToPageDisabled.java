@@ -2,14 +2,14 @@ package com.vaadin.tests.components.combobox;
 
 import java.util.ArrayList;
 
-import com.vaadin.data.Property.ValueChangeEvent;
-import com.vaadin.data.Property.ValueChangeListener;
 import com.vaadin.tests.components.ComponentTestCase;
-import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.Notification;
+import com.vaadin.v7.data.Property.ValueChangeEvent;
+import com.vaadin.v7.data.Property.ValueChangeListener;
+import com.vaadin.v7.ui.ComboBox;
 
-public class ComboBoxScrollingToPageDisabled extends
-        ComponentTestCase<ComboBox> {
+public class ComboBoxScrollingToPageDisabled
+        extends ComponentTestCase<ComboBox> {
 
     private static final Object CAPTION = "caption";
 
@@ -63,7 +63,7 @@ public class ComboBoxScrollingToPageDisabled extends
     protected String getDescription() {
         return "Test that selected value appears on the client "
                 + "side even though setScrollToSelectedItem(false) "
-                + "has been called. Textbox should containe 'Item 50'.";
+                + "has been called. Textbox should contain 'Item 50'.";
     }
 
     @Override

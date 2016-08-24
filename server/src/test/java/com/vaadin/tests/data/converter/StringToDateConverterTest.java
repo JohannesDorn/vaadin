@@ -6,7 +6,7 @@ import java.util.Locale;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.vaadin.data.util.converter.StringToDateConverter;
+import com.vaadin.v7.data.util.converter.StringToDateConverter;
 
 public class StringToDateConverterTest {
 

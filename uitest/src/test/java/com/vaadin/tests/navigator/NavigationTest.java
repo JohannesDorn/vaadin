@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import com.vaadin.testbench.By;
 import com.vaadin.testbench.elements.ButtonElement;
-import com.vaadin.testbench.elements.TableElement;
+import com.vaadin.v7.testbench.customelements.TableElement;
 import com.vaadin.testbench.elements.TableRowElement;
 import com.vaadin.testbench.elements.TextFieldElement;
 import com.vaadin.tests.tb3.SingleBrowserTest;
@@ -24,8 +24,8 @@ public class NavigationTest extends SingleBrowserTest {
     public void testNavigateToSameViewWithDifferentParameters() {
         openTestURL();
 
-        ButtonElement listButton = $(ButtonElement.class).caption(
-                "Navigate to list").first();
+        ButtonElement listButton = $(ButtonElement.class)
+                .caption("Navigate to list").first();
         listButton.click();
 
         TableElement table = $(TableElement.class).first();

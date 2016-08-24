@@ -1,5 +1,5 @@
 /*
- * Copyright 2000-2014 Vaadin Ltd.
+ * Copyright 2000-2016 Vaadin Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -24,7 +24,7 @@ import com.vaadin.ui.UI;
 
 /**
  * Initializer shell for GridClientBasicFeatures test application
- * 
+ *
  * @since
  * @author Vaadin Ltd
  */
@@ -33,7 +33,8 @@ public class GridBasicClientFeatures extends UI {
 
     @Override
     protected void init(VaadinRequest request) {
-        setContent(new TestWidgetComponent(GridBasicClientFeaturesWidget.class));
+        setContent(
+                new TestWidgetComponent(GridBasicClientFeaturesWidget.class));
     }
 
 }

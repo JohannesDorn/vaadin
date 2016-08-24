@@ -1,12 +1,12 @@
 /*
- * Copyright 2000-2014 Vaadin Ltd.
- * 
+ * Copyright 2000-2016 Vaadin Ltd.
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -17,17 +17,17 @@ package com.vaadin.tests.components.grid;
 
 import java.io.Serializable;
 
-import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.tests.components.AbstractTestUI;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
-import com.vaadin.ui.Grid;
-import com.vaadin.ui.Grid.HeaderRow;
-import com.vaadin.ui.Grid.SelectionMode;
-import com.vaadin.ui.Grid.SelectionModel;
 import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.renderers.NumberRenderer;
+import com.vaadin.v7.data.util.BeanItemContainer;
+import com.vaadin.v7.ui.Grid;
+import com.vaadin.v7.ui.Grid.HeaderRow;
+import com.vaadin.v7.ui.Grid.SelectionMode;
+import com.vaadin.v7.ui.Grid.SelectionModel;
+import com.vaadin.v7.ui.renderers.NumberRenderer;
 
 public class GridHeaderFormatChange extends AbstractTestUI {
 
@@ -107,8 +107,8 @@ public class GridHeaderFormatChange extends AbstractTestUI {
         grid = new Grid(datasource);
         grid.setWidth("600px");
         grid.getColumn("zipCode").setRenderer(new NumberRenderer());
-        grid.setColumnOrder("firstName", "lastName", "streetAddress",
-                "zipCode", "city");
+        grid.setColumnOrder("firstName", "lastName", "streetAddress", "zipCode",
+                "city");
         grid.setSelectionMode(SelectionMode.SINGLE);
         addComponent(grid);
 
@@ -156,8 +156,8 @@ public class GridHeaderFormatChange extends AbstractTestUI {
                         if (row == null) {
                             row = grid.prependHeaderRow();
                             if (grid.getColumn("firstName") != null) {
-                                row.join("firstName", "lastName").setText(
-                                        "Full Name");
+                                row.join("firstName", "lastName")
+                                        .setText("Full Name");
                             }
                             row.join("streetAddress", "zipCode", "city")
                                     .setText("Address");

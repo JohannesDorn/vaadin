@@ -7,11 +7,11 @@ import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.HorizontalSplitPanel;
-import com.vaadin.ui.LegacyWindow;
 import com.vaadin.ui.NativeButton;
+import com.vaadin.v7.ui.LegacyWindow;
 
-public class SplitPanelExtraScrollbars extends AbstractTestCase implements
-        ClickListener {
+public class SplitPanelExtraScrollbars extends AbstractTestCase
+        implements ClickListener {
 
     private HorizontalSplitPanel sp;
     private HorizontalLayout hl;

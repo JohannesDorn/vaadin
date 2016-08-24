@@ -1,12 +1,12 @@
 /*
- * Copyright 2000-2014 Vaadin Ltd.
- * 
+ * Copyright 2000-2016 Vaadin Ltd.
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -15,14 +15,19 @@
  */
 package com.vaadin.ui.themes;
 
+import com.vaadin.ui.CssLayout;
+import com.vaadin.ui.FormLayout;
+import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.VerticalLayout;
+
 public class Reindeer extends BaseTheme {
 
     public static final String THEME_NAME = "reindeer";
 
     /***************************************************************************
-     * 
+     *
      * Label styles
-     * 
+     *
      **************************************************************************/
 
     /**
@@ -41,9 +46,9 @@ public class Reindeer extends BaseTheme {
     public static final String LABEL_SMALL = "light";
 
     /***************************************************************************
-     * 
+     *
      * Button styles
-     * 
+     *
      **************************************************************************/
 
     /**
@@ -59,9 +64,9 @@ public class Reindeer extends BaseTheme {
     public static final String BUTTON_SMALL = "small";
 
     /***************************************************************************
-     * 
+     *
      * TextField styles
-     * 
+     *
      **************************************************************************/
 
     /**
@@ -70,9 +75,9 @@ public class Reindeer extends BaseTheme {
     public static final String TEXTFIELD_SMALL = "small";
 
     /***************************************************************************
-     * 
+     *
      * Panel styles
-     * 
+     *
      **************************************************************************/
 
     /**
@@ -81,9 +86,9 @@ public class Reindeer extends BaseTheme {
     public static final String PANEL_LIGHT = "light";
 
     /***************************************************************************
-     * 
+     *
      * ProgressBar Styles
-     * 
+     *
      **************************************************************************/
 
     /**
@@ -93,9 +98,9 @@ public class Reindeer extends BaseTheme {
     public static final String PROGRESSBAR_STATIC = "static";
 
     /***************************************************************************
-     * 
+     *
      * SplitPanel styles
-     * 
+     *
      **************************************************************************/
 
     /**
@@ -104,9 +109,9 @@ public class Reindeer extends BaseTheme {
     public static final String SPLITPANEL_SMALL = "small";
 
     /***************************************************************************
-     * 
+     *
      * TabSheet styles
-     * 
+     *
      **************************************************************************/
 
     /**
@@ -138,9 +143,9 @@ public class Reindeer extends BaseTheme {
     public static final String TABSHEET_SELECTED_CLOSABLE = "selected-closable";
 
     /***************************************************************************
-     * 
+     *
      * Table styles
-     * 
+     *
      **************************************************************************/
 
     /**
@@ -154,9 +159,9 @@ public class Reindeer extends BaseTheme {
     public static final String TABLE_STRONG = "strong";
 
     /***************************************************************************
-     * 
+     *
      * Layout styles
-     * 
+     *
      **************************************************************************/
 
     /**
@@ -165,7 +170,7 @@ public class Reindeer extends BaseTheme {
      * {@link FormLayout}, {@link CssLayout}, {@link VerticalSplitPanel} and
      * {@link HorizontalSplitPanel}.
      * <p>
-     * <em>Does not revert any contained components back to normal if some 
+     * <em>Does not revert any contained components back to normal if some
      * parent layout has style {@link #LAYOUT_BLACK} applied.</em>
      */
     public static final String LAYOUT_WHITE = "white";
@@ -176,7 +181,7 @@ public class Reindeer extends BaseTheme {
      * {@link FormLayout}, {@link CssLayout}, {@link VerticalSplitPanel} and
      * {@link HorizontalSplitPanel}.
      * <p>
-     * <em>Does not revert any contained components back to normal if some 
+     * <em>Does not revert any contained components back to normal if some
      * parent layout has style {@link #LAYOUT_BLACK} applied.</em>
      */
     public static final String LAYOUT_BLUE = "blue";
@@ -192,14 +197,14 @@ public class Reindeer extends BaseTheme {
      * Applies to {@link VerticalLayout}, {@link HorizontalLayout},
      * {@link GridLayout}, {@link FormLayout} and {@link CssLayout}.
      * </p>
-     * 
+     *
      */
     public static final String LAYOUT_BLACK = "black";
 
     /***************************************************************************
-     * 
+     *
      * Window styles
-     * 
+     *
      **************************************************************************/
 
     /**

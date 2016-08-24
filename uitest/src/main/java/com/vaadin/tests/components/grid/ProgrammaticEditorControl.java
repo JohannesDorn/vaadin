@@ -1,12 +1,12 @@
 package com.vaadin.tests.components.grid;
 
-import com.vaadin.data.util.IndexedContainer;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.tests.components.AbstractTestUIWithLog;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
-import com.vaadin.ui.Grid;
+import com.vaadin.v7.data.util.IndexedContainer;
+import com.vaadin.v7.ui.Grid;
 
 @SuppressWarnings("serial")
 // @Push

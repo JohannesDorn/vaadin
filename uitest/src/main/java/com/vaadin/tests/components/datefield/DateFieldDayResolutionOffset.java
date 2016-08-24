@@ -1,17 +1,15 @@
 package com.vaadin.tests.components.datefield;
 
-import com.vaadin.data.Property;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.TimeZone;
+
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.shared.ui.datefield.Resolution;
 import com.vaadin.tests.components.AbstractTestUI;
 import com.vaadin.ui.DateField;
 import com.vaadin.ui.Label;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.TimeZone;
 
 public class DateFieldDayResolutionOffset extends AbstractTestUI {
 
@@ -29,12 +27,8 @@ public class DateFieldDayResolutionOffset extends AbstractTestUI {
         addComponent(dateValue);
         addComponent(dateField);
 
-        dateField.addValueChangeListener(new Property.ValueChangeListener() {
-            @Override
-            public void valueChange(Property.ValueChangeEvent event) {
-                dateValue.setValue(dateformat.format(dateField.getValue()));
-            }
-        });
+        dateField.addValueChangeListener(event -> dateValue
+                .setValue(dateformat.format(dateField.getValue())));
     }
 
     private DateField getDateField(TimeZone timezone,

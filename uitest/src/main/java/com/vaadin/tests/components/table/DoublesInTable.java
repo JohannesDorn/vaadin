@@ -5,11 +5,6 @@ import java.text.NumberFormat;
 import java.util.Date;
 import java.util.Locale;
 
-import com.vaadin.data.Property.ValueChangeEvent;
-import com.vaadin.data.Property.ValueChangeListener;
-import com.vaadin.data.util.BeanItemContainer;
-import com.vaadin.data.util.converter.Converter;
-import com.vaadin.data.util.converter.StringToDoubleConverter;
 import com.vaadin.tests.components.TestBase;
 import com.vaadin.tests.data.bean.Address;
 import com.vaadin.tests.data.bean.Country;
@@ -17,8 +12,13 @@ import com.vaadin.tests.data.bean.Person;
 import com.vaadin.tests.data.bean.Sex;
 import com.vaadin.tests.util.Log;
 import com.vaadin.ui.CheckBox;
-import com.vaadin.ui.ComboBox;
-import com.vaadin.ui.Table;
+import com.vaadin.v7.data.Property.ValueChangeEvent;
+import com.vaadin.v7.data.Property.ValueChangeListener;
+import com.vaadin.v7.data.util.BeanItemContainer;
+import com.vaadin.v7.data.util.converter.Converter;
+import com.vaadin.v7.data.util.converter.StringToDoubleConverter;
+import com.vaadin.v7.ui.ComboBox;
+import com.vaadin.v7.ui.Table;
 
 public class DoublesInTable extends TestBase {
     BeanItemContainer<Person> personBeanItemContainer = new BeanItemContainer<Person>(
@@ -38,24 +38,12 @@ public class DoublesInTable extends TestBase {
     protected void setup() {
         editMode = new CheckBox("Edit mode");
         editMode.setImmediate(true);
-        editMode.addListener(new ValueChangeListener() {
-
-            @Override
-            public void valueChange(ValueChangeEvent event) {
-                table.setEditable(editMode.getValue());
-
-            }
-        });
+        editMode.addValueChangeListener(
+                event -> table.setEditable(editMode.getValue()));
 
         useCustomConverters = new CheckBox("Use custom converters");
         useCustomConverters.setImmediate(true);
-        useCustomConverters.addListener(new ValueChangeListener() {
-
-            @Override
-            public void valueChange(ValueChangeEvent event) {
-                recreateTable();
-            }
-        });
+        useCustomConverters.addValueChangeListener(event -> recreateTable());
 
         localeSelect = createLocaleSelect();
         personBeanItemContainer = createContainer(100);
@@ -152,7 +140,7 @@ public class DoublesInTable extends TestBase {
             @Override
             public Sex convertToModel(String value,
                     Class<? extends Sex> targetType, Locale locale)
-                    throws com.vaadin.data.util.converter.Converter.ConversionException {
+                    throws com.vaadin.v7.data.util.converter.Converter.ConversionException {
                 // not used in this test - Table only converts to presentation
                 return null;
             }
@@ -160,7 +148,7 @@ public class DoublesInTable extends TestBase {
             @Override
             public String convertToPresentation(Sex value,
                     Class<? extends String> targetType, Locale locale)
-                    throws com.vaadin.data.util.converter.Converter.ConversionException {
+                    throws com.vaadin.v7.data.util.converter.Converter.ConversionException {
                 if (value == null) {
                     value = Sex.UNKNOWN;
                 }
@@ -212,7 +200,7 @@ public class DoublesInTable extends TestBase {
             @Override
             public Integer convertToModel(String value,
                     Class<? extends Integer> targetType, Locale locale)
-                    throws com.vaadin.data.util.converter.Converter.ConversionException {
+                    throws com.vaadin.v7.data.util.converter.Converter.ConversionException {
                 // not used in this test - Table only converts from source to
                 // target
                 return null;
@@ -221,7 +209,7 @@ public class DoublesInTable extends TestBase {
             @Override
             public String convertToPresentation(Integer value,
                     Class<? extends String> targetType, Locale locale)
-                    throws com.vaadin.data.util.converter.Converter.ConversionException {
+                    throws com.vaadin.v7.data.util.converter.Converter.ConversionException {
                 if (value == null) {
                     return null;
                 }

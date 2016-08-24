@@ -7,14 +7,14 @@ import java.util.Locale;
 
 import org.junit.Test;
 
-import com.vaadin.data.util.MethodProperty;
 import com.vaadin.server.VaadinSession;
 import com.vaadin.tests.data.bean.Address;
 import com.vaadin.tests.data.bean.Country;
 import com.vaadin.tests.data.bean.Person;
 import com.vaadin.tests.data.bean.Sex;
 import com.vaadin.tests.util.AlwaysLockedVaadinSession;
-import com.vaadin.ui.TextField;
+import com.vaadin.v7.data.util.MethodProperty;
+import com.vaadin.v7.ui.TextField;
 
 public class DefaultConverterFactoryTest {
 
@@ -73,8 +73,8 @@ public class DefaultConverterFactoryTest {
     }
 
     Person paulaBean = new Person("Paula", "Brilliant", "paula@brilliant.com",
-            34, Sex.FEMALE, new Address("Paula street 1", 12345, "P-town",
-                    Country.FINLAND));
+            34, Sex.FEMALE,
+            new Address("Paula street 1", 12345, "P-town", Country.FINLAND));
     {
         paulaBean.setSalary(49000);
         BigDecimal rent = new BigDecimal(57223);
@@ -89,8 +89,8 @@ public class DefaultConverterFactoryTest {
 
         TextField tf = new TextField();
         tf.setLocale(new Locale("en", "US"));
-        tf.setPropertyDataSource(new MethodProperty<Integer>(new FloatBean(12f,
-                23f), "f2"));
+        tf.setPropertyDataSource(
+                new MethodProperty<Integer>(new FloatBean(12f, 23f), "f2"));
         assertEquals("23", tf.getValue());
         tf.setValue("24");
         assertEquals("24", tf.getValue());
@@ -105,8 +105,8 @@ public class DefaultConverterFactoryTest {
 
         TextField tf = new TextField();
         tf.setLocale(new Locale("en", "US"));
-        tf.setPropertyDataSource(new MethodProperty<Integer>(new LongBean(12,
-                1982739187238L), "l2"));
+        tf.setPropertyDataSource(new MethodProperty<Integer>(
+                new LongBean(12, 1982739187238L), "l2"));
         assertEquals("1,982,739,187,238", tf.getValue());
         tf.setValue("1982739187239");
         assertEquals("1,982,739,187,239", tf.getValue());
@@ -120,15 +120,15 @@ public class DefaultConverterFactoryTest {
         VaadinSession.setCurrent(app);
         TextField tf = new TextField();
         tf.setLocale(new Locale("en", "US"));
-        tf.setPropertyDataSource(new MethodProperty<Integer>(paulaBean,
-                "salary"));
+        tf.setPropertyDataSource(
+                new MethodProperty<Integer>(paulaBean, "salary"));
         assertEquals("49,000", tf.getValue());
 
         tf.setLocale(new Locale("fi", "FI"));
         // FIXME: The following line should not be necessary and should be
         // removed
-        tf.setPropertyDataSource(new MethodProperty<Integer>(paulaBean,
-                "salary"));
+        tf.setPropertyDataSource(
+                new MethodProperty<Integer>(paulaBean, "salary"));
         String value = tf.getValue();
         // Java uses a non-breaking space (ascii 160) instead of space when
         // formatting

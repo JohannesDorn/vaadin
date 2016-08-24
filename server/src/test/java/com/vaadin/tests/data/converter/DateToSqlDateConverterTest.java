@@ -6,7 +6,7 @@ import java.util.Locale;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.vaadin.data.util.converter.DateToSqlDateConverter;
+import com.vaadin.v7.data.util.converter.DateToSqlDateConverter;
 
 public class DateToSqlDateConverterTest {
 

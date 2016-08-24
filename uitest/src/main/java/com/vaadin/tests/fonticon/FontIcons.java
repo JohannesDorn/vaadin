@@ -1,12 +1,12 @@
 /*
- * Copyright 2000-2014 Vaadin Ltd.
- * 
+ * Copyright 2000-2016 Vaadin Ltd.
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -26,36 +26,36 @@ import com.vaadin.server.VaadinRequest;
 import com.vaadin.shared.Position;
 import com.vaadin.shared.ui.label.ContentMode;
 import com.vaadin.tests.components.AbstractTestUI;
-import com.vaadin.ui.AbstractSelect;
 import com.vaadin.ui.Accordion;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.CheckBox;
-import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.DateField;
 import com.vaadin.ui.GridLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Link;
-import com.vaadin.ui.ListSelect;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.MenuBar.MenuItem;
 import com.vaadin.ui.NativeButton;
-import com.vaadin.ui.NativeSelect;
 import com.vaadin.ui.Notification;
-import com.vaadin.ui.OptionGroup;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.Slider;
 import com.vaadin.ui.TabSheet;
-import com.vaadin.ui.Table;
-import com.vaadin.ui.Table.Align;
-import com.vaadin.ui.Table.RowHeaderMode;
-import com.vaadin.ui.TextArea;
 import com.vaadin.ui.TextField;
-import com.vaadin.ui.Tree;
-import com.vaadin.ui.TwinColSelect;
 import com.vaadin.ui.Upload;
 import com.vaadin.ui.VerticalLayout;
+import com.vaadin.v7.ui.AbstractSelect;
+import com.vaadin.v7.ui.ComboBox;
+import com.vaadin.v7.ui.ListSelect;
+import com.vaadin.v7.ui.NativeSelect;
+import com.vaadin.v7.ui.OptionGroup;
+import com.vaadin.v7.ui.Table;
+import com.vaadin.v7.ui.Table.Align;
+import com.vaadin.v7.ui.Table.RowHeaderMode;
+import com.vaadin.v7.ui.TextArea;
+import com.vaadin.v7.ui.Tree;
+import com.vaadin.v7.ui.TwinColSelect;
 
 public class FontIcons extends AbstractTestUI {
 
@@ -71,13 +71,13 @@ public class FontIcons extends AbstractTestUI {
 
         layout.setIcon(icon);
 
-        layout.addComponent(new Button("Switch icon type",
-                new Button.ClickListener() {
+        layout.addComponent(
+                new Button("Switch icon type", new Button.ClickListener() {
 
                     @Override
                     public void buttonClick(ClickEvent event) {
-                        buildUI(icon instanceof FontIcon ? new ThemeResource(
-                                "../runo/icons/16/user.png")
+                        buildUI(icon instanceof FontIcon
+                                ? new ThemeResource("../runo/icons/16/user.png")
                                 : FontAwesome.ANDROID);
                     }
                 }));
@@ -86,7 +86,8 @@ public class FontIcons extends AbstractTestUI {
             Action[] actions = { new Action("Do it!", icon) };
 
             @Override
-            public void handleAction(Action action, Object sender, Object target) {
+            public void handleAction(Action action, Object sender,
+                    Object target) {
 
             }
 
@@ -109,10 +110,9 @@ public class FontIcons extends AbstractTestUI {
         layout.addComponent(gl);
 
         // Basic components, caption icon only
-        Class<?>[] components = { Button.class, CheckBox.class,
-                DateField.class, NativeButton.class, Link.class, Label.class,
-                Panel.class, Slider.class, TextArea.class, TextField.class,
-                Upload.class };
+        Class<?>[] components = { Button.class, CheckBox.class, DateField.class,
+                NativeButton.class, Link.class, Label.class, Panel.class,
+                Slider.class, TextArea.class, TextField.class, Upload.class };
         for (Class<?> clazz : components) {
             Component c;
             try {

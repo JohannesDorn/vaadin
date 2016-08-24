@@ -4,8 +4,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
-import com.vaadin.data.Property.ValueChangeEvent;
-import com.vaadin.data.Property.ValueChangeListener;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.shared.ui.MarginInfo;
 import com.vaadin.shared.ui.datefield.Resolution;
@@ -18,8 +16,10 @@ import com.vaadin.ui.GridLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.InlineDateField;
 import com.vaadin.ui.Label;
-import com.vaadin.ui.NativeSelect;
 import com.vaadin.ui.VerticalLayout;
+import com.vaadin.v7.data.Property.ValueChangeEvent;
+import com.vaadin.v7.data.Property.ValueChangeListener;
+import com.vaadin.v7.ui.NativeSelect;
 
 public class DateFieldRanges extends AbstractTestUI {
 
@@ -75,54 +75,30 @@ public class DateFieldRanges extends AbstractTestUI {
 
         fromRange.setValue(null);
         fromRange.setImmediate(true);
-        fromRange.addValueChangeListener(new ValueChangeListener() {
-
-            @Override
-            public void valueChange(ValueChangeEvent event) {
-
-                inlineDynamicDateField.setRangeStart(fromRange.getValue());
-                dynamicDateField.setRangeStart(fromRange.getValue());
-
-            }
+        fromRange.addValueChangeListener(event -> {
+            inlineDynamicDateField.setRangeStart(fromRange.getValue());
+            dynamicDateField.setRangeStart(fromRange.getValue());
         });
 
         toRange.setValue(null);
         toRange.setImmediate(true);
-        toRange.addValueChangeListener(new ValueChangeListener() {
-
-            @Override
-            public void valueChange(ValueChangeEvent event) {
-
-                inlineDynamicDateField.setRangeEnd(toRange.getValue());
-                dynamicDateField.setRangeEnd(toRange.getValue());
-
-            }
+        toRange.addValueChangeListener(event -> {
+            inlineDynamicDateField.setRangeEnd(toRange.getValue());
+            dynamicDateField.setRangeEnd(toRange.getValue());
         });
 
         valueDF.setValue(null);
         valueDF.setImmediate(true);
-        valueDF.addValueChangeListener(new ValueChangeListener() {
-
-            @Override
-            public void valueChange(ValueChangeEvent event) {
-
-                inlineDynamicDateField.setValue(valueDF.getValue());
-                dynamicDateField.setValue(valueDF.getValue());
-
-            }
+        valueDF.addValueChangeListener(event -> {
+            inlineDynamicDateField.setValue(valueDF.getValue());
+            dynamicDateField.setValue(valueDF.getValue());
         });
 
         immediateCB.setValue(true);
         immediateCB.setImmediate(true);
-        immediateCB.addValueChangeListener(new ValueChangeListener() {
-
-            @Override
-            public void valueChange(ValueChangeEvent event) {
-
-                inlineDynamicDateField.setImmediate(immediateCB.getValue());
-                dynamicDateField.setImmediate(immediateCB.getValue());
-
-            }
+        immediateCB.addValueChangeListener(event -> {
+            inlineDynamicDateField.setImmediate(immediateCB.getValue());
+            dynamicDateField.setImmediate(immediateCB.getValue());
         });
 
         recreate.addClickListener(new Button.ClickListener() {
@@ -148,8 +124,8 @@ public class DateFieldRanges extends AbstractTestUI {
         Calendar endCal = createCalendar();
         endCal.add(Calendar.DATE, 30);
 
-        dynamicDateField = createDateField(startCal.getTime(),
-                endCal.getTime(), null, Resolution.DAY, false);
+        dynamicDateField = createDateField(startCal.getTime(), endCal.getTime(),
+                null, Resolution.DAY, false);
         inlineDynamicDateField = createDateField(startCal.getTime(),
                 endCal.getTime(), null, Resolution.DAY, true);
 
@@ -210,8 +186,8 @@ public class DateFieldRanges extends AbstractTestUI {
         DateField df = createDateField(startCal.getTime(), endCal.getTime(),
                 null, Resolution.DAY, false);
         gl.addComponent(df);
-        DateField inline = createDateField(startCal.getTime(),
-                endCal.getTime(), null, Resolution.DAY, true);
+        DateField inline = createDateField(startCal.getTime(), endCal.getTime(),
+                null, Resolution.DAY, true);
         gl.addComponent(inline);
         inline.setId("staticInline");
         VerticalLayout vl = new VerticalLayout();
@@ -233,15 +209,10 @@ public class DateFieldRanges extends AbstractTestUI {
         final DateField gg = df;
         updateValuesForDateField(df);
 
-        df.addValueChangeListener(new ValueChangeListener() {
-
-            @Override
-            public void valueChange(ValueChangeEvent event) {
-                label.setValue((gg.getValue() == null ? "Nothing" : gg
-                        .getValue().toString())
-                        + " selected. isValid: "
-                        + gg.isValid());
-            }
+        df.addValueChangeListener(event -> {
+            label.setValue((gg.getValue() == null ? "Nothing"
+                    : gg.getValue().toString()) + " selected. isValid: "
+                    + (gg.getErrorMessage() != null));
         });
         return df;
     }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2000-2014 Vaadin Ltd.
+ * Copyright 2000-2016 Vaadin Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -23,11 +23,11 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import com.vaadin.testbench.By;
 import com.vaadin.testbench.parallel.BrowserUtil;
 import com.vaadin.tests.tb3.MultiBrowserTest;
-import com.vaadin.tests.tb3.newelements.ComboBoxElement;
+import com.vaadin.v7.testbench.customelements.ComboBoxElement;
 
 /**
  * Test for identical item captions in ComboBox.
- * 
+ *
  * @author Vaadin Ltd
  */
 public class ComboBoxIdenticalItemsTest extends MultiBrowserTest {

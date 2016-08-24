@@ -3,10 +3,10 @@ package com.vaadin.tests.data.converter;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.vaadin.data.util.converter.Converter;
-import com.vaadin.data.util.converter.Converter.ConversionException;
-import com.vaadin.data.util.converter.ReverseConverter;
-import com.vaadin.data.util.converter.StringToShortConverter;
+import com.vaadin.v7.data.util.converter.Converter;
+import com.vaadin.v7.data.util.converter.Converter.ConversionException;
+import com.vaadin.v7.data.util.converter.ReverseConverter;
+import com.vaadin.v7.data.util.converter.StringToShortConverter;
 
 public class StringToShortConverterTest {
 
@@ -23,7 +23,8 @@ public class StringToShortConverterTest {
     @Test
     public void testReverseNullConversion() {
         Assert.assertEquals("Null value reversely was converted incorrectly",
-                null, reverseConverter.convertToModel(null, String.class, null));
+                null,
+                reverseConverter.convertToModel(null, String.class, null));
     }
 
     @Test
@@ -41,8 +42,7 @@ public class StringToShortConverterTest {
 
     @Test
     public void testReverseValueConversion() {
-        Assert.assertEquals(
-                "Short value reversely was converted incorrectly",
+        Assert.assertEquals("Short value reversely was converted incorrectly",
                 reverseConverter.convertToModel((short) 10, String.class, null),
                 "10");
     }

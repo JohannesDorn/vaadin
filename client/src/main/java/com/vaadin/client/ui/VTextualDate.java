@@ -1,12 +1,12 @@
 /*
- * Copyright 2000-2014 Vaadin Ltd.
- * 
+ * Copyright 2000-2016 Vaadin Ltd.
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -38,6 +38,7 @@ import com.vaadin.client.ui.aria.AriaHelper;
 import com.vaadin.client.ui.aria.HandlesAriaCaption;
 import com.vaadin.client.ui.aria.HandlesAriaInvalid;
 import com.vaadin.client.ui.aria.HandlesAriaRequired;
+import com.vaadin.client.v7.ui.VLegacyTextField;
 import com.vaadin.shared.EventId;
 import com.vaadin.shared.ui.datefield.Resolution;
 
@@ -73,17 +74,16 @@ public class VTextualDate extends VDateField implements Field, ChangeHandler,
         text.addFocusHandler(new FocusHandler() {
             @Override
             public void onFocus(FocusEvent event) {
-                text.addStyleName(VTextField.CLASSNAME + "-"
-                        + VTextField.CLASSNAME_FOCUS);
+                text.addStyleName(VLegacyTextField.CLASSNAME + "-"
+                        + VLegacyTextField.CLASSNAME_FOCUS);
                 if (prompting) {
                     text.setText("");
                     setPrompting(false);
                 }
-                if (getClient() != null
-                        && getClient().hasEventListeners(VTextualDate.this,
-                                EventId.FOCUS)) {
-                    getClient()
-                            .updateVariable(getId(), EventId.FOCUS, "", true);
+                if (getClient() != null && getClient()
+                        .hasEventListeners(VTextualDate.this, EventId.FOCUS)) {
+                    getClient().updateVariable(getId(), EventId.FOCUS, "",
+                            true);
                 }
 
                 // Needed for tooltip event handling
@@ -93,17 +93,16 @@ public class VTextualDate extends VDateField implements Field, ChangeHandler,
         text.addBlurHandler(new BlurHandler() {
             @Override
             public void onBlur(BlurEvent event) {
-                text.removeStyleName(VTextField.CLASSNAME + "-"
-                        + VTextField.CLASSNAME_FOCUS);
+                text.removeStyleName(VLegacyTextField.CLASSNAME + "-"
+                        + VLegacyTextField.CLASSNAME_FOCUS);
                 String value = getText();
                 setPrompting(inputPrompt != null
                         && (value == null || "".equals(value)));
                 if (prompting) {
                     text.setText(readonly ? "" : inputPrompt);
                 }
-                if (getClient() != null
-                        && getClient().hasEventListeners(VTextualDate.this,
-                                EventId.BLUR)) {
+                if (getClient() != null && getClient()
+                        .hasEventListeners(VTextualDate.this, EventId.BLUR)) {
                     getClient().updateVariable(getId(), EventId.BLUR, "", true);
                 }
 
@@ -119,7 +118,7 @@ public class VTextualDate extends VDateField implements Field, ChangeHandler,
 
     protected void updateStyleNames() {
         if (text != null) {
-            text.setStyleName(VTextField.CLASSNAME);
+            text.setStyleName(VLegacyTextField.CLASSNAME);
             text.addStyleName(getStylePrimaryName() + "-textfield");
         }
     }
@@ -143,11 +142,13 @@ public class VTextualDate extends VDateField implements Field, ChangeHandler,
                         } else {
                             frmString += " HH";
                         }
-                        if (currentResolution.getCalendarField() >= Resolution.MINUTE
-                                .getCalendarField()) {
+                        if (currentResolution
+                                .getCalendarField() >= Resolution.MINUTE
+                                        .getCalendarField()) {
                             frmString += ":mm";
-                            if (currentResolution.getCalendarField() >= Resolution.SECOND
-                                    .getCalendarField()) {
+                            if (currentResolution
+                                    .getCalendarField() >= Resolution.SECOND
+                                            .getCalendarField()) {
                                 frmString += ":ss";
                             }
                         }
@@ -252,9 +253,8 @@ public class VTextualDate extends VDateField implements Field, ChangeHandler,
                     // presentation.
                     // FIXME: Add a description/example here of when this is
                     // needed
-                    text.setValue(
-                            getDateTimeService().formatDate(getDate(),
-                                    getFormatString()), false);
+                    text.setValue(getDateTimeService().formatDate(getDate(),
+                            getFormatString()), false);
                 }
 
                 // remove possibly added invalid value indication
@@ -274,8 +274,8 @@ public class VTextualDate extends VDateField implements Field, ChangeHandler,
             removeStyleName(getStylePrimaryName() + PARSE_ERROR_CLASSNAME);
         }
         // always send the date string
-        getClient()
-                .updateVariable(getId(), "dateString", text.getText(), false);
+        getClient().updateVariable(getId(), "dateString", text.getText(),
+                false);
 
         // Update variables
         // (only the smallest defining resolution needs to be
@@ -363,12 +363,9 @@ public class VTextualDate extends VDateField implements Field, ChangeHandler,
     }
 
     protected void setText(String text) {
-        if (inputPrompt != null
-                && (text == null || "".equals(text))
-                && !this.text.getStyleName()
-                        .contains(
-                                VTextField.CLASSNAME + "-"
-                                        + VTextField.CLASSNAME_FOCUS)) {
+        if (inputPrompt != null && (text == null || "".equals(text))
+                && !this.text.getStyleName().contains(VLegacyTextField.CLASSNAME
+                        + "-" + VLegacyTextField.CLASSNAME_FOCUS)) {
             text = readonly ? "" : inputPrompt;
             setPrompting(true);
         } else {
@@ -381,7 +378,8 @@ public class VTextualDate extends VDateField implements Field, ChangeHandler,
     private final String TEXTFIELD_ID = "field";
 
     @Override
-    public com.google.gwt.user.client.Element getSubPartElement(String subPart) {
+    public com.google.gwt.user.client.Element getSubPartElement(
+            String subPart) {
         if (subPart.equals(TEXTFIELD_ID)) {
             return text.getElement();
         }
@@ -390,7 +388,8 @@ public class VTextualDate extends VDateField implements Field, ChangeHandler,
     }
 
     @Override
-    public String getSubPartName(com.google.gwt.user.client.Element subElement) {
+    public String getSubPartName(
+            com.google.gwt.user.client.Element subElement) {
         if (text.getElement().isOrHasChild(subElement)) {
             return TEXTFIELD_ID;
         }

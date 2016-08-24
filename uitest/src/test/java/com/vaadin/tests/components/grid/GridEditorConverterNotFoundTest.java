@@ -1,12 +1,12 @@
 /*
- * Copyright 2000-2014 Vaadin Ltd.
- * 
+ * Copyright 2000-2016 Vaadin Ltd.
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -19,8 +19,8 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import com.vaadin.testbench.elements.GridElement;
 import com.vaadin.tests.components.grid.basicfeatures.GridBasicFeaturesTest;
+import com.vaadin.v7.testbench.customelements.GridElement;
 
 public class GridEditorConverterNotFoundTest extends GridBasicFeaturesTest {
 
@@ -36,7 +36,7 @@ public class GridEditorConverterNotFoundTest extends GridBasicFeaturesTest {
 
         $(GridElement.class).first().getCell(0, 0).doubleClick();
 
-        assertEquals("1. com.vaadin.data.Buffered$SourceException",
+        assertEquals("1. com.vaadin.v7.data.Buffered$SourceException",
                 getLogRow(0));
     }
 }

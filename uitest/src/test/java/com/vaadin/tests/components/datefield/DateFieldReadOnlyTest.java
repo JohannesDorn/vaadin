@@ -1,20 +1,20 @@
 package com.vaadin.tests.components.datefield;
 
-import com.vaadin.testbench.By;
-import com.vaadin.testbench.elements.ButtonElement;
-import com.vaadin.testbench.elements.DateFieldElement;
-import com.vaadin.tests.tb3.AbstractTB3Test;
-import com.vaadin.tests.tb3.MultiBrowserTest;
+import java.io.IOException;
+
 import org.junit.Test;
 import org.openqa.selenium.Keys;
 
-import java.io.IOException;
+import com.vaadin.testbench.By;
+import com.vaadin.testbench.elements.ButtonElement;
+import com.vaadin.testbench.elements.DateFieldElement;
+import com.vaadin.tests.tb3.MultiBrowserTest;
 
 public class DateFieldReadOnlyTest extends MultiBrowserTest {
 
     @Test
-    public void readOnlyDateFieldPopupShouldNotOpen() throws IOException,
-            InterruptedException {
+    public void readOnlyDateFieldPopupShouldNotOpen()
+            throws IOException, InterruptedException {
         openTestURL();
 
         compareScreen("initial");
@@ -29,8 +29,8 @@ public class DateFieldReadOnlyTest extends MultiBrowserTest {
     }
 
     private void closePopup() {
-        findElement(By.className("v-datefield-calendarpanel")).sendKeys(
-                Keys.RETURN);
+        findElement(By.className("v-datefield-calendarpanel"))
+                .sendKeys(Keys.RETURN);
     }
 
     private void openPopup() {

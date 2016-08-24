@@ -1,13 +1,13 @@
 package com.vaadin.tests.components.abstractfield;
 
-import com.vaadin.data.Property.ValueChangeEvent;
-import com.vaadin.data.Property.ValueChangeListener;
-import com.vaadin.data.util.ObjectProperty;
-import com.vaadin.data.validator.DoubleValidator;
-import com.vaadin.data.validator.IntegerValidator;
 import com.vaadin.tests.components.TestBase;
 import com.vaadin.tests.util.Log;
-import com.vaadin.ui.TextField;
+import com.vaadin.v7.data.Property.ValueChangeEvent;
+import com.vaadin.v7.data.Property.ValueChangeListener;
+import com.vaadin.v7.data.util.ObjectProperty;
+import com.vaadin.v7.data.validator.DoubleValidator;
+import com.vaadin.v7.data.validator.IntegerValidator;
+import com.vaadin.v7.ui.TextField;
 
 public class IntegerDoubleFieldsWithDataSource extends TestBase {
 

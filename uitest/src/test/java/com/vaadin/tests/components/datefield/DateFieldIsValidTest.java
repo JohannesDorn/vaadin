@@ -1,5 +1,5 @@
 /*
- * Copyright 2000-2014 Vaadin Ltd.
+ * Copyright 2000-2016 Vaadin Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -36,8 +36,8 @@ public class DateFieldIsValidTest extends MultiBrowserTest {
 
         waitForElementVisible(By.id("Log"));
         waitForElementVisible(By.className("v-datefield"));
-        WebElement dateTextbox = $(DateFieldElement.class).first().findElement(
-                By.className("v-textfield"));
+        WebElement dateTextbox = $(DateFieldElement.class).first()
+                .findElement(By.className("v-textfield"));
         ButtonElement button = $(ButtonElement.class).first();
 
         dateTextbox.sendKeys("01/01/01", Keys.TAB);
@@ -62,4 +62,5 @@ public class DateFieldIsValidTest extends MultiBrowserTest {
         Assert.assertTrue("Expected '" + expected + "' found '" + text + "'",
                 text.equals(expected));
     }
+
 }

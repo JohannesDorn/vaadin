@@ -1,6 +1,5 @@
 package com.vaadin.tests.components.table;
 
-import com.vaadin.data.Item;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.shared.ui.label.ContentMode;
 import com.vaadin.tests.components.AbstractTestUI;
@@ -9,8 +8,9 @@ import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.Label;
-import com.vaadin.ui.Table;
 import com.vaadin.ui.VerticalLayout;
+import com.vaadin.v7.data.Item;
+import com.vaadin.v7.ui.Table;
 
 public class TableMatchesMouseDownMouseUpElement extends AbstractTestUI {
 
@@ -41,8 +41,8 @@ public class TableMatchesMouseDownMouseUpElement extends AbstractTestUI {
         Item item = table.addItem("Item 1 (row 1)");
         item.getItemProperty("Column 1").setValue("String A");
         item.getItemProperty("Column 2").setValue(new Label("Label A"));
-        item.getItemProperty("Column 3").setValue(
-                new Label("<b>Label A</b>", ContentMode.HTML));
+        item.getItemProperty("Column 3")
+                .setValue(new Label("<b>Label A</b>", ContentMode.HTML));
         VerticalLayout l = new VerticalLayout();
         l.setId("row-1");
         l.setHeight(100, Unit.PIXELS);
@@ -52,10 +52,9 @@ public class TableMatchesMouseDownMouseUpElement extends AbstractTestUI {
         item.getItemProperty("Column 1").setValue("String B");
         item.getItemProperty("Column 2").setValue(new Label("Label B"));
         item.getItemProperty("Column 3")
-                .setValue(
-                        new Label(
-                                "<a style=\"color: blue\" href=\"javascript:false\">Label B</a>",
-                                ContentMode.HTML));
+                .setValue(new Label(
+                        "<a style=\"color: blue\" href=\"javascript:false\">Label B</a>",
+                        ContentMode.HTML));
         l = new VerticalLayout();
         l.setId("row-2");
         l.setSizeFull();

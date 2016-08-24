@@ -2,18 +2,18 @@ package com.vaadin.tests.containers.sqlcontainer;
 
 import java.sql.SQLException;
 
-import com.vaadin.data.util.sqlcontainer.SQLContainer;
-import com.vaadin.data.util.sqlcontainer.connection.JDBCConnectionPool;
-import com.vaadin.data.util.sqlcontainer.connection.SimpleJDBCConnectionPool;
-import com.vaadin.data.util.sqlcontainer.query.TableQuery;
 import com.vaadin.server.LegacyApplication;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.ComponentContainer;
-import com.vaadin.ui.LegacyWindow;
-import com.vaadin.ui.ProgressIndicator;
 import com.vaadin.ui.VerticalLayout;
+import com.vaadin.v7.data.util.sqlcontainer.SQLContainer;
+import com.vaadin.v7.data.util.sqlcontainer.connection.JDBCConnectionPool;
+import com.vaadin.v7.data.util.sqlcontainer.connection.SimpleJDBCConnectionPool;
+import com.vaadin.v7.data.util.sqlcontainer.query.TableQuery;
+import com.vaadin.v7.ui.LegacyWindow;
+import com.vaadin.v7.ui.ProgressIndicator;
 
 // author table in testdb (MySQL) is set out as follows
 // +-------------+-------------+------+-----+---------+----------------+
@@ -72,18 +72,18 @@ public class MassInsertMemoryLeakTestApp extends LegacyApplication {
                         SQLContainer c = new SQLContainer(q);
                         for (int i = 0; i < 100; i++) {
                             Object id = c.addItem();
-                            c.getContainerProperty(id, "FIRST_NAMES").setValue(
-                                    getRandonName());
-                            c.getContainerProperty(id, "LAST_NAME").setValue(
-                                    getRandonName());
+                            c.getContainerProperty(id, "FIRST_NAMES")
+                                    .setValue(getRandonName());
+                            c.getContainerProperty(id, "LAST_NAME")
+                                    .setValue(getRandonName());
                         }
                         c.commit();
                         getContext().lock();
                         try {
                             proggress
                                     .setValue(new Float((1.0f * cent) / cents));
-                            proggress.setCaption("" + 100 * cent
-                                    + " rows inserted");
+                            proggress.setCaption(
+                                    "" + 100 * cent + " rows inserted");
                         } finally {
                             getContext().unlock();
                         }

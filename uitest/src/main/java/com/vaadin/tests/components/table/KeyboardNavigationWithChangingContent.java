@@ -2,13 +2,13 @@ package com.vaadin.tests.components.table;
 
 import java.util.Arrays;
 
-import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.server.Sizeable;
 import com.vaadin.tests.components.TestBase;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
-import com.vaadin.ui.Table;
+import com.vaadin.v7.data.util.BeanItemContainer;
+import com.vaadin.v7.ui.Table;
 
 @SuppressWarnings("serial")
 public class KeyboardNavigationWithChangingContent extends TestBase {
@@ -31,24 +31,23 @@ public class KeyboardNavigationWithChangingContent extends TestBase {
         t.setMultiSelect(true);
 
         getLayout().addComponent(t);
-        getLayout().addComponent(
-                new Button("Change elements and selection",
-                        new ClickListener() {
+        getLayout().addComponent(new Button("Change elements and selection",
+                new ClickListener() {
 
-                            @Override
-                            public void buttonClick(ClickEvent event) {
+                    @Override
+                    public void buttonClick(ClickEvent event) {
 
-                                bic.removeAllItems();
-                                ValueHolder<String> v4 = null;
-                                for (int i = 4; i < 30; i++) {
-                                    v4 = new ValueHolder<String>("test" + i);
-                                    bic.addBean(v4);
+                        bic.removeAllItems();
+                        ValueHolder<String> v4 = null;
+                        for (int i = 4; i < 30; i++) {
+                            v4 = new ValueHolder<String>("test" + i);
+                            bic.addBean(v4);
 
-                                }
-                                t.select(t.firstItemId());
-                                t.focus();
-                            }
-                        }));
+                        }
+                        t.select(t.firstItemId());
+                        t.focus();
+                    }
+                }));
     }
 
     @Override

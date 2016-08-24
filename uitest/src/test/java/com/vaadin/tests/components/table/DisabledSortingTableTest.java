@@ -9,7 +9,7 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 
 import com.vaadin.testbench.TestBenchElement;
 import com.vaadin.testbench.elements.ButtonElement;
-import com.vaadin.testbench.elements.TableElement;
+import com.vaadin.v7.testbench.customelements.TableElement;
 import com.vaadin.tests.tb3.MultiBrowserTest;
 
 public class DisabledSortingTableTest extends MultiBrowserTest {
@@ -91,8 +91,8 @@ public class DisabledSortingTableTest extends MultiBrowserTest {
             @Override
             public String toString() {
                 // Timed out after 10 seconds waiting for ...
-                return String
-                        .format("header to get class name '%s'", className);
+                return String.format("header to get class name '%s'",
+                        className);
             }
         });
     }

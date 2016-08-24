@@ -4,8 +4,8 @@ import java.util.Calendar;
 import java.util.Locale;
 
 import com.vaadin.server.VaadinRequest;
+import com.vaadin.shared.ui.datefield.Resolution;
 import com.vaadin.tests.components.AbstractTestUI;
-import com.vaadin.tests.components.TestBase;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
@@ -26,7 +26,7 @@ public class DateFieldReadOnly extends AbstractTestUI {
     @Override
     protected void setup(VaadinRequest request) {
         final DateField timeField = new DateField("A read-only datefield");
-        timeField.setResolution(DateField.RESOLUTION_SEC);
+        timeField.setResolution(Resolution.SECOND);
         timeField.setDateFormat("HH:mm:ss");
         timeField.setCaption(null);
         timeField.setIcon(null);

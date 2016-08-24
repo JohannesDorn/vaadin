@@ -3,9 +3,9 @@ package com.vaadin.tests.components.table;
 import java.util.Arrays;
 import java.util.Collection;
 
-import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.tests.components.TestBase;
-import com.vaadin.ui.Table;
+import com.vaadin.v7.data.util.BeanItemContainer;
+import com.vaadin.v7.ui.Table;
 
 public class TableSelectPagingOff extends TestBase {
 
@@ -21,9 +21,10 @@ public class TableSelectPagingOff extends TestBase {
     }
 
     private Collection<MyBean> getBeans() {
-        return Arrays.asList(new MyBean("a", "description a"), new MyBean("b",
-                "description b"), new MyBean("c", "description c"), new MyBean(
-                "d", "description d"));
+        return Arrays.asList(new MyBean("a", "description a"),
+                new MyBean("b", "description b"),
+                new MyBean("c", "description c"),
+                new MyBean("d", "description d"));
     }
 
     public class MyBean {

@@ -5,21 +5,21 @@ import static org.junit.Assert.fail;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.vaadin.data.Validator.InvalidValueException;
-import com.vaadin.data.util.MethodProperty;
-import com.vaadin.data.util.converter.Converter.ConversionException;
-import com.vaadin.data.util.converter.StringToIntegerConverter;
 import com.vaadin.tests.data.bean.Address;
 import com.vaadin.tests.data.bean.Country;
 import com.vaadin.tests.data.bean.Person;
 import com.vaadin.tests.data.bean.Sex;
-import com.vaadin.ui.TextField;
+import com.vaadin.v7.data.Validator.InvalidValueException;
+import com.vaadin.v7.data.util.converter.Converter.ConversionException;
+import com.vaadin.v7.data.util.MethodProperty;
+import com.vaadin.v7.data.util.converter.StringToIntegerConverter;
+import com.vaadin.v7.ui.TextField;
 
 public class AbsFieldValueConversionErrorTest {
 
     Person paulaBean = new Person("Paula", "Brilliant", "paula@brilliant.com",
-            34, Sex.FEMALE, new Address("Paula street 1", 12345, "P-town",
-                    Country.FINLAND));
+            34, Sex.FEMALE,
+            new Address("Paula street 1", 12345, "P-town", Country.FINLAND));
 
     @Test
     public void testValidateConversionErrorParameters() {

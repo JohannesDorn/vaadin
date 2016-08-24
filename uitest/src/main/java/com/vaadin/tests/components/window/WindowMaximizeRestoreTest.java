@@ -1,15 +1,11 @@
 package com.vaadin.tests.components.window;
 
-import com.vaadin.data.Item;
-import com.vaadin.data.Property.ValueChangeEvent;
-import com.vaadin.data.Property.ValueChangeListener;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.shared.ui.window.WindowMode;
 import com.vaadin.tests.components.AbstractTestUI;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.CheckBox;
-import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.ComponentContainer;
 import com.vaadin.ui.NativeButton;
 import com.vaadin.ui.UI;
@@ -19,6 +15,10 @@ import com.vaadin.ui.Window.CloseEvent;
 import com.vaadin.ui.Window.CloseListener;
 import com.vaadin.ui.Window.WindowModeChangeEvent;
 import com.vaadin.ui.Window.WindowModeChangeListener;
+import com.vaadin.v7.data.Item;
+import com.vaadin.v7.data.Property.ValueChangeEvent;
+import com.vaadin.v7.data.Property.ValueChangeListener;
+import com.vaadin.v7.ui.ComboBox;
 
 public class WindowMaximizeRestoreTest extends AbstractTestUI {
     Button.ClickListener addListener = new Button.ClickListener() {
@@ -101,23 +101,13 @@ public class WindowMaximizeRestoreTest extends AbstractTestUI {
         });
         final CheckBox resizeable = new CheckBox("Resizeable");
         resizeable.setValue(w.isResizable());
-        resizeable.addValueChangeListener(new ValueChangeListener() {
-
-            @Override
-            public void valueChange(ValueChangeEvent event) {
-                w.setResizable(resizeable.getValue());
-            }
-        });
+        resizeable.addValueChangeListener(
+                event -> w.setResizable(resizeable.getValue()));
         ((ComponentContainer) w.getContent()).addComponent(resizeable);
         final CheckBox closeable = new CheckBox("Closeable");
         closeable.setValue(w.isClosable());
-        closeable.addValueChangeListener(new ValueChangeListener() {
-
-            @Override
-            public void valueChange(ValueChangeEvent event) {
-                w.setClosable(closeable.getValue());
-            }
-        });
+        closeable.addValueChangeListener(
+                event -> w.setClosable(closeable.getValue()));
         ((ComponentContainer) w.getContent()).addComponent(closeable);
         NativeButton contentFull = new NativeButton("Set Content Size Full",
                 new Button.ClickListener() {
@@ -145,8 +135,8 @@ public class WindowMaximizeRestoreTest extends AbstractTestUI {
             @Override
             public void windowClose(CloseEvent e) {
                 Item item = addWindowAgain.addItem(w);
-                addWindowAgain.setItemCaption(w, "Window "
-                        + w.getData().toString());
+                addWindowAgain.setItemCaption(w,
+                        "Window " + w.getData().toString());
             }
         });
 

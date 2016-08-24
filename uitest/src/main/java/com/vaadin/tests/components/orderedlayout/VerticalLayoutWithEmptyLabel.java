@@ -11,10 +11,10 @@ import com.vaadin.ui.Component;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Panel;
-import com.vaadin.ui.Table;
-import com.vaadin.ui.TextArea;
-import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
+import com.vaadin.v7.ui.Table;
+import com.vaadin.v7.ui.TextArea;
+import com.vaadin.v7.ui.TextField;
 
 public class VerticalLayoutWithEmptyLabel extends AbstractTestUI {
 
@@ -121,7 +121,8 @@ public class VerticalLayoutWithEmptyLabel extends AbstractTestUI {
         private final Label myLabel = new Label("");
         private final TextField filterPhoneField = new TextField(
                 "Foobar Number");
-        private final TextField filterFoobarField = new TextField("Foobar ID");
+        private final TextField filterFoobarField = new TextField(
+                "Foobar ID");
         private final CheckBox incomingOnlyField = new CheckBox(
                 "Incoming foobar only");
 
@@ -146,7 +147,8 @@ public class VerticalLayoutWithEmptyLabel extends AbstractTestUI {
             this.addComponent(topLayout);
 
             // Foobar phone #
-            final TextField smsNumber = new TextField("Foobar Phone #");
+            final TextField smsNumber = new TextField(
+                    "Foobar Phone #");
             smsNumber.setSizeUndefined();
             smsNumber.setColumns(12);
             smsNumber.setMaxLength(16);

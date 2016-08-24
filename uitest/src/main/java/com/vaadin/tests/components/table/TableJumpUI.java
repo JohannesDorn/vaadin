@@ -1,12 +1,12 @@
 /*
- * Copyright 2000-2014 Vaadin Ltd.
- * 
+ * Copyright 2000-2016 Vaadin Ltd.
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -16,7 +16,6 @@
 package com.vaadin.tests.components.table;
 
 import com.vaadin.annotations.Theme;
-import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.event.FieldEvents.BlurEvent;
 import com.vaadin.event.FieldEvents.BlurListener;
 import com.vaadin.event.FieldEvents.FocusEvent;
@@ -25,14 +24,15 @@ import com.vaadin.server.VaadinRequest;
 import com.vaadin.tests.components.AbstractTestUIWithLog;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
-import com.vaadin.ui.Table;
-import com.vaadin.ui.TextField;
 import com.vaadin.ui.themes.ValoTheme;
+import com.vaadin.v7.data.util.BeanItemContainer;
+import com.vaadin.v7.ui.Table;
+import com.vaadin.v7.ui.TextField;
 
 /**
  * Test for ensuring page doesn't jump up to the Table selection on IE with
  * these steps:
- * 
+ *
  * <p>
  * 1. refresh page <br>
  * 2. click within URL bar <br>
@@ -44,7 +44,7 @@ import com.vaadin.ui.themes.ValoTheme;
  * The problem is that IE for some reason does not fire a blur event for the
  * table at step 4, leading to table thinking it is focused when it is updated
  * in step 6.
- * 
+ *
  * @author Vaadin Ltd
  */
 @Theme(ValoTheme.THEME_NAME)

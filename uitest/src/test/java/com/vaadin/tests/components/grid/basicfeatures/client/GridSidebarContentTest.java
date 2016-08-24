@@ -1,12 +1,12 @@
 /*
- * Copyright 2000-2014 Vaadin Ltd.
- * 
+ * Copyright 2000-2016 Vaadin Ltd.
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -23,7 +23,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import com.vaadin.tests.components.grid.basicfeatures.GridBasicClientFeaturesTest;
-import com.vaadin.tests.components.grid.basicfeatures.element.CustomGridElement;
+import com.vaadin.v7.testbench.customelements.GridElement;
 
 public class GridSidebarContentTest extends GridBasicClientFeaturesTest {
 
@@ -38,8 +38,8 @@ public class GridSidebarContentTest extends GridBasicClientFeaturesTest {
 
         getSidebarOpenButton().click();
 
-        WebElement toggle = getSidebarPopup().findElement(
-                By.className("column-hiding-toggle"));
+        WebElement toggle = getSidebarPopup()
+                .findElement(By.className("column-hiding-toggle"));
 
         Assert.assertEquals("Column 0 should be togglable", "Header (0,0)",
                 toggle.getText());
@@ -53,7 +53,7 @@ public class GridSidebarContentTest extends GridBasicClientFeaturesTest {
     @Test
     public void testAddingCustomSidebarItem() {
         openTestURL();
-        CustomGridElement gridElement = getGridElement();
+        GridElement gridElement = getGridElement();
 
         selectMenuPath("Component", "Sidebar", "Add item to end");
 
@@ -64,8 +64,8 @@ public class GridSidebarContentTest extends GridBasicClientFeaturesTest {
 
         sidebarItem.click();
 
-        Assert.assertEquals("Sidebar should be closed after clicking item 0",
-                0, countBySelector(".v-grid-sidebar-content"));
+        Assert.assertEquals("Sidebar should be closed after clicking item 0", 0,
+                countBySelector(".v-grid-sidebar-content"));
     }
 
     @Test
@@ -122,8 +122,8 @@ public class GridSidebarContentTest extends GridBasicClientFeaturesTest {
     }
 
     private void assertSidebarMenuItems(String... items) {
-        List<WebElement> menuItems = getSidebarPopup().findElements(
-                By.cssSelector(".v-grid-sidebar-content td"));
+        List<WebElement> menuItems = getSidebarPopup()
+                .findElements(By.cssSelector(".v-grid-sidebar-content td"));
 
         Assert.assertEquals("Expected " + items.length + " menu items",
                 items.length, menuItems.size());

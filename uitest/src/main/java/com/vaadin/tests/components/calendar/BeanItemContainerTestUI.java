@@ -19,24 +19,24 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-import com.vaadin.data.fieldgroup.FieldGroup;
-import com.vaadin.data.fieldgroup.FieldGroup.CommitException;
-import com.vaadin.data.util.BeanItem;
-import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.event.Action;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.shared.ui.datefield.Resolution;
-import com.vaadin.ui.Calendar;
-import com.vaadin.ui.DateField;
 import com.vaadin.ui.FormLayout;
-import com.vaadin.ui.Table;
-import com.vaadin.ui.TextField;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalSplitPanel;
 import com.vaadin.ui.Window;
 import com.vaadin.ui.Window.CloseEvent;
-import com.vaadin.ui.components.calendar.ContainerEventProvider;
-import com.vaadin.ui.components.calendar.event.BasicEvent;
+import com.vaadin.v7.data.fieldgroup.FieldGroup;
+import com.vaadin.v7.data.fieldgroup.FieldGroup.CommitException;
+import com.vaadin.v7.data.util.BeanItem;
+import com.vaadin.v7.data.util.BeanItemContainer;
+import com.vaadin.v7.ui.Calendar;
+import com.vaadin.v7.ui.DateField;
+import com.vaadin.v7.ui.Table;
+import com.vaadin.v7.ui.TextField;
+import com.vaadin.v7.ui.components.calendar.ContainerEventProvider;
+import com.vaadin.v7.ui.components.calendar.event.BasicEvent;
 
 public class BeanItemContainerTestUI extends UI {
 
@@ -67,8 +67,8 @@ public class BeanItemContainerTestUI extends UI {
         // Add event table connected to same data source
         table = createTable();
         table.setContainerDataSource(events);
-        table.setVisibleColumns(new Object[] { "caption", "description",
-                "start", "end" });
+        table.setVisibleColumns(
+                new Object[] { "caption", "description", "start", "end" });
         content.addComponent(table);
 
         BasicEvent longEvent = new BasicEvent();
@@ -81,7 +81,7 @@ public class BeanItemContainerTestUI extends UI {
 
     /**
      * Creates a table with some actions
-     * 
+     *
      * @return
      */
     private Table createTable() {
@@ -94,7 +94,8 @@ public class BeanItemContainerTestUI extends UI {
             private final Action REMOVE = new Action("Remove event");
 
             @Override
-            public void handleAction(Action action, Object sender, Object target) {
+            public void handleAction(Action action, Object sender,
+                    Object target) {
                 if (action == ADD) {
                     BasicEvent event = new BasicEvent();
                     event.setStart(new Date(100, 1, 1));
@@ -121,7 +122,7 @@ public class BeanItemContainerTestUI extends UI {
 
     /**
      * Opens up a modal dialog window where an event can be modified
-     * 
+     *
      * @param event
      *            The event to modify
      */
@@ -156,8 +157,8 @@ public class BeanItemContainerTestUI extends UI {
         fieldGroup.bind(startField, ContainerEventProvider.STARTDATE_PROPERTY);
         fieldGroup.bind(endField, ContainerEventProvider.ENDDATE_PROPERTY);
 
-        fieldGroup.setItemDataSource(new BeanItem<BasicEvent>(event, Arrays
-                .asList(ContainerEventProvider.CAPTION_PROPERTY,
+        fieldGroup.setItemDataSource(new BeanItem<BasicEvent>(event,
+                Arrays.asList(ContainerEventProvider.CAPTION_PROPERTY,
                         ContainerEventProvider.DESCRIPTION_PROPERTY,
                         ContainerEventProvider.STARTDATE_PROPERTY,
                         ContainerEventProvider.ENDDATE_PROPERTY)));

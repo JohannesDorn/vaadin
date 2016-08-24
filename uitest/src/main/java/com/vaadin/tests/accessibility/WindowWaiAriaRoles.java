@@ -1,5 +1,5 @@
 /*
- * Copyright 2000-2014 Vaadin Ltd.
+ * Copyright 2000-2016 Vaadin Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -35,7 +35,7 @@ public class WindowWaiAriaRoles extends AbstractTestUI {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see com.vaadin.tests.components.AbstractTestUI#setup(com.vaadin.server.
      * VaadinRequest)
      */
@@ -86,7 +86,7 @@ public class WindowWaiAriaRoles extends AbstractTestUI {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see com.vaadin.tests.components.AbstractTestUI#getTestDescription()
      */
     @Override
@@ -96,7 +96,7 @@ public class WindowWaiAriaRoles extends AbstractTestUI {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see com.vaadin.tests.components.AbstractTestUI#getTicketNumber()
      */
     @Override

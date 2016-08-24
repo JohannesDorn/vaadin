@@ -3,6 +3,7 @@ package com.vaadin.tests.components.datefield;
 import java.util.Calendar;
 import java.util.Locale;
 
+import com.vaadin.shared.ui.datefield.Resolution;
 import com.vaadin.tests.components.TestBase;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
@@ -38,7 +39,8 @@ public class DateFieldExtendedRange extends TestBase {
 
         fields[4] = makeDateField(true, fi, "Finnish locale with week numbers");
         fields[4].setShowISOWeekNumbers(true);
-        fields[5] = makeDateField(false, fi, "Finnish locale with week numbers");
+        fields[5] = makeDateField(false, fi,
+                "Finnish locale with week numbers");
         fields[5].setShowISOWeekNumbers(true);
 
         for (DateField f : fields) {
@@ -71,7 +73,7 @@ public class DateFieldExtendedRange extends TestBase {
     private DateField makeDateField(boolean isPopup, Locale locale,
             String caption) {
         DateField df = isPopup ? new PopupDateField() : new InlineDateField();
-        df.setResolution(DateField.RESOLUTION_DAY);
+        df.setResolution(Resolution.DAY);
         df.setValue(date.getTime());
         df.setLocale(locale);
         df.setCaption(caption);

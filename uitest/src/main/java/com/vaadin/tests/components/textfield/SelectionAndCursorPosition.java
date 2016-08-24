@@ -1,7 +1,5 @@
 package com.vaadin.tests.components.textfield;
 
-import com.vaadin.data.Property;
-import com.vaadin.data.Property.ValueChangeEvent;
 import com.vaadin.tests.components.TestBase;
 import com.vaadin.ui.AbstractTextField;
 import com.vaadin.ui.Button;
@@ -11,8 +9,8 @@ import com.vaadin.ui.CheckBox;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Panel;
-import com.vaadin.ui.TextArea;
 import com.vaadin.ui.TextField;
+import com.vaadin.v7.ui.TextArea;
 
 public class SelectionAndCursorPosition extends TestBase {
 
@@ -27,19 +25,21 @@ public class SelectionAndCursorPosition extends TestBase {
         panel.setCaption("Hackers panel");
         CheckBox ml = new CheckBox("Multiline");
         ml.setImmediate(true);
-        ml.addListener(new Property.ValueChangeListener() {
-            @Override
-            public void valueChange(ValueChangeEvent event) {
-                if (textField.getUI() == null
-                        || textField.getUI().getSession() == null) {
-                    replaceComponent(textArea, textField);
-                    activeComponent = textField;
-                } else {
-                    replaceComponent(textField, textArea);
-                    activeComponent = textArea;
-                }
-            }
-        });
+        // FIXME re-add this when TextArea has been replaced with vaadin8
+        // version
+        // ml.addListener(new Property.ValueChangeListener() {
+        // @Override
+        // public void valueChange(ValueChangeEvent event) {
+        // if (textField.getUI() == null
+        // || textField.getUI().getSession() == null) {
+        // replaceComponent(textArea, textField);
+        // activeComponent = textField;
+        // } else {
+        // replaceComponent(textField, textArea);
+        // activeComponent = textArea;
+        // }
+        // }
+        // });
         fl.addComponent(ml);
 
         Button b = new Button("Select all ( selectAll() )");
@@ -52,8 +52,8 @@ public class SelectionAndCursorPosition extends TestBase {
         fl.addComponent(b);
 
         HorizontalLayout selectRange = new HorizontalLayout();
-        selectRange
-                .setCaption("Select range of text ( setSelectionRange(int start, int lengt) )");
+        selectRange.setCaption(
+                "Select range of text ( setSelectionRange(int start, int lengt) )");
         final TextField start = new TextField("From:");
         final TextField length = new TextField("Selection length:");
         b = new Button("select");
@@ -63,7 +63,7 @@ public class SelectionAndCursorPosition extends TestBase {
                 int startPos = Integer.parseInt(start.getValue());
                 int lenght = Integer.parseInt(length.getValue());
 
-                activeComponent.setSelectionRange(startPos, lenght);
+                activeComponent.setSelection(startPos, lenght);
             }
         });
 
@@ -85,8 +85,8 @@ public class SelectionAndCursorPosition extends TestBase {
 
         setCursorPosition.addComponent(pos);
         setCursorPosition.addComponent(b);
-        setCursorPosition
-                .setCaption("Set cursor position ( setCursorPosition(int pos) )");
+        setCursorPosition.setCaption(
+                "Set cursor position ( setCursorPosition(int pos) )");
         fl.addComponent(setCursorPosition);
 
         getLayout().addComponent(textField);

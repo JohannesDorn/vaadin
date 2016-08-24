@@ -9,11 +9,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import com.vaadin.data.Item;
-import com.vaadin.data.util.DefaultItemSorter;
-import com.vaadin.data.util.HierarchicalContainer;
-import com.vaadin.event.ItemClickEvent;
-import com.vaadin.event.ItemClickEvent.ItemClickListener;
 import com.vaadin.server.ExternalResource;
 import com.vaadin.server.LegacyApplication;
 import com.vaadin.server.Sizeable;
@@ -25,10 +20,15 @@ import com.vaadin.ui.Component;
 import com.vaadin.ui.Embedded;
 import com.vaadin.ui.HorizontalSplitPanel;
 import com.vaadin.ui.Label;
-import com.vaadin.ui.LegacyWindow;
-import com.vaadin.ui.Tree;
-import com.vaadin.ui.Tree.ItemStyleGenerator;
 import com.vaadin.ui.VerticalLayout;
+import com.vaadin.v7.data.Item;
+import com.vaadin.v7.data.util.DefaultItemSorter;
+import com.vaadin.v7.data.util.HierarchicalContainer;
+import com.vaadin.v7.event.ItemClickEvent;
+import com.vaadin.v7.event.ItemClickEvent.ItemClickListener;
+import com.vaadin.v7.ui.LegacyWindow;
+import com.vaadin.v7.ui.Tree;
+import com.vaadin.v7.ui.Tree.ItemStyleGenerator;
 
 public class Components extends LegacyApplication {
 
@@ -93,10 +93,9 @@ public class Components extends LegacyApplication {
         sp = new HorizontalSplitPanel();
         sp.setSizeFull();
         VerticalLayout naviLayout = new VerticalLayout();
-        naviLayout
-                .addComponent(new Label(
-                        "Click to open a test case.<br/>Right click to open test in a new window<br/><br/>",
-                        ContentMode.HTML));
+        naviLayout.addComponent(new Label(
+                "Click to open a test case.<br/>Right click to open test in a new window<br/><br/>",
+                ContentMode.HTML));
         naviLayout.addComponent(createMenu());
         naviLayout.addComponent(createMissingTestsList());
 
@@ -104,10 +103,9 @@ public class Components extends LegacyApplication {
         sp.setSplitPosition(250, Sizeable.UNITS_PIXELS);
         VerticalLayout embeddingLayout = new VerticalLayout();
         embeddingLayout.setSizeFull();
-        embeddingLayout
-                .addComponent(new Label(
-                        "<b>Do not use the embedded version for creating automated tests. Open the test in a new window before recording.</b><br/>",
-                        ContentMode.HTML));
+        embeddingLayout.addComponent(new Label(
+                "<b>Do not use the embedded version for creating automated tests. Open the test in a new window before recording.</b><br/>",
+                ContentMode.HTML));
         applicationEmbedder.setSizeFull();
         embeddingLayout.addComponent(applicationEmbedder);
         embeddingLayout.setExpandRatio(applicationEmbedder, 1);
@@ -129,8 +127,9 @@ public class Components extends LegacyApplication {
             missingTests += "<font class=\"" + cls + "\">"
                     + component.getSimpleName() + "</font><br/>";
         }
-        return new Label("<b>Components without a test:</B><br/>"
-                + missingTests, ContentMode.HTML);
+        return new Label(
+                "<b>Components without a test:</B><br/>" + missingTests,
+                ContentMode.HTML);
     }
 
     private Component createMenu() {

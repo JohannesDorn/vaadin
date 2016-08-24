@@ -1,5 +1,5 @@
 /*
- * Copyright 2000-2014 Vaadin Ltd.
+ * Copyright 2000-2016 Vaadin Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -32,7 +32,6 @@ import com.google.gwt.dom.client.NativeEvent;
 import com.google.gwt.dom.client.Node;
 import com.google.gwt.dom.client.NodeList;
 import com.google.gwt.dom.client.Style;
-import com.google.gwt.dom.client.Style.Display;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.dom.client.Touch;
 import com.google.gwt.event.dom.client.KeyEvent;
@@ -54,9 +53,9 @@ public class WidgetUtil {
 
     /**
      * Helper method for debugging purposes.
-     * 
+     *
      * Stops execution on firefox browsers on a breakpoint.
-     * 
+     *
      */
     public static native void browserDebugger()
     /*-{
@@ -67,7 +66,7 @@ public class WidgetUtil {
     /**
      * Redirects the browser to the given url or refreshes the page if url is
      * null
-     * 
+     *
      * @since 7.6
      * @param url
      *            The url to redirect to or null to refresh
@@ -85,7 +84,7 @@ public class WidgetUtil {
      * Helper method for a bug fix #14041. For mozilla getKeyCode return 0 for
      * space bar (because space is considered as char). If return 0 use
      * getCharCode.
-     * 
+     *
      * @param event
      * @return return key code
      * @since 7.2.4
@@ -99,12 +98,12 @@ public class WidgetUtil {
     }
 
     /**
-     * 
+     *
      * Returns the topmost element of from given coordinates.
-     * 
+     *
      * TODO fix crossplat issues clientX vs pageX. See quircksmode. Not critical
      * for vaadin as we scroll div istead of page.
-     * 
+     *
      * @param x
      * @param y
      * @return the element at given coordinates
@@ -112,8 +111,6 @@ public class WidgetUtil {
     public static native Element getElementFromPoint(int clientX, int clientY)
     /*-{
         var el = $wnd.document.elementFromPoint(clientX, clientY);
-        // Call elementFromPoint two times to make sure IE8 also returns something sensible if the application is running in an iframe
-        el = $wnd.document.elementFromPoint(clientX, clientY);
         if(el != null && el.nodeType == 3) {
             el = el.parentNode;
         }
@@ -137,25 +134,19 @@ public class WidgetUtil {
 
     /**
      * Converts html entities to text.
-     * 
+     *
      * @param html
      * @return escaped string presentation of given html
      */
     public static String escapeHTML(String html) {
         DOM.setInnerText(escapeHtmlHelper, html);
         String escapedText = DOM.getInnerHTML(escapeHtmlHelper);
-        if (BrowserInfo.get().isIE8()) {
-            // #7478 IE8 "incorrectly" returns "<br>" for newlines set using
-            // setInnerText. The same for " " which is converted to "&nbsp;"
-            escapedText = escapedText.replaceAll("<(BR|br)>", "\n");
-            escapedText = escapedText.replaceAll("&nbsp;", " ");
-        }
         return escapedText;
     }
 
     /**
      * Escapes the string so it is safe to write inside an HTML attribute.
-     * 
+     *
      * @param attribute
      *            The string to escape
      * @return An escaped version of <literal>attribute</literal>.
@@ -174,9 +165,9 @@ public class WidgetUtil {
 
     /**
      * Clones given element as in JavaScript.
-     * 
+     *
      * Deprecate this if there appears similar method into GWT someday.
-     * 
+     *
      * @param element
      * @param deep
      *            clone child tree also
@@ -293,8 +284,8 @@ public class WidgetUtil {
             setHeight(widget, "");
             return paddingBorderGuess;
         } else if (height.endsWith("px")) {
-            int pixelHeight = Integer.parseInt(height.substring(0,
-                    height.length() - 2));
+            int pixelHeight = Integer
+                    .parseInt(height.substring(0, height.length() - 2));
             return setHeightExcludingPaddingAndBorder(widget.getElement(),
                     pixelHeight, paddingBorderGuess, false);
         } else {
@@ -320,8 +311,8 @@ public class WidgetUtil {
             setWidth(widget, "");
             return paddingBorderGuess;
         } else if (width.endsWith("px")) {
-            int pixelWidth = Integer.parseInt(width.substring(0,
-                    width.length() - 2));
+            int pixelWidth = Integer
+                    .parseInt(width.substring(0, width.length() - 2));
             return setWidthExcludingPaddingAndBorder(widget.getElement(),
                     pixelWidth, paddingBorderGuess, false);
         } else {
@@ -431,7 +422,7 @@ public class WidgetUtil {
 
     /**
      * Defers the execution of {@link #runWebkitOverflowAutoFix(Element)}
-     * 
+     *
      * @since 7.2.6
      * @param elem
      *            with overflow auto
@@ -449,9 +440,9 @@ public class WidgetUtil {
 
     /**
      * Run workaround for webkits overflow auto issue.
-     * 
+     *
      * See: our bug #2138 and https://bugs.webkit.org/show_bug.cgi?id=21462
-     * 
+     *
      * @param elem
      *            with overflow auto
      */
@@ -459,12 +450,12 @@ public class WidgetUtil {
         // Add max version if fix lands sometime to Webkit
         // Starting from Opera 11.00, also a problem in Opera
         if (BrowserInfo.get().requiresOverflowAutoFix()) {
-            final String originalOverflow = elem.getStyle().getProperty(
-                    "overflow");
-            final String originalOverflowX = elem.getStyle().getProperty(
-                    "overflowX");
-            final String originalOverflowY = elem.getStyle().getProperty(
-                    "overflowY");
+            final String originalOverflow = elem.getStyle()
+                    .getProperty("overflow");
+            final String originalOverflowX = elem.getStyle()
+                    .getProperty("overflowX");
+            final String originalOverflowY = elem.getStyle()
+                    .getProperty("overflowY");
             if ("hidden".equals(originalOverflow)
                     || "hidden".equals(originalOverflowX)
                     || "hidden".equals(originalOverflowY)) {
@@ -509,7 +500,8 @@ public class WidgetUtil {
                     // updated when collapsing/expanding columns
                     // Also appeared in Safari 5.1 with webkit 534 (#7667)
                     if ((BrowserInfo.get().isChrome() || (BrowserInfo.get()
-                            .isSafari() && BrowserInfo.get().getWebkitVersion() >= 534))
+                            .isSafari()
+                            && BrowserInfo.get().getWebkitVersion() >= 534))
                             && (scrollleft > 0 || elem.getScrollLeft() > 0)) {
                         int scrollvalue = scrollleft;
 
@@ -540,14 +532,15 @@ public class WidgetUtil {
     /**
      * Gets the border-box width for the given element, i.e. element width +
      * border + padding. Always rounds up to nearest integer.
-     * 
+     *
      * @param element
      *            The element to check
      * @return The border-box width for the element
      */
-    public static int getRequiredWidth(com.google.gwt.dom.client.Element element) {
+    public static int getRequiredWidth(
+            com.google.gwt.dom.client.Element element) {
         int reqWidth = getRequiredWidthBoundingClientRect(element);
-        if (BrowserInfo.get().isIE() && !BrowserInfo.get().isIE8()) {
+        if (BrowserInfo.get().isIE()) {
             int csSize = getRequiredWidthComputedStyle(element);
             if (csSize == reqWidth + 1) {
                 // If computed style reports one pixel larger than requiredWidth
@@ -565,7 +558,7 @@ public class WidgetUtil {
     /**
      * Gets the border-box width for the given element, i.e. element width +
      * border + padding.
-     * 
+     *
      * @since 7.5.1
      * @param element
      *            The element to check
@@ -574,7 +567,7 @@ public class WidgetUtil {
     public static double getRequiredWidthDouble(
             com.google.gwt.dom.client.Element element) {
         double reqWidth = getRequiredWidthBoundingClientRectDouble(element);
-        if (BrowserInfo.get().isIE() && !BrowserInfo.get().isIE8()) {
+        if (BrowserInfo.get().isIE()) {
             double csWidth = getRequiredWidthComputedStyleDouble(element);
             if (csWidth > reqWidth && csWidth <= (reqWidth + 1)) {
                 // IE9 rounds reqHeight to integers BUT sometimes reports wrong
@@ -590,7 +583,7 @@ public class WidgetUtil {
     /**
      * Gets the border-box height for the given element, i.e. element height +
      * border + padding. Always rounds up to nearest integer.
-     * 
+     *
      * @param element
      *            The element to check
      * @return The border-box height for the element
@@ -598,7 +591,7 @@ public class WidgetUtil {
     public static int getRequiredHeight(
             com.google.gwt.dom.client.Element element) {
         int reqHeight = getRequiredHeightBoundingClientRect(element);
-        if (BrowserInfo.get().isIE() && !BrowserInfo.get().isIE8()) {
+        if (BrowserInfo.get().isIE()) {
             int csSize = getRequiredHeightComputedStyle(element);
             if (csSize == reqHeight + 1) {
                 // If computed style reports one pixel larger than
@@ -616,7 +609,7 @@ public class WidgetUtil {
     /**
      * Gets the border-box height for the given element, i.e. element height +
      * border + padding.
-     * 
+     *
      * @since 7.5.1
      * @param element
      *            The element to check
@@ -625,7 +618,7 @@ public class WidgetUtil {
     public static double getRequiredHeightDouble(
             com.google.gwt.dom.client.Element element) {
         double reqHeight = getRequiredHeightBoundingClientRectDouble(element);
-        if (BrowserInfo.get().isIE() && !BrowserInfo.get().isIE8()) {
+        if (BrowserInfo.get().isIE()) {
             double csHeight = getRequiredHeightComputedStyleDouble(element);
             if (csHeight > reqHeight && csHeight <= (reqHeight + 1)) {
                 // IE9 rounds reqHeight to integers BUT sometimes reports wrong
@@ -646,7 +639,7 @@ public class WidgetUtil {
      * <p>
      * In case the browser doesn't support bounding rectangles, the returned
      * value is the offset width.
-     * 
+     *
      * @param element
      *            the element of which to calculate the width
      * @return the width of the element
@@ -663,7 +656,7 @@ public class WidgetUtil {
      * <p>
      * In case the browser doesn't support bounding rectangles, the returned
      * value is the offset width.
-     * 
+     *
      * @param element
      *            the element of which to calculate the width
      * @return the subpixel-accurate width of the element
@@ -695,7 +688,7 @@ public class WidgetUtil {
              return @com.vaadin.client.WidgetUtil::getRequiredHeightBoundingClientRectDouble(Lcom/google/gwt/dom/client/Element;)(element);
          }
          var height = parseFloat(heightPx); // Will automatically skip "px" suffix
-         var border = parseFloat(cs.borderTopWidth) + parseFloat(cs.borderBottomWidth); // Will automatically skip "px" suffix 
+         var border = parseFloat(cs.borderTopWidth) + parseFloat(cs.borderBottomWidth); // Will automatically skip "px" suffix
          var padding = parseFloat(cs.paddingTop) + parseFloat(cs.paddingBottom); // Will automatically skip "px" suffix
          return height+border+padding;
      }-*/;
@@ -725,7 +718,7 @@ public class WidgetUtil {
      * <p>
      * In case the browser doesn't support bounding rectangles, the returned
      * value is the offset height.
-     * 
+     *
      * @param element
      *            the element of which to calculate the height
      * @return the height of the element
@@ -742,7 +735,7 @@ public class WidgetUtil {
      * <p>
      * In case the browser doesn't support bounding rectangles, the returned
      * value is the offset height.
-     * 
+     *
      * @param element
      *            the element of which to calculate the height
      * @return the subpixel-accurate height of the element
@@ -771,12 +764,13 @@ public class WidgetUtil {
 
     /**
      * Detects what is currently the overflow style attribute in given element.
-     * 
+     *
      * @param pe
      *            the element to detect
      * @return true if auto or scroll
      */
-    public static boolean mayHaveScrollBars(com.google.gwt.dom.client.Element pe) {
+    public static boolean mayHaveScrollBars(
+            com.google.gwt.dom.client.Element pe) {
         String overflow = getComputedStyle(pe, "overflow");
         if (overflow != null) {
             if (overflow.equals("auto") || overflow.equals("scroll")) {
@@ -793,7 +787,7 @@ public class WidgetUtil {
      * A simple helper method to detect "computed style" (aka style sheets +
      * element styles). Values returned differ a lot depending on browsers.
      * Always be very careful when using this.
-     * 
+     *
      * @param el
      *            the element from which the style property is detected
      * @param p
@@ -824,7 +818,7 @@ public class WidgetUtil {
 
     /**
      * Will (attempt) to focus the given DOM Element.
-     * 
+     *
      * @param el
      *            the element to focus
      */
@@ -847,7 +841,7 @@ public class WidgetUtil {
      * {@code C} or null, depending on whether the class parameter matches. This
      * may also be the case with other Composite-like classes that hijack the
      * event handling of their child widget(s).
-     * 
+     *
      * @param element
      *            the element where to start seeking of Widget
      * @param class1
@@ -884,7 +878,7 @@ public class WidgetUtil {
 
     /**
      * Force webkit to redraw an element
-     * 
+     *
      * @param element
      *            The element that should be redrawn
      */
@@ -899,24 +893,10 @@ public class WidgetUtil {
     }
 
     /**
-     * Performs a hack to trigger a re-layout in the IE8. This is usually
-     * necessary in cases where IE8 "forgets" to update child elements when they
-     * resize.
-     * 
-     * @param e
-     *            The element to perform the hack on
-     */
-    public static final void forceIE8Redraw(Element e) {
-        if (BrowserInfo.get().isIE8()) {
-            forceIERedraw(e);
-        }
-    }
-
-    /**
      * Performs a hack to trigger a re-layout in the IE browser. This is usually
      * necessary in cases where IE "forgets" to update child elements when they
      * resize.
-     * 
+     *
      * @since 7.3
      * @param e
      *            The element to perform the hack on
@@ -930,9 +910,9 @@ public class WidgetUtil {
     /**
      * Detaches and re-attaches the element from its parent. The element is
      * reattached at the same position in the DOM as it was before.
-     * 
+     *
      * Does nothing if the element is not attached to the DOM.
-     * 
+     *
      * @param element
      *            The element to detach and re-attach
      */
@@ -967,7 +947,7 @@ public class WidgetUtil {
 
     /**
      * Returns the index of the childElement within its parent.
-     * 
+     *
      * @param subElement
      * @return
      */
@@ -985,7 +965,7 @@ public class WidgetUtil {
      * Temporarily sets the {@code styleProperty} to {@code tempValue} and then
      * resets it to its current value. Used mainly to work around rendering
      * issues in IE (and possibly in other browsers)
-     * 
+     *
      * @param element
      *            The target element
      * @param styleProperty
@@ -1011,7 +991,7 @@ public class WidgetUtil {
      * A helper method to return the client position from an event. Returns
      * position from either first changed touch (if touch event) or from the
      * event itself.
-     * 
+     *
      * @param event
      * @return
      */
@@ -1027,7 +1007,7 @@ public class WidgetUtil {
      * Find the element corresponding to the coordinates in the passed mouse
      * event. Please note that this is not always the same as the target of the
      * event e.g. if event capture is used.
-     * 
+     *
      * @param event
      *            the mouse event to get coordinates from
      * @return the element at the coordinates of the event
@@ -1043,7 +1023,7 @@ public class WidgetUtil {
      * A helper method to return the client position from an event. Returns
      * position from either first changed touch (if touch event) or from the
      * event itself.
-     * 
+     *
      * @param event
      * @return
      */
@@ -1056,7 +1036,7 @@ public class WidgetUtil {
     }
 
     /**
-     * 
+     *
      * @see #getTouchOrMouseClientY(Event)
      * @param currentGwtEvent
      * @return
@@ -1067,7 +1047,7 @@ public class WidgetUtil {
 
     /**
      * @see #getTouchOrMouseClientX(Event)
-     * 
+     *
      * @param event
      * @return
      */
@@ -1091,10 +1071,9 @@ public class WidgetUtil {
                         touch.getClientX(), touch.getClientY(), false, false,
                         false, false, NativeEvent.BUTTON_LEFT);
         final NativeEvent createMouseDownEvent = Document.get()
-                .createMouseDownEvent(0, touch.getScreenX(),
-                        touch.getScreenY(), touch.getClientX(),
-                        touch.getClientY(), false, false, false, false,
-                        NativeEvent.BUTTON_LEFT);
+                .createMouseDownEvent(0, touch.getScreenX(), touch.getScreenY(),
+                        touch.getClientX(), touch.getClientY(), false, false,
+                        false, false, NativeEvent.BUTTON_LEFT);
         final NativeEvent createMouseClickEvent = Document.get()
                 .createClickEvent(0, touch.getScreenX(), touch.getScreenY(),
                         touch.getClientX(), touch.getClientY(), false, false,
@@ -1136,7 +1115,7 @@ public class WidgetUtil {
 
     /**
      * Gets the currently focused element.
-     * 
+     *
      * @return The active element or null if no active element could be found.
      */
     public native static Element getFocusedElement()
@@ -1150,9 +1129,9 @@ public class WidgetUtil {
 
     /**
      * Gets currently focused element and checks if it's editable
-     * 
+     *
      * @since 7.4
-     * 
+     *
      * @return true if focused element is editable
      */
     public static boolean isFocusedElementEditable() {
@@ -1174,7 +1153,7 @@ public class WidgetUtil {
      * this method checks that this widget nor any of its parents is hidden. Can
      * be e.g used to check whether component should react to some events or
      * not.
-     * 
+     *
      * @param widget
      * @return true if attached and displayed
      */
@@ -1207,7 +1186,7 @@ public class WidgetUtil {
     /**
      * Scrolls an element into view vertically only. Modified version of
      * Element.scrollIntoView.
-     * 
+     *
      * @param elem
      *            The element to scroll into view
      */
@@ -1242,7 +1221,7 @@ public class WidgetUtil {
     /**
      * Checks if the given event is either a touch event or caused by the left
      * mouse button
-     * 
+     *
      * @param event
      * @return true if the event is a touch event or caused by the left mouse
      *         button, false otherwise
@@ -1255,41 +1234,25 @@ public class WidgetUtil {
     /**
      * Resolve a relative URL to an absolute URL based on the current document's
      * location.
-     * 
+     *
      * @param url
      *            a string with the relative URL to resolve
      * @return the corresponding absolute URL as a string
      */
     public static String getAbsoluteUrl(String url) {
-        if (BrowserInfo.get().isIE8()) {
-            // The hard way - must use innerHTML and attach to DOM in IE8
-            DivElement divElement = Document.get().createDivElement();
-            divElement.getStyle().setDisplay(Display.NONE);
-
-            RootPanel.getBodyElement().appendChild(divElement);
-            divElement.setInnerHTML("<a href='" + escapeAttribute(url)
-                    + "' ></a>");
-
-            AnchorElement a = divElement.getChild(0).cast();
-            String href = a.getHref();
-
-            RootPanel.getBodyElement().removeChild(divElement);
-            return href;
-        } else {
-            AnchorElement a = Document.get().createAnchorElement();
-            a.setHref(url);
-            return a.getHref();
-        }
+        AnchorElement a = Document.get().createAnchorElement();
+        a.setHref(url);
+        return a.getHref();
     }
 
     /**
      * Sets the selection range of an input element.
-     * 
+     *
      * We need this JSNI function to set selection range so that we can use the
      * optional direction attribute to set the anchor to the end and the focus
      * to the start. This makes Firefox work the same way as other browsers
      * (#13477)
-     * 
+     *
      * @param elem
      *            the html input element.
      * @param pos
@@ -1300,7 +1263,7 @@ public class WidgetUtil {
      *            a string indicating the direction in which the selection was
      *            performed. This may be "forward" or "backward", or "none" if
      *            the direction is unknown or irrelevant.
-     * 
+     *
      * @since 7.3
      */
     public native static void setSelectionRange(Element elem, int pos,
@@ -1315,7 +1278,7 @@ public class WidgetUtil {
 
     /**
      * JavaScript hack to prevent text selection in various browsers.
-     * 
+     *
      * @since 7.6
      * @param e
      *            element for enabling or disabling text selection
@@ -1338,7 +1301,7 @@ public class WidgetUtil {
 
     /**
      * JavaScript hack to clear text selection in various browsers.
-     * 
+     *
      * @since 7.6
      */
     public native static void clearTextSelection()
@@ -1360,16 +1323,17 @@ public class WidgetUtil {
     /**
      * Compares two double values with the error margin of
      * {@link #PIXEL_EPSILON} (i.e. {@value #PIXEL_EPSILON})
-     * 
+     *
      * @param num1
      *            the first value for which to compare equality
      * @param num2
      *            the second value for which to compare equality
      * @since 7.4
-     * 
+     *
      * @return true if the values are considered equals; false otherwise
      */
-    public static boolean pixelValuesEqual(final double num1, final double num2) {
+    public static boolean pixelValuesEqual(final double num1,
+            final double num2) {
         return Math.abs(num1 - num2) <= PIXEL_EPSILON;
     }
 
@@ -1417,7 +1381,7 @@ public class WidgetUtil {
      * Wrap a css size value and its unit and translate back and forth to the
      * string representation.<br/>
      * Eg. 50%, 123px, ...
-     * 
+     *
      * @since 7.2.6
      * @author Vaadin Ltd
      */
@@ -1436,7 +1400,7 @@ public class WidgetUtil {
 
         /**
          * Gets the unit value by its type.
-         * 
+         *
          * @param type
          *            the type of the unit as found in the style.
          * @return the unit value.
@@ -1453,7 +1417,7 @@ public class WidgetUtil {
 
         /**
          * Parse the size from string format to {@link CssSize}.
-         * 
+         *
          * @param s
          *            the size as string.
          * @return a {@link CssSize} object.
@@ -1484,16 +1448,16 @@ public class WidgetUtil {
                     unit = unitByType(symbol);
                 }
             } else {
-                throw new IllegalArgumentException("Invalid size argument: \""
-                        + s + "\" (should match " + sizePattern.getSource()
-                        + ")");
+                throw new IllegalArgumentException(
+                        "Invalid size argument: \"" + s + "\" (should match "
+                                + sizePattern.getSource() + ")");
             }
             return new CssSize(size, unit);
         }
 
         /**
          * Creates a {@link CssSize} using a value and its measurement unit.
-         * 
+         *
          * @param value
          *            the value.
          * @param unit
@@ -1521,7 +1485,7 @@ public class WidgetUtil {
 
         /**
          * Gets the value for this css size.
-         * 
+         *
          * @return the value.
          */
         public float getValue() {
@@ -1530,7 +1494,7 @@ public class WidgetUtil {
 
         /**
          * Gets the measurement unit for this css size.
-         * 
+         *
          * @return the unit.
          */
         public Unit getUnit() {
@@ -1554,7 +1518,7 @@ public class WidgetUtil {
 
         /**
          * Check whether the two sizes are equals.
-         * 
+         *
          * @param cssSize1
          *            the first size to compare.
          * @param cssSize2
@@ -1562,8 +1526,8 @@ public class WidgetUtil {
          * @return true if the two sizes are equals, otherwise false.
          */
         public static boolean equals(String cssSize1, String cssSize2) {
-            return CssSize.fromString(cssSize1).equals(
-                    CssSize.fromString(cssSize2));
+            return CssSize.fromString(cssSize1)
+                    .equals(CssSize.fromString(cssSize2));
         }
 
     }
@@ -1577,7 +1541,7 @@ public class WidgetUtil {
      * <p>
      * The value is determined using computed style when available and
      * calculated otherwise.
-     * 
+     *
      * @since 7.5.0
      * @param element
      *            the element to measure
@@ -1592,14 +1556,15 @@ public class WidgetUtil {
      * <p>
      * The value is determined using computed style when available and
      * calculated otherwise.
-     * 
+     *
      * @since 7.5.0
      * @param element
      *            the element to measure
      * @return the bottom border thickness
      */
     public static double getBorderBottomThickness(Element element) {
-        return getBorderThickness(element, new String[] { "borderBottomWidth" });
+        return getBorderThickness(element,
+                new String[] { "borderBottomWidth" });
     }
 
     /**
@@ -1608,15 +1573,15 @@ public class WidgetUtil {
      * <p>
      * The value is determined using computed style when available and
      * calculated otherwise.
-     * 
+     *
      * @since 7.5.0
      * @param element
      *            the element to measure
      * @return the top and bottom border thickness
      */
     public static double getBorderTopAndBottomThickness(Element element) {
-        return getBorderThickness(element, new String[] { "borderTopWidth",
-                "borderBottomWidth" });
+        return getBorderThickness(element,
+                new String[] { "borderTopWidth", "borderBottomWidth" });
     }
 
     /**
@@ -1624,7 +1589,7 @@ public class WidgetUtil {
      * <p>
      * The value is determined using computed style when available and
      * calculated otherwise.
-     * 
+     *
      * @since 7.5.0
      * @param element
      *            the element to measure
@@ -1639,7 +1604,7 @@ public class WidgetUtil {
      * <p>
      * The value is determined using computed style when available and
      * calculated otherwise.
-     * 
+     *
      * @since 7.5.0
      * @param element
      *            the element to measure
@@ -1654,15 +1619,15 @@ public class WidgetUtil {
      * <p>
      * The value is determined using computed style when available and
      * calculated otherwise.
-     * 
+     *
      * @since 7.5.0
      * @param element
      *            the element to measure
      * @return the top border thickness
      */
     public static double getBorderLeftAndRightThickness(Element element) {
-        return getBorderThickness(element, new String[] { "borderLeftWidth",
-                "borderRightWidth" });
+        return getBorderThickness(element,
+                new String[] { "borderLeftWidth", "borderRightWidth" });
     }
 
     private static native double getBorderThickness(
@@ -1681,27 +1646,26 @@ public class WidgetUtil {
             var cloneElement = element.cloneNode(false);
             cloneElement.style.boxSizing ="content-box";
             parentElement.appendChild(cloneElement);
-            cloneElement.style.height = "10px"; // IE8 wants the height to be set to something...
             var heightWithBorder = cloneElement.offsetHeight;
             for (i=0; i< borderNames.length; i++) {
                 cloneElement.style[borderNames[i]] = "0";
             }
             var heightWithoutBorder = cloneElement.offsetHeight;
             parentElement.removeChild(cloneElement);
-            
+
             return heightWithBorder - heightWithoutBorder;
         }
     }-*/;
 
     /**
      * Rounds the given size up to a value which the browser will accept.
-     * 
+     *
      * Safari/WebKit uses 1/64th of a pixel to enable using integer math
      * (http://trac.webkit.org/wiki/LayoutUnit).
-     * 
+     *
      * Firefox uses 1/60th of a pixel because it is divisible by three
      * (https://bugzilla.mozilla.org/show_bug.cgi?id=1070940)
-     * 
+     *
      * @since 7.5.1
      * @param size
      *            the value to round
@@ -1713,15 +1677,15 @@ public class WidgetUtil {
 
     /**
      * Rounds the given size down to a value which the browser will accept.
-     * 
+     *
      * Safari/WebKit uses 1/64th of a pixel to enable using integer math
      * (http://trac.webkit.org/wiki/LayoutUnit).
-     * 
+     *
      * Firefox uses 1/60th of a pixel because it is divisible by three
      * (https://bugzilla.mozilla.org/show_bug.cgi?id=1070940)
-     * 
+     *
      * IE9+ uses 1/100th of a pixel
-     * 
+     *
      * @since 7.5.1
      * @param size
      *            the value to round
@@ -1732,14 +1696,6 @@ public class WidgetUtil {
     }
 
     private static double roundSize(double size, boolean roundUp) {
-        if (BrowserInfo.get().isIE8()) {
-            if (roundUp) {
-                return Math.ceil(size);
-            } else {
-                return (int) size;
-            }
-        }
-
         double factor = getSubPixelRoundingFactor();
         if (factor < 0 || size < 0) {
             return size;
@@ -1754,7 +1710,7 @@ public class WidgetUtil {
 
     /**
      * Returns the factor used by browsers to round subpixel values
-     * 
+     *
      * @since 7.5.1
      * @return the factor N used by the browser when storing subpixels as X+Y/N
      */
@@ -1823,3 +1779,4 @@ public class WidgetUtil {
         return integerPart + ((int) nrFractions) / divisor;
     }
 }
+

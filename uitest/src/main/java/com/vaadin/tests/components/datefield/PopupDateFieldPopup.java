@@ -3,8 +3,8 @@ package com.vaadin.tests.components.datefield;
 import java.util.Calendar;
 import java.util.Locale;
 
+import com.vaadin.shared.ui.datefield.Resolution;
 import com.vaadin.tests.components.TestBase;
-import com.vaadin.ui.DateField;
 import com.vaadin.ui.PopupDateField;
 
 public class PopupDateFieldPopup extends TestBase {
@@ -24,7 +24,7 @@ public class PopupDateFieldPopup extends TestBase {
         pdf.setLocale(Locale.US);
         pdf.setValue(cal.getTime());
         pdf.setImmediate(true);
-        pdf.setResolution(DateField.RESOLUTION_SEC);
+        pdf.setResolution(Resolution.SECOND);
         addComponent(pdf);
     }
 

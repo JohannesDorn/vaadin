@@ -1,12 +1,12 @@
 /*
- * Copyright 2000-2014 Vaadin Ltd.
- * 
+ * Copyright 2000-2016 Vaadin Ltd.
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -21,7 +21,6 @@ import java.util.Collection;
 import org.jsoup.nodes.Attributes;
 import org.jsoup.nodes.Element;
 
-import com.vaadin.data.Property;
 import com.vaadin.event.FieldEvents.BlurEvent;
 import com.vaadin.event.FieldEvents.BlurListener;
 import com.vaadin.event.FieldEvents.FocusAndBlurServerRpcImpl;
@@ -49,7 +48,7 @@ public class CheckBox extends AbstractField<Boolean> {
              * to make sure the cached state is updated to match the client. If
              * we do not do this, a reverting setValue() call in a listener will
              * not cause the new state to be sent to the client.
-             * 
+             *
              * See #11028, #10030.
              */
             getUI().getConnectorTracker().getDiffState(CheckBox.this)
@@ -66,7 +65,8 @@ public class CheckBox extends AbstractField<Boolean> {
         }
     };
 
-    FocusAndBlurServerRpcImpl focusBlurRpc = new FocusAndBlurServerRpcImpl(this) {
+    FocusAndBlurServerRpcImpl focusBlurRpc = new FocusAndBlurServerRpcImpl(
+            this) {
         @Override
         protected void fireEvent(Event event) {
             CheckBox.this.fireEvent(event);
@@ -84,7 +84,7 @@ public class CheckBox extends AbstractField<Boolean> {
 
     /**
      * Creates a new checkbox with a set caption.
-     * 
+     *
      * @param caption
      *            the Checkbox caption.
      */
@@ -95,7 +95,7 @@ public class CheckBox extends AbstractField<Boolean> {
 
     /**
      * Creates a new checkbox with a caption and a set initial state.
-     * 
+     *
      * @param caption
      *            the caption of the checkbox
      * @param initialState
@@ -106,21 +106,28 @@ public class CheckBox extends AbstractField<Boolean> {
         setValue(initialState);
     }
 
-    /**
-     * Creates a new checkbox that is connected to a boolean property.
-     * 
-     * @param state
-     *            the Initial state of the switch-button.
-     * @param dataSource
-     */
-    public CheckBox(String caption, Property<?> dataSource) {
-        this(caption);
-        setPropertyDataSource(dataSource);
+    @Override
+    public Boolean getValue() {
+        return getState(false).checked;
     }
 
+    /**
+     * Sets the value of this ComboBox. If the new value is not equal to
+     * {@code getValue()}, fires a value change event. Throws
+     * {@code IllegalArgumentException} if the value is null.
+     *
+     * @param value
+     *            the new value
+     * @throws IllegalArgumentException
+     *             if the value is null
+     */
     @Override
-    public Class<Boolean> getType() {
-        return Boolean.class;
+    public void setValue(Boolean value) {
+        if (value == null) {
+            throw new IllegalArgumentException(
+                    "CheckBox value must not be null");
+        }
+        super.setValue(value);
     }
 
     @Override
@@ -128,20 +135,14 @@ public class CheckBox extends AbstractField<Boolean> {
         return (CheckBoxState) super.getState();
     }
 
-    /*
-     * Overridden to keep the shared state in sync with the AbstractField
-     * internal value. Should be removed once AbstractField is refactored to use
-     * shared state.
-     * 
-     * See tickets #10921 and #11064.
-     */
     @Override
-    protected void setInternalValue(Boolean newValue) {
-        super.setInternalValue(newValue);
-        if (newValue == null) {
-            newValue = false;
-        }
-        getState().checked = newValue;
+    protected CheckBoxState getState(boolean markAsDirty) {
+        return (CheckBoxState) super.getState(markAsDirty);
+    }
+
+    @Override
+    protected void doSetValue(Boolean value) {
+        getState().checked = value;
     }
 
     public void addBlurListener(BlurListener listener) {
@@ -149,25 +150,8 @@ public class CheckBox extends AbstractField<Boolean> {
                 BlurListener.blurMethod);
     }
 
-    /**
-     * @deprecated As of 7.0, replaced by {@link #addBlurListener(BlurListener)}
-     **/
-    @Deprecated
-    public void addListener(BlurListener listener) {
-        addBlurListener(listener);
-    }
-
     public void removeBlurListener(BlurListener listener) {
         removeListener(BlurEvent.EVENT_ID, BlurEvent.class, listener);
-    }
-
-    /**
-     * @deprecated As of 7.0, replaced by
-     *             {@link #removeBlurListener(BlurListener)}
-     **/
-    @Deprecated
-    public void removeListener(BlurListener listener) {
-        removeBlurListener(listener);
     }
 
     public void addFocusListener(FocusListener listener) {
@@ -175,45 +159,13 @@ public class CheckBox extends AbstractField<Boolean> {
                 FocusListener.focusMethod);
     }
 
-    /**
-     * @deprecated As of 7.0, replaced by
-     *             {@link #addFocusListener(FocusListener)}
-     **/
-    @Deprecated
-    public void addListener(FocusListener listener) {
-        addFocusListener(listener);
-    }
-
     public void removeFocusListener(FocusListener listener) {
         removeListener(FocusEvent.EVENT_ID, FocusEvent.class, listener);
     }
 
-    /**
-     * @deprecated As of 7.0, replaced by
-     *             {@link #removeFocusListener(FocusListener)}
-     **/
-    @Deprecated
-    public void removeListener(FocusListener listener) {
-        removeFocusListener(listener);
-    }
-
-    /**
-     * Get the boolean value of the button state.
-     * 
-     * @return True iff the button is pressed down or checked.
-     * 
-     * @deprecated As of 7.0, use {@link #getValue()} instead and, if needed,
-     *             handle null values.
-     */
-    @Deprecated
-    public boolean booleanValue() {
-        Boolean value = getValue();
-        return (null == value) ? false : value.booleanValue();
-    }
-
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see com.vaadin.ui.AbstractField#readDesign(org.jsoup.nodes.Element,
      * com.vaadin.ui.declarative.DesignContext)
      */
@@ -221,15 +173,14 @@ public class CheckBox extends AbstractField<Boolean> {
     public void readDesign(Element design, DesignContext designContext) {
         super.readDesign(design, designContext);
         if (design.hasAttr("checked")) {
-            this.setValue(
-                    DesignAttributeHandler.readAttribute("checked",
-                            design.attributes(), Boolean.class), false, true);
+            this.setValue(DesignAttributeHandler.readAttribute("checked",
+                    design.attributes(), Boolean.class), false);
         }
     }
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see com.vaadin.ui.AbstractField#getCustomAttributes()
      */
     @Override
@@ -241,7 +192,7 @@ public class CheckBox extends AbstractField<Boolean> {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see com.vaadin.ui.AbstractField#writeDesign(org.jsoup.nodes.Element,
      * com.vaadin.ui.declarative.DesignContext)
      */
@@ -252,17 +203,6 @@ public class CheckBox extends AbstractField<Boolean> {
         Attributes attr = design.attributes();
         DesignAttributeHandler.writeAttribute("checked", attr, getValue(),
                 def.getValue(), Boolean.class);
-    }
-
-    @Override
-    public void clear() {
-        setValue(Boolean.FALSE);
-    }
-
-    @Override
-    public boolean isEmpty() {
-        return getValue() == null || getValue().equals(Boolean.FALSE);
-
     }
 
 }
